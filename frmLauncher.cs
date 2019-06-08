@@ -2,33 +2,20 @@
 using System.Diagnostics;
 using System.Windows.Forms;
 using System.IO;
-using System.Net;
 using System.Net.Sockets;
 using System.Collections.Generic;
+using System.Threading;
+using Microsoft.VisualBasic;
 
 namespace SUPLauncher
 {
     public partial class frmLauncher : Form
     {
+        Thread t;
         public frmLauncher()
         {
             InitializeComponent();
         }
-
-        //private void frmLauncher_Load(object sender, EventArgs e)
-        //{
-        //    DriveInfo[] allDrives = DriveInfo.GetDrives();
-        //    var i = 0;
-        //    foreach (DriveInfo d in allDrives)
-        //    {
-        //        if (!Directory.Exists(d.Name + @"\\Steam\steamapps\common\GarrysMod\") && i > allDrives.Length - 1)
-        //        {
-        //            MessageBox.Show("Garry's Mod executeable not found, closing application.", "hl2.exe not found", MessageBoxButtons.OK, MessageBoxIcon.Error);
-        //            Application.Exit();
-        //        }
-        //        i++;
-        //    }
-        //}
         private void btnDanktown_Click(object sender, EventArgs e)
         {
             Process.Start("steam://connect/rp.superiorservers.co:27015");
@@ -78,16 +65,6 @@ namespace SUPLauncher
             Process.Start("ts3server://TS.SuperiorServers.co:9987");
         }
 
-        private void tmrRefresh_Tick(object sender, EventArgs e)
-        {
-                lblDT.Text = GetPlayerCount("208.103.169.12").ToString() + "/128";
-                lblSD.Text = GetPlayerCount("208.103.169.13").ToString() + "/128";
-                lblC18.Text = GetPlayerCount("208.103.169.15").ToString() + "/128";
-                lblZRP.Text = GetPlayerCount("208.103.169.14").ToString() + "/128";
-                lblMRP.Text = GetPlayerCount("208.103.169.18").ToString() + "/128";
-                lblCW1.Text = GetPlayerCount("208.103.169.16").ToString() + "/128";
-                lblCW2.Text = GetPlayerCount("208.103.169.17").ToString() + "/128";
-        }
         private byte GetPlayerCount(string ip)
         {
             // DT: 208.103.169.12
@@ -127,6 +104,33 @@ namespace SUPLauncher
                 return Convert.ToByte(ms.ReadByte());
             }
         }
+        private void GetPlayerCountAllServers()
+        {
+                do // Don't ask lmfao
+                {
+                    ThreadHelperClass.SetText(this, lblDT, GetPlayerCount("208.103.169.12").ToString() + "/128");
+                    ThreadHelperClass.SetText(this, lblSD, GetPlayerCount("208.103.169.13").ToString() + "/128");
+                    ThreadHelperClass.SetText(this, lblC18, GetPlayerCount("208.103.169.15").ToString() + "/128");
+                    ThreadHelperClass.SetText(this, lblZRP, GetPlayerCount("208.103.169.14").ToString() + "/128");
+                    ThreadHelperClass.SetText(this, lblMRP, GetPlayerCount("208.103.169.18").ToString() + "/128");
+                    ThreadHelperClass.SetText(this, lblCW1, GetPlayerCount("208.103.169.16").ToString() + "/128");
+                    ThreadHelperClass.SetText(this, lblCW2, GetPlayerCount("208.103.169.17").ToString() + "/128");
+                    Thread.Sleep(60000);
+                } while (2 == 2); // 2 is always equal to 2
+        }
+        private void frmLauncher_Load(object sender, EventArgs e)
+        {
+            t = new Thread(GetPlayerCountAllServers); // good idea penguin
+            t.Start();
+        }
+
+        private void frmLauncher_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            foreach (var process in Process.GetProcessesByName("SUPLauncher"))
+            {
+                process.Kill();
+            }
+        }
     }
     public static class MemoryStreamExtensions
     {
@@ -142,5 +146,31 @@ namespace SUPLauncher
 
             return System.Text.Encoding.ASCII.GetString(res.ToArray());
         }
+    }
+    public static class ThreadHelperClass // Because fuck threads and me not allowing to just set text on a label like a normal person
+    {
+        delegate void SetTextCallback(Form f, Control ctrl, string text);
+        /// <summary>
+        /// Set text property of various controls
+        /// </summary>
+        /// <param name="form">The calling form</param>
+        /// <param name="ctrl">The control being modified</param>
+        /// <param name="text">The text to set</param>
+        public static void SetText(Form form, Control ctrl, string text)
+        {
+            // InvokeRequired required compares the thread ID of the 
+            // calling thread to the thread ID of the creating thread. 
+            // If these threads are different, it returns true. 
+            if (ctrl.InvokeRequired)
+            {
+                SetTextCallback d = new SetTextCallback(SetText);
+                form.Invoke(d, new object[] { form, ctrl, text });
+            }
+            else
+            {
+                ctrl.Text = text;
+            }
+        }
+
     }
 }

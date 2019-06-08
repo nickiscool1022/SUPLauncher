@@ -130,7 +130,7 @@
             this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Font = new System.Drawing.Font("Roboto", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.SystemColors.Control;
-            this.label1.Location = new System.Drawing.Point(143, 9);
+            this.label1.Location = new System.Drawing.Point(152, 9);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(189, 29);
             this.label1.TabIndex = 7;
@@ -217,8 +217,7 @@
             // tmrRefresh
             // 
             this.tmrRefresh.Enabled = true;
-            this.tmrRefresh.Interval = 1000;
-            this.tmrRefresh.Tick += new System.EventHandler(this.tmrRefresh_Tick);
+            this.tmrRefresh.Interval = 5000;
             // 
             // lblSD
             // 
@@ -327,6 +326,8 @@
             this.Name = "frmLauncher";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "SUP Launcher";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmLauncher_FormClosing);
+            this.Load += new System.EventHandler(this.frmLauncher_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
