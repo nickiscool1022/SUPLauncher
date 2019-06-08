@@ -2,6 +2,9 @@
 using System.Diagnostics;
 using System.Windows.Forms;
 using System.IO;
+using System.Net;
+using System.Net.Sockets;
+using System.Collections.Generic;
 
 namespace SUPLauncher
 {
@@ -73,6 +76,71 @@ namespace SUPLauncher
         private void btnTS_Click(object sender, EventArgs e)
         {
             Process.Start("ts3server://TS.SuperiorServers.co:9987");
+        }
+
+        private void tmrRefresh_Tick(object sender, EventArgs e)
+        {
+                lblDT.Text = GetPlayerCount("208.103.169.12").ToString() + "/128";
+                lblSD.Text = GetPlayerCount("208.103.169.13").ToString() + "/128";
+                lblC18.Text = GetPlayerCount("208.103.169.15").ToString() + "/128";
+                lblZRP.Text = GetPlayerCount("208.103.169.14").ToString() + "/128";
+                lblMRP.Text = GetPlayerCount("208.103.169.18").ToString() + "/128";
+                lblCW1.Text = GetPlayerCount("208.103.169.16").ToString() + "/128";
+                lblCW2.Text = GetPlayerCount("208.103.169.17").ToString() + "/128";
+        }
+        private byte GetPlayerCount(string ip)
+        {
+            // DT: 208.103.169.12
+            // SD: 208.103.169.13 
+            // C18: 208.103.169.15
+            // ZRP: 208.103.169.14 
+            // MilRP: 208.103.169.18 
+            // CWRP: 208.103.169.16 
+            // CWRP #2: 208.103.169.17 
+
+            Socket socket = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
+            
+            byte[] rawData = new byte[512];
+            socket.Connect(ip, 27015);
+            byte[] sendBytes = { 0xFF, 0xFF, 0xFF, 0xFF, 0x54, 0x53, 0x6F, 0x75, 0x72, 0x63, 0x65, 0x20, 0x45, 0x6E, 0x67, 0x69, 0x6E, 0x65, 0x20, 0x51, 0x75, 0x65, 0x72, 0x79, 0x00 };
+            socket.Send(sendBytes);
+
+            socket.Receive(rawData);
+            using (var ms = new MemoryStream(rawData))
+            {
+                ms.ReadByte();
+                ms.ReadByte();
+                ms.ReadByte();
+                ms.ReadByte();
+
+                ms.ReadByte();
+                ms.ReadByte();
+
+                ms.ReadTerminatedString(); // FAIR WARNING THIS CODE PORTION IS ACTUALLY RETARDED & OBFUSCATED FOR A REASON
+                ms.ReadTerminatedString();
+                ms.ReadTerminatedString();
+                ms.ReadTerminatedString();
+
+                ms.ReadByte();
+                ms.ReadByte();
+
+                return Convert.ToByte(ms.ReadByte());
+            }
+        }
+    }
+    public static class MemoryStreamExtensions
+    {
+        public static string ReadTerminatedString(this MemoryStream ms)
+        {
+            List<byte> res = new List<byte>();
+
+            byte last;
+            while ((last = (byte)ms.ReadByte()) != 0x00)
+            {
+                res.Add(last);
+            }
+
+            return System.Text.Encoding.ASCII.GetString(res.ToArray());
         }
     }
 }
