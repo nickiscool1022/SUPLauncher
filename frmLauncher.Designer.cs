@@ -67,13 +67,13 @@
             // 
             // btnSundown
             // 
+            this.btnSundown.Enabled = false;
             this.btnSundown.Location = new System.Drawing.Point(36, 105);
             this.btnSundown.Name = "btnSundown";
             this.btnSundown.Size = new System.Drawing.Size(81, 33);
             this.btnSundown.TabIndex = 1;
             this.btnSundown.Text = "Sundown";
             this.btnSundown.UseVisualStyleBackColor = true;
-            this.btnSundown.Click += new System.EventHandler(this.btnSundown_Click);
             // 
             // btnC18
             // 

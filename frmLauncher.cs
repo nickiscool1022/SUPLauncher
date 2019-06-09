@@ -30,7 +30,20 @@ namespace SUPLauncher
             appStarted = true;
         }
 
-        private void btnSundown_Click(object sender, EventArgs e)
+        //private void btnSundown_Click(object sender, EventArgs e)
+        //{
+        //    if (chkAFK.Checked && appStarted == false)
+        //    {
+        //        Process.Start("steam://run/4000//-64bit -textmode -single_core -nojoy -low -nosound -sw -noshader -nopix -novid -nopreload -nopreloadmodels -multirun +connect rp2.superiorservers.co");
+        //    }
+        //    else
+        //    {
+        //        Process.Start("steam://connect/rp2.superiorservers.co:27015");
+        //    }
+        //    appStarted = true;
+        //}
+
+        private void btnC18_Click(object sender, EventArgs e)
         {
             if (chkAFK.Checked && appStarted == false)
             {
@@ -39,19 +52,6 @@ namespace SUPLauncher
             else
             {
                 Process.Start("steam://connect/rp2.superiorservers.co:27015");
-            }
-            appStarted = true;
-        }
-
-        private void btnC18_Click(object sender, EventArgs e)
-        {
-            if (chkAFK.Checked && appStarted == false)
-            {
-                Process.Start("steam://run/4000//-64bit -textmode -single_core -nojoy -low -nosound -sw -noshader -nopix -novid -nopreload -nopreloadmodels -multirun +connect rp3.superiorservers.co");
-            }
-            else
-            {
-                Process.Start("steam://connect/rp3.superiorservers.co:27015");
             }
             appStarted = true;
         }
@@ -165,13 +165,13 @@ namespace SUPLauncher
         {
                 do // Don't ask lmfao
                 {
-                    ThreadHelperClass.SetText(this, lblDT, GetPlayerCount("208.103.169.12").ToString() + "/128");
-                    ThreadHelperClass.SetText(this, lblSD, GetPlayerCount("208.103.169.13").ToString() + "/128");
-                    ThreadHelperClass.SetText(this, lblC18, GetPlayerCount("208.103.169.15").ToString() + "/128");
-                    ThreadHelperClass.SetText(this, lblZRP, GetPlayerCount("208.103.169.14").ToString() + "/128");
-                    ThreadHelperClass.SetText(this, lblMRP, GetPlayerCount("208.103.169.18").ToString() + "/128");
-                    ThreadHelperClass.SetText(this, lblCW1, GetPlayerCount("208.103.169.16").ToString() + "/128");
-                    ThreadHelperClass.SetText(this, lblCW2, GetPlayerCount("208.103.169.17").ToString() + "/128");
+                    ThreadHelperClass.SetText(this, lblDT, GetPlayerCount("rp.superiorservers.co").ToString() + "/128");
+                    //ThreadHelperClass.SetText(this, lblSD, GetPlayerCount("208.103.169.13").ToString() + "/128");
+                    ThreadHelperClass.SetText(this, lblC18, GetPlayerCount("rp2.superiorservers.co").ToString() + "/128");
+                    ThreadHelperClass.SetText(this, lblZRP, GetPlayerCount("zrp.superiorservers.co").ToString() + "/128");
+                    ThreadHelperClass.SetText(this, lblMRP, GetPlayerCount("milrp.superiorservers.co").ToString() + "/128");
+                    ThreadHelperClass.SetText(this, lblCW1, GetPlayerCount("cwrp.superiorservers.co").ToString() + "/128");
+                    ThreadHelperClass.SetText(this, lblCW2, GetPlayerCount("cwrp2.superiorservers.co").ToString() + "/128");
                     Thread.Sleep(120000);
                 } while (2 == 2); // 2 is always equal to 2
         }
