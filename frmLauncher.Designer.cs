@@ -52,6 +52,7 @@
             this.lblMRP = new System.Windows.Forms.Label();
             this.lblCW1 = new System.Windows.Forms.Label();
             this.lblCW2 = new System.Windows.Forms.Label();
+            this.chkAFK = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // btnDanktown
@@ -291,13 +292,28 @@
             this.lblCW2.TabIndex = 21;
             this.lblCW2.Text = "000/000";
             // 
+            // chkAFK
+            // 
+            this.chkAFK.AutoSize = true;
+            this.chkAFK.BackColor = System.Drawing.Color.Transparent;
+            this.chkAFK.Font = new System.Drawing.Font("Roboto Condensed", 9.75F);
+            this.chkAFK.ForeColor = System.Drawing.SystemColors.Control;
+            this.chkAFK.Location = new System.Drawing.Point(373, 236);
+            this.chkAFK.Name = "chkAFK";
+            this.chkAFK.Size = new System.Drawing.Size(78, 19);
+            this.chkAFK.TabIndex = 22;
+            this.chkAFK.Text = "AFK Mode";
+            this.chkAFK.UseVisualStyleBackColor = false;
+            this.chkAFK.CheckedChanged += new System.EventHandler(this.chkAFK_CheckedChanged);
+            // 
             // frmLauncher
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackgroundImage = global::SUPLauncher.Properties.Resources.background;
+            this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(493, 267);
+            this.Controls.Add(this.chkAFK);
             this.Controls.Add(this.lblCW2);
             this.Controls.Add(this.lblCW1);
             this.Controls.Add(this.lblMRP);
@@ -357,6 +373,7 @@
         private System.Windows.Forms.Label lblMRP;
         private System.Windows.Forms.Label lblCW1;
         private System.Windows.Forms.Label lblCW2;
+        private System.Windows.Forms.CheckBox chkAFK;
     }
 }
 

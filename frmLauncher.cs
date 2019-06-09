@@ -5,7 +5,7 @@ using System.IO;
 using System.Net.Sockets;
 using System.Collections.Generic;
 using System.Threading;
-using Microsoft.VisualBasic;
+using Microsoft.Win32;
 
 namespace SUPLauncher
 {
@@ -18,37 +18,86 @@ namespace SUPLauncher
         }
         private void btnDanktown_Click(object sender, EventArgs e)
         {
-            Process.Start("steam://connect/rp.superiorservers.co:27015");
+            if (chkAFK.Checked)
+            {
+                Process.Start("steam://run/4000//-64bit -textmode -single_core -nojoy -low -nosound -sw -noshader -nopix -novid -nopreload -nopreloadmodels -multirun +connect rp.superiorservers.co");
+            }
+            else
+            {
+                Process.Start("steam://connect/rp.superiorservers.co:27015");
+            }
         }
 
         private void btnSundown_Click(object sender, EventArgs e)
         {
-            Process.Start("steam://connect/rp2.superiorservers.co:27015");
+            if (chkAFK.Checked)
+            {
+                Process.Start("steam://run/4000//-64bit -textmode -single_core -nojoy -low -nosound -sw -noshader -nopix -novid -nopreload -nopreloadmodels -multirun +connect rp2.superiorservers.co");
+            }
+            else
+            {
+                Process.Start("steam://connect/rp2.superiorservers.co:27015");
+            }
         }
 
         private void btnC18_Click(object sender, EventArgs e)
         {
-            Process.Start("steam://connect/rp3.superiorservers.co:27015");
+            if (chkAFK.Checked)
+            {
+                Process.Start("steam://run/4000//-64bit -textmode -single_core -nojoy -low -nosound -sw -noshader -nopix -novid -nopreload -nopreloadmodels -multirun +connect rp3.superiorservers.co");
+            }
+            else
+            {
+                Process.Start("steam://connect/rp3.superiorservers.co:27015");
+            }
         }
 
         private void btnZombies_Click(object sender, EventArgs e)
         {
-            Process.Start("steam://connect/zrp.superiorservers.co:27015");
+            if (chkAFK.Checked)
+            {
+                Process.Start("steam://run/4000//-64bit -textmode -single_core -nojoy -low -nosound -sw -noshader -nopix -novid -nopreload -nopreloadmodels -multirun +connect zrp.superiorservers.co");
+            }
+            else
+            {
+                Process.Start("steam://connect/zrp.superiorservers.co:27015");
+            }
         }
 
         private void btnMilRP_Click(object sender, EventArgs e)
         {
-            Process.Start("steam://connect/milrp.superiorservers.co:27015");
+            if (chkAFK.Checked)
+            {
+                Process.Start("steam://run/4000//-64bit -textmode -single_core -nojoy -low -nosound -sw -noshader -nopix -novid -nopreload -nopreloadmodels -multirun +connect milrp.superiorservers.co");
+            }
+            else
+            {
+                Process.Start("steam://connect/milrp.superiorservers.co:27015");
+            }
         }
 
         private void btnCW1_Click(object sender, EventArgs e)
         {
-            Process.Start("steam://connect/cwrp.superiorservers.co:27015");
+            if (chkAFK.Checked)
+            {
+                Process.Start("steam://run/4000//-64bit -textmode -single_core -nojoy -low -nosound -sw -noshader -nopix -novid -nopreload -nopreloadmodels -multirun +connect cwrp1.superiorservers.co");
+            }
+            else
+            {
+                Process.Start("steam://connect/cwrp1.superiorservers.co:27015");
+            }
         }
 
         private void btnCW2_Click(object sender, EventArgs e)
         {
-            Process.Start("steam://connect/cwrp2.superiorservers.co:27015");
+            if (chkAFK.Checked)
+            {
+                Process.Start("steam://run/4000//-64bit -textmode -single_core -nojoy -low -nosound -sw -noshader -nopix -novid -nopreload -nopreloadmodels -multirun +connect cwrp2.superiorservers.co");
+            }
+            else
+            {
+                Process.Start("steam://connect/cwrp2.superiorservers.co:27015");
+            }
         }
         private void panel1_MouseClick(object sender, MouseEventArgs e)
         {
@@ -115,18 +164,31 @@ namespace SUPLauncher
                     ThreadHelperClass.SetText(this, lblMRP, GetPlayerCount("208.103.169.18").ToString() + "/128");
                     ThreadHelperClass.SetText(this, lblCW1, GetPlayerCount("208.103.169.16").ToString() + "/128");
                     ThreadHelperClass.SetText(this, lblCW2, GetPlayerCount("208.103.169.17").ToString() + "/128");
-                    Thread.Sleep(60000);
+                    Thread.Sleep(120000);
                 } while (2 == 2); // 2 is always equal to 2
         }
         private void frmLauncher_Load(object sender, EventArgs e)
         {
             t = new Thread(GetPlayerCountAllServers); // good idea penguin
             t.Start();
+            Activate();
         }
 
         private void frmLauncher_FormClosing(object sender, FormClosingEventArgs e)
         {
             foreach (var process in Process.GetProcessesByName("SUPLauncher"))
+            {
+                process.Kill();
+            }
+        }
+
+        private void chkAFK_CheckedChanged(object sender, EventArgs e)
+        {
+            foreach (var process in Process.GetProcessesByName("hl2"))
+            {
+                process.Kill();
+            }
+            foreach (var process in Process.GetProcessesByName("gmod"))
             {
                 process.Kill();
             }
