@@ -12,13 +12,14 @@ namespace SUPLauncher
     public partial class frmLauncher : Form
     {
         Thread t;
+        bool appStarted = false;
         public frmLauncher()
         {
             InitializeComponent();
         }
         private void btnDanktown_Click(object sender, EventArgs e)
         {
-            if (chkAFK.Checked)
+            if (chkAFK.Checked && appStarted == false)
             {
                 Process.Start("steam://run/4000//-64bit -textmode -single_core -nojoy -low -nosound -sw -noshader -nopix -novid -nopreload -nopreloadmodels -multirun +connect rp.superiorservers.co");
             }
@@ -26,11 +27,12 @@ namespace SUPLauncher
             {
                 Process.Start("steam://connect/rp.superiorservers.co:27015");
             }
+            appStarted = true;
         }
 
         private void btnSundown_Click(object sender, EventArgs e)
         {
-            if (chkAFK.Checked)
+            if (chkAFK.Checked && appStarted == false)
             {
                 Process.Start("steam://run/4000//-64bit -textmode -single_core -nojoy -low -nosound -sw -noshader -nopix -novid -nopreload -nopreloadmodels -multirun +connect rp2.superiorservers.co");
             }
@@ -38,11 +40,12 @@ namespace SUPLauncher
             {
                 Process.Start("steam://connect/rp2.superiorservers.co:27015");
             }
+            appStarted = true;
         }
 
         private void btnC18_Click(object sender, EventArgs e)
         {
-            if (chkAFK.Checked)
+            if (chkAFK.Checked && appStarted == false)
             {
                 Process.Start("steam://run/4000//-64bit -textmode -single_core -nojoy -low -nosound -sw -noshader -nopix -novid -nopreload -nopreloadmodels -multirun +connect rp3.superiorservers.co");
             }
@@ -50,11 +53,12 @@ namespace SUPLauncher
             {
                 Process.Start("steam://connect/rp3.superiorservers.co:27015");
             }
+            appStarted = true;
         }
 
         private void btnZombies_Click(object sender, EventArgs e)
         {
-            if (chkAFK.Checked)
+            if (chkAFK.Checked && appStarted == false)
             {
                 Process.Start("steam://run/4000//-64bit -textmode -single_core -nojoy -low -nosound -sw -noshader -nopix -novid -nopreload -nopreloadmodels -multirun +connect zrp.superiorservers.co");
             }
@@ -62,11 +66,12 @@ namespace SUPLauncher
             {
                 Process.Start("steam://connect/zrp.superiorservers.co:27015");
             }
+            appStarted = true;
         }
 
         private void btnMilRP_Click(object sender, EventArgs e)
         {
-            if (chkAFK.Checked)
+            if (chkAFK.Checked && appStarted == false)
             {
                 Process.Start("steam://run/4000//-64bit -textmode -single_core -nojoy -low -nosound -sw -noshader -nopix -novid -nopreload -nopreloadmodels -multirun +connect milrp.superiorservers.co");
             }
@@ -74,23 +79,25 @@ namespace SUPLauncher
             {
                 Process.Start("steam://connect/milrp.superiorservers.co:27015");
             }
+            appStarted = true;
         }
 
         private void btnCW1_Click(object sender, EventArgs e)
         {
-            if (chkAFK.Checked)
+            if (chkAFK.Checked && appStarted == false)
             {
-                Process.Start("steam://run/4000//-64bit -textmode -single_core -nojoy -low -nosound -sw -noshader -nopix -novid -nopreload -nopreloadmodels -multirun +connect cwrp1.superiorservers.co");
+                Process.Start("steam://run/4000//-64bit -textmode -single_core -nojoy -low -nosound -sw -noshader -nopix -novid -nopreload -nopreloadmodels -multirun +connect cwrp.superiorservers.co");
             }
             else
             {
-                Process.Start("steam://connect/cwrp1.superiorservers.co:27015");
+                Process.Start("steam://connect/cwrp.superiorservers.co:27015");
             }
+            appStarted = true;
         }
 
         private void btnCW2_Click(object sender, EventArgs e)
         {
-            if (chkAFK.Checked)
+            if (chkAFK.Checked && appStarted == false)
             {
                 Process.Start("steam://run/4000//-64bit -textmode -single_core -nojoy -low -nosound -sw -noshader -nopix -novid -nopreload -nopreloadmodels -multirun +connect cwrp2.superiorservers.co");
             }
@@ -98,6 +105,7 @@ namespace SUPLauncher
             {
                 Process.Start("steam://connect/cwrp2.superiorservers.co:27015");
             }
+            appStarted = true;
         }
         private void panel1_MouseClick(object sender, MouseEventArgs e)
         {
@@ -192,6 +200,7 @@ namespace SUPLauncher
             {
                 process.Kill();
             }
+            appStarted = false;
         }
     }
     public static class MemoryStreamExtensions
