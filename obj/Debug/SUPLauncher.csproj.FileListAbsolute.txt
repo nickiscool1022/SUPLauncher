@@ -8,3 +8,13 @@ D:\Programming\SUPLauncher\SUPLauncher\obj\Debug\SUPLauncher.exe
 D:\Programming\SUPLauncher\SUPLauncher\obj\Debug\SUPLauncher.pdb
 D:\Programming\SUPLauncher\SUPLauncher\obj\Debug\SUPLauncher.csprojAssemblyReference.cache
 D:\Programming\SUPLauncher\SUPLauncher\obj\Debug\SUPLauncher.frmLauncher.resources
+D:\Programming\SUPLauncher - Copy\SUPLauncher\bin\Debug\SUPLauncher.exe.config
+D:\Programming\SUPLauncher - Copy\SUPLauncher\bin\Debug\SUPLauncher.exe
+D:\Programming\SUPLauncher - Copy\SUPLauncher\bin\Debug\SUPLauncher.pdb
+D:\Programming\SUPLauncher - Copy\SUPLauncher\obj\Debug\SUPLauncher.csprojAssemblyReference.cache
+D:\Programming\SUPLauncher - Copy\SUPLauncher\obj\Debug\SUPLauncher.frmLauncher.resources
+D:\Programming\SUPLauncher - Copy\SUPLauncher\obj\Debug\SUPLauncher.Properties.Resources.resources
+D:\Programming\SUPLauncher - Copy\SUPLauncher\obj\Debug\SUPLauncher.csproj.GenerateResource.cache
+D:\Programming\SUPLauncher - Copy\SUPLauncher\obj\Debug\SUPLauncher.csproj.CoreCompileInputs.cache
+D:\Programming\SUPLauncher - Copy\SUPLauncher\obj\Debug\SUPLauncher.exe
+D:\Programming\SUPLauncher - Copy\SUPLauncher\obj\Debug\SUPLauncher.pdb

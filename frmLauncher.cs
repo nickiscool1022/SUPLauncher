@@ -1,11 +1,13 @@
 ﻿using System;
+using System.Drawing;
 using System.Diagnostics;
 using System.Windows.Forms;
 using System.IO;
 using System.Net.Sockets;
 using System.Collections.Generic;
 using System.Threading;
-using Microsoft.Win32;
+using System.Globalization;
+using System.Net;
 
 namespace SUPLauncher
 {
@@ -13,6 +15,7 @@ namespace SUPLauncher
     {
         Thread t;
         bool appStarted = false;
+        bool v;
         public frmLauncher()
         {
             InitializeComponent();
@@ -173,10 +176,16 @@ namespace SUPLauncher
                     ThreadHelperClass.SetText(this, lblCW1, GetPlayerCount("cwrp.superiorservers.co").ToString() + "/128");
                     ThreadHelperClass.SetText(this, lblCW2, GetPlayerCount("cwrp2.superiorservers.co").ToString() + "/128");
                     Thread.Sleep(120000);
-                } while (2 == 2); // 2 is always equal to 2
+                } while (true); // 2 is always equal to 2
         }
         private void frmLauncher_Load(object sender, EventArgs e)
-        {
+        { //steam.GetSteamId().ToString()
+            var steam = new SteamBridge();
+            var client = new WebClient();
+            client.DownloadFile(new Uri("https://superiorservers.co/api/avatar/" + steam.GetSteamId().ToString()), "avatar.jpg");
+            picImage.Image = Image.FromFile("avatar.jpg");
+            client.Dispose();
+
             t = new Thread(GetPlayerCountAllServers); // good idea penguin
             t.Start();
             Activate();
@@ -188,6 +197,7 @@ namespace SUPLauncher
             {
                 process.Kill();
             }
+
         }
 
         private void chkAFK_CheckedChanged(object sender, EventArgs e)
@@ -201,6 +211,12 @@ namespace SUPLauncher
                 process.Kill();
             }
             appStarted = false;
+        }
+
+        private void picImage_Click(object sender, EventArgs e)
+        {
+            var steam = new SteamBridge();
+            Process.Start("https://superiorservers.co/profile/" + steam.GetSteamId().ToString());
         }
     }
     public static class MemoryStreamExtensions
