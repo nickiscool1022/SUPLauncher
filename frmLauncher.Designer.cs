@@ -51,8 +51,8 @@
             this.lblCW1 = new System.Windows.Forms.Label();
             this.lblCW2 = new System.Windows.Forms.Label();
             this.chkAFK = new System.Windows.Forms.CheckBox();
-            this.picImage = new OvalPictureBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.picImage = new OvalPictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.picImage)).BeginInit();
             this.SuspendLayout();
             // 
@@ -286,20 +286,6 @@
             this.chkAFK.UseVisualStyleBackColor = false;
             this.chkAFK.CheckedChanged += new System.EventHandler(this.chkAFK_CheckedChanged);
             // 
-            // picImage
-            // 
-            this.picImage.BackColor = System.Drawing.Color.Transparent;
-            this.picImage.BackgroundImage = global::SUPLauncher.Properties.Resources.suplogo;
-            this.picImage.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.picImage.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.picImage.ErrorImage = global::SUPLauncher.Properties.Resources.suplogo;
-            this.picImage.Location = new System.Drawing.Point(188, 65);
-            this.picImage.Name = "picImage";
-            this.picImage.Size = new System.Drawing.Size(122, 129);
-            this.picImage.TabIndex = 25;
-            this.picImage.TabStop = false;
-            this.picImage.Click += new System.EventHandler(this.picImage_Click);
-            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -311,6 +297,21 @@
             this.label1.Size = new System.Drawing.Size(182, 29);
             this.label1.TabIndex = 26;
             this.label1.Text = "SuperiorServers";
+            // 
+            // picImage
+            // 
+            this.picImage.BackColor = System.Drawing.Color.Transparent;
+            this.picImage.BackgroundImage = global::SUPLauncher.Properties.Resources.suplogo;
+            this.picImage.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.picImage.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.picImage.ErrorImage = global::SUPLauncher.Properties.Resources.suplogo;
+            this.picImage.Location = new System.Drawing.Point(188, 65);
+            this.picImage.Name = "picImage";
+            this.picImage.Size = new System.Drawing.Size(122, 129);
+            this.picImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.picImage.TabIndex = 25;
+            this.picImage.TabStop = false;
+            this.picImage.Click += new System.EventHandler(this.picImage_Click);
             // 
             // frmLauncher
             // 
