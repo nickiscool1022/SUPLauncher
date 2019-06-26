@@ -1,12 +1,9 @@
-﻿/// <summary>
-/// This class allows basic communication with Steam.
-/// </summary>
-/// 
-//
-using System;
+﻿using System;
 using Microsoft.Win32;
 using System.Runtime.InteropServices;
-
+/// <summary>
+/// Allows basic communication with Steam.
+/// </summary>
 public class SteamBridge : IDisposable
 {
     /// <summary>

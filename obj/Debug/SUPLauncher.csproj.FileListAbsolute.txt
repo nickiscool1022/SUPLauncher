@@ -18,3 +18,8 @@ D:\Programming\SUPLauncher - Copy\SUPLauncher\obj\Debug\SUPLauncher.csproj.Gener
 D:\Programming\SUPLauncher - Copy\SUPLauncher\obj\Debug\SUPLauncher.csproj.CoreCompileInputs.cache
 D:\Programming\SUPLauncher - Copy\SUPLauncher\obj\Debug\SUPLauncher.exe
 D:\Programming\SUPLauncher - Copy\SUPLauncher\obj\Debug\SUPLauncher.pdb
+D:\Programming\SUPLauncher - Copy\SUPLauncher\bin\Debug\SUPLauncher.exe.manifest
+D:\Programming\SUPLauncher - Copy\SUPLauncher\bin\Debug\SUPLauncher.application
+D:\Programming\SUPLauncher - Copy\SUPLauncher\obj\Debug\SUPLauncher.exe.manifest
+D:\Programming\SUPLauncher - Copy\SUPLauncher\obj\Debug\SUPLauncher.application
+D:\Programming\SUPLauncher - Copy\SUPLauncher\obj\Debug\SUPLauncher.TrustInfo.xml

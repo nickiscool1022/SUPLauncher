@@ -52,6 +52,7 @@
             this.lblCW2 = new System.Windows.Forms.Label();
             this.chkAFK = new System.Windows.Forms.CheckBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.lblVersion = new System.Windows.Forms.Label();
             this.picImage = new OvalPictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.picImage)).BeginInit();
             this.SuspendLayout();
@@ -298,6 +299,20 @@
             this.label1.TabIndex = 26;
             this.label1.Text = "SuperiorServers";
             // 
+            // lblVersion
+            // 
+            this.lblVersion.AutoSize = true;
+            this.lblVersion.BackColor = System.Drawing.Color.Transparent;
+            this.lblVersion.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.lblVersion.Font = new System.Drawing.Font("Prototype", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblVersion.ForeColor = System.Drawing.SystemColors.Control;
+            this.lblVersion.Location = new System.Drawing.Point(395, 207);
+            this.lblVersion.Name = "lblVersion";
+            this.lblVersion.Size = new System.Drawing.Size(34, 20);
+            this.lblVersion.TabIndex = 27;
+            this.lblVersion.Text = "1.1.1.1";
+            this.lblVersion.Click += new System.EventHandler(this.lblVersion_Click);
+            // 
             // picImage
             // 
             this.picImage.BackColor = System.Drawing.Color.Transparent;
@@ -321,6 +336,7 @@
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(493, 267);
+            this.Controls.Add(this.lblVersion);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.picImage);
             this.Controls.Add(this.chkAFK);
@@ -384,6 +400,7 @@
         private System.Windows.Forms.CheckBox chkAFK;
         private OvalPictureBox picImage;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblVersion;
     }
 }
 

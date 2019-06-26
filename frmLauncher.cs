@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Threading;
 using System.Globalization;
 using System.Net;
+using Microsoft.VisualBasic;
 
 namespace SUPLauncher
 {
@@ -176,28 +177,35 @@ namespace SUPLauncher
                     ThreadHelperClass.SetText(this, lblCW1, GetPlayerCount("cwrp.superiorservers.co").ToString() + "/128");
                     ThreadHelperClass.SetText(this, lblCW2, GetPlayerCount("cwrp2.superiorservers.co").ToString() + "/128");
                     Thread.Sleep(120000);
-                } while (true); // 2 is always equal to 2
+                } while (true);
         }
         private void frmLauncher_Load(object sender, EventArgs e)
-        { //steam.GetSteamId().ToString()
-            var steam = new SteamBridge();
-            var client = new WebClient();
-            client.DownloadFile(new Uri("https://superiorservers.co/api/avatar/" + steam.GetSteamId().ToString()), "avatar.jpg");
-            picImage.Image = Image.FromFile("avatar.jpg");
-            client.Dispose();
+        {
+            try
+            {
+                lblVersion.Text = Application.ProductVersion;
+                var steam = new SteamBridge();
+                var client = new WebClient();
+                client.DownloadFile(new Uri("https://superiorservers.co/api/avatar/" + steam.GetSteamId().ToString()), "avatar.jpg");
+                picImage.Image = Image.FromFile("avatar.jpg");
+                client.Dispose();
 
-            t = new Thread(GetPlayerCountAllServers); // good idea penguin
-            t.Start();
-            Activate();
+                t = new Thread(GetPlayerCountAllServers); // good idea penguin
+                t.Start();
+                Activate();
+            }
+            catch (Exception)
+            {
+                frmLauncher_FormClosing(this, new FormClosingEventArgs(CloseReason.ApplicationExitCall, false));
+            }
         }
 
         private void frmLauncher_FormClosing(object sender, FormClosingEventArgs e)
         {
-            foreach (var process in Process.GetProcessesByName("SUPLauncher"))
+            foreach (var process in Process.GetProcessesByName(Application.ProductName))
             {
                 process.Kill();
             }
-
         }
 
         private void chkAFK_CheckedChanged(object sender, EventArgs e)
@@ -217,6 +225,12 @@ namespace SUPLauncher
         {
             var steam = new SteamBridge();
             Process.Start("https://superiorservers.co/profile/" + steam.GetSteamId().ToString());
+        }
+
+        private void lblVersion_Click(object sender, EventArgs e)
+        {
+            var updater = new ClientUpdater();
+            updater.Update();
         }
     }
     public static class MemoryStreamExtensions
