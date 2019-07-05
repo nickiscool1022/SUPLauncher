@@ -9,6 +9,7 @@ using System.Threading;
 using System.Globalization;
 using System.Net;
 using Microsoft.VisualBasic;
+using DiscordRPC;
 
 namespace SUPLauncher
 {
@@ -16,13 +17,24 @@ namespace SUPLauncher
     {
         Thread t;
         bool appStarted = false;
-        bool v;
+        string dupePath;
+        string server;
         public frmLauncher()
         {
+            Thread trd = new Thread(new ThreadStart(Run));
+            trd.Start();
             InitializeComponent();
+            Thread.Sleep(5000);
+            trd.Abort();
         }
+        public void Run()
+        {
+            Application.Run(new Splashscreen1());
+        }
+        DiscordRpcClient discord = new DiscordRpcClient("594668399653814335");
         private void btnDanktown_Click(object sender, EventArgs e)
         {
+            
             if (chkAFK.Checked && appStarted == false)
             {
                 Process.Start("steam://run/4000//-64bit -textmode -single_core -nojoy -low -nosound -sw -noshader -nopix -novid -nopreload -nopreloadmodels -multirun +connect rp.superiorservers.co");
@@ -158,7 +170,7 @@ namespace SUPLauncher
                 ms.ReadTerminatedString();
                 ms.ReadTerminatedString();
                 ms.ReadTerminatedString();
-
+                
                 ms.ReadByte();
                 ms.ReadByte();
 
@@ -167,7 +179,7 @@ namespace SUPLauncher
         }
         private void GetPlayerCountAllServers()
         {
-                do // Don't ask lmfao
+                do
                 {
                     ThreadHelperClass.SetText(this, lblDT, GetPlayerCount("rp.superiorservers.co").ToString() + "/128");
                     //ThreadHelperClass.SetText(this, lblSD, GetPlayerCount("208.103.169.13").ToString() + "/128");
@@ -181,8 +193,24 @@ namespace SUPLauncher
         }
         private void frmLauncher_Load(object sender, EventArgs e)
         {
+            GetUsername();
+            GetDiscordCheckStatus();
+            GetCurrentServer();
+            GetDupes();
             try
             {
+                if (chkDiscord.Checked)
+                {
+                    try
+                    {
+                        discord.Initialize();
+                    }
+                    catch (Exception)
+                    {
+                        lblServer_TextChanged(this, new EventArgs());
+                    }
+                    lblServer_TextChanged(this, new EventArgs());
+                }
                 lblVersion.Text = Application.ProductVersion;
                 var steam = new SteamBridge();
                 var client = new WebClient();
@@ -193,19 +221,44 @@ namespace SUPLauncher
                 t = new Thread(GetPlayerCountAllServers); // good idea penguin
                 t.Start();
                 Activate();
+                tmrSteamQuery.Start();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                MessageBox.Show(ex.ToString());
                 frmLauncher_FormClosing(this, new FormClosingEventArgs(CloseReason.ApplicationExitCall, false));
             }
         }
-
+        void GetUsername()
+        {
+            var steam = new SteamBridge();
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12; // Secure security protocol for querying the github API
+            HttpWebRequest request = WebRequest.CreateHttp("http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=27A2CB958256FB97DCFFEE9B634CD02E&steamids=" + steam.GetSteamId());
+            request.UserAgent = "Nick";
+            WebResponse response = null;
+            response = request.GetResponse(); // Get Response from webrequest
+            StreamReader sr = new StreamReader(response.GetResponseStream()); // Create stream to access web data
+            string currentRecord = sr.ReadToEnd(); // Read data from response stream
+            string raw = currentRecord.Substring(currentRecord.IndexOf("personaname") + "personaname".Length + 3, (currentRecord.IndexOf("lastlogoff") - (currentRecord.IndexOf("personaname") + "personaname".Length + 6)));
+            this.Text = "SUP Launcher (" + raw.ToString() + ")";
+        }
+        void GetDiscordCheckStatus()
+        {
+            if (File.Exists("1"))
+                chkDiscord.Checked = true;
+            else
+                chkDiscord.Checked = false;
+        }
         private void frmLauncher_FormClosing(object sender, FormClosingEventArgs e)
         {
-            foreach (var process in Process.GetProcessesByName(Application.ProductName))
+            if (chkDiscord.Checked && File.Exists("1") == false)
             {
-                process.Kill();
+                File.Create("1");
+                File.SetAttributes("1", FileAttributes.Hidden);
             }
+            else
+                File.Delete("1");
+            Interaction.Shell("taskkill /pid " + Process.GetCurrentProcess().Id.ToString() + " /f /t"); // Whoops
         }
 
         private void chkAFK_CheckedChanged(object sender, EventArgs e)
@@ -219,6 +272,18 @@ namespace SUPLauncher
                 process.Kill();
             }
             appStarted = false;
+            discord.SetPresence(new RichPresence()
+            {
+                Details = "Waiting to join a server...",
+                State = "",
+                Assets = new Assets()
+                {
+
+                    LargeImageKey = "suplogo",
+                    LargeImageText = "SuperiorServers.co"
+                    //SmallImageKey = "suplogo"
+                }
+            });
         }
 
         private void picImage_Click(object sender, EventArgs e)
@@ -229,8 +294,283 @@ namespace SUPLauncher
 
         private void lblVersion_Click(object sender, EventArgs e)
         {
-            var updater = new ClientUpdater();
-            updater.Update();
+            MessageBox.Show("Auto-update temporary disabled. Sorry for any inconvenience.", "Disabled", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //var updater = new ClientUpdater();
+            //updater.Update();
+        }
+        void GetDupes()
+        {
+            // GetValue() only returns X:\Program Files (x86)\Steam
+            string SteamInstallPathDir;
+            if (Environment.Is64BitOperatingSystem)
+                SteamInstallPathDir = Microsoft.Win32.Registry.GetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\Valve\Steam", "InstallPath", null).ToString();
+            else
+                SteamInstallPathDir = Microsoft.Win32.Registry.GetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\Valve\Steam", "InstallPath", null).ToString();
+            if (Directory.Exists(SteamInstallPathDir + @"\steamapps\common\GarrysMod\garrysmod\data\advdupe2") == false)
+            {
+                var sr = new StreamReader(SteamInstallPathDir + @"\steamapps\libraryfolders.vdf");
+                string raw;
+                do
+                {
+                    raw = sr.ReadLine();
+                } while (raw.Contains(@"""1""") == false);
+                string refined = raw.Substring(raw.IndexOf("\t\t") + 3);
+                for (int i = 0; i < refined.Length; i++)
+                {
+                    if (refined.Substring(i, 1) == "\\".ToString())
+                    {
+                        refined = refined.Remove(i, 1);
+                    }
+                }
+                dupePath = refined.Substring(0, refined.Length - 1) + @"\steamapps\common\GarrysMod\garrysmod\data\advdupe2";
+            }
+            else
+                dupePath = SteamInstallPathDir + @"\steamapps\common\GarrysMod\garrysmod\data\advdupe2";
+            string[] files = new string[Directory.GetFiles(dupePath).Length];
+            int z = 0;
+            foreach (var i in Directory.GetFiles(dupePath))
+            {
+                files[z] = Path.GetFileName(i);
+                z++;
+            }
+            Dupes.Items.AddRange(files);
+        }
+        void GetCurrentServer()
+        {
+            try
+            {
+                var steam = new SteamBridge();
+                ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12; // Secure security protocol for querying the github API
+                HttpWebRequest request = WebRequest.CreateHttp("http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=27A2CB958256FB97DCFFEE9B634CD02E&steamids=" + steam.GetSteamId());
+                request.UserAgent = "Nick";
+                WebResponse response = null;
+                response = request.GetResponse(); // Get Response from webrequest
+                StreamReader sr = new StreamReader(response.GetResponseStream()); // Create stream to access web data
+                string currentRecord = sr.ReadToEnd(); // Read data from response stream
+                string raw = currentRecord.Substring(currentRecord.IndexOf("gameserverip") + "gameserverip".Length + 3, (currentRecord.IndexOf("27015") - (currentRecord.IndexOf("gameserverip") + "gameserverip".Length + 3)));
+                string refined = raw.Substring(0, raw.Length - 1);
+                switch (refined)
+                {
+                    case "208.103.169.12":
+                        btnDanktown.BackColor = Color.SpringGreen;
+                        btnC18.BackColor = Color.White;
+                        btnZombies.BackColor = Color.White;
+                        btnMilRP.BackColor = Color.White;
+                        btnCW1.BackColor = Color.White;
+                        btnCW2.BackColor = Color.White;
+                        server = "Danktown";
+                        break;
+                    case "208.103.169.13":
+                        btnDanktown.BackColor = Color.White;
+                        btnC18.BackColor = Color.SpringGreen;
+                        btnZombies.BackColor = Color.White;
+                        btnMilRP.BackColor = Color.White;
+                        btnCW1.BackColor = Color.White;
+                        btnCW2.BackColor = Color.White;
+                        server = "C18";
+                        break;
+                    case "208.103.169.14":
+                        btnDanktown.BackColor = Color.White;
+                        btnC18.BackColor = Color.White;
+                        btnZombies.BackColor = Color.SpringGreen;
+                        btnMilRP.BackColor = Color.White;
+                        btnCW1.BackColor = Color.White;
+                        btnCW2.BackColor = Color.White;
+                        server = "ZRP";
+                        break;
+                    case "208.103.169.18":
+                        btnDanktown.BackColor = Color.White;
+                        btnC18.BackColor = Color.White;
+                        btnZombies.BackColor = Color.White;
+                        btnMilRP.BackColor = Color.SpringGreen;
+                        btnCW1.BackColor = Color.White;
+                        btnCW2.BackColor = Color.White;
+                        server = "MilRP";
+                        break;
+                    case "208.103.169.16":
+                        btnDanktown.BackColor = Color.White;
+                        btnC18.BackColor = Color.White;
+                        btnZombies.BackColor = Color.White;
+                        btnMilRP.BackColor = Color.White;
+                        btnCW1.BackColor = Color.SpringGreen;
+                        btnCW2.BackColor = Color.White;
+                        server = "CWRP #1";
+                        break;
+                    case "208.103.169.17":
+                        btnDanktown.BackColor = Color.White;
+                        btnC18.BackColor = Color.White;
+                        btnZombies.BackColor = Color.White;
+                        btnMilRP.BackColor = Color.White;
+                        btnCW1.BackColor = Color.White;
+                        btnCW2.BackColor = Color.SpringGreen;
+                        server = "CWRP #2";
+                        break;
+                }
+                lblServer.Text = server;
+            }
+            catch (Exception)
+            {
+                btnDanktown.BackColor = Color.White;
+                btnC18.BackColor = Color.White;
+                btnZombies.BackColor = Color.White;
+                btnMilRP.BackColor = Color.White;
+                btnCW1.BackColor = Color.White;
+                btnCW2.BackColor = Color.White;
+                server = "";
+            }
+        }
+    private void toolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Are you sure you want to delete " + Dupes.SelectedItem.ToString() + "?", "Are you sure?", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation) == DialogResult.Yes)
+            {
+                File.Delete(dupePath + @"\" + Dupes.SelectedItem);
+                Dupes.Items.RemoveAt(Dupes.SelectedIndex);
+            }
+        }
+
+        private void contextMenuStrip1_Opening(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if (Dupes.SelectedIndex == -1)
+                e.Cancel = true;
+        }
+
+        private void tmrSteamQuery_Tick(object sender, EventArgs e)
+        {
+            GetCurrentServer();
+        }
+
+        private void chkDiscord_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chkDiscord.Checked)
+            {
+                try
+                {
+                    discord.Initialize();
+                }
+                catch (Exception)
+                {
+                    lblServer_TextChanged(this, new EventArgs());
+                }
+                lblServer_TextChanged(this, new EventArgs());
+            }
+            else
+                discord.ClearPresence();
+        }
+
+        private void lblServer_TextChanged(object sender, EventArgs e)
+        {
+            if (discord.IsInitialized)
+            {
+                switch (server)
+                {
+                    case "Danktown":
+                        discord.SetPresence(new RichPresence()
+                        {
+                            Details = "Playing on Danktown",
+                            State = "",
+                            Timestamps = Timestamps.Now,
+                            Assets = new Assets()
+                            {
+                                LargeImageKey = "suplogo",
+                                LargeImageText = "SuperiorServers.co"
+                            }
+                        });
+                        break;
+                    case "C18":
+                        discord.SetPresence(new RichPresence()
+                        {
+                            Details = "Playing on C18",
+                            State = "",
+                            Timestamps = Timestamps.Now,
+                            Assets = new Assets()
+                            {
+                                LargeImageKey = "suplogo",
+                                LargeImageText = "SuperiorServers.co"
+                            }
+                        });
+                        break;
+                    case "ZRP":
+                        discord.SetPresence(new RichPresence()
+                        {
+                            Details = "Playing on ZRP",
+                            State = "",
+                            Timestamps = Timestamps.Now,
+                            Assets = new Assets()
+                            {
+                                LargeImageKey = "suplogo",
+                                LargeImageText = "SuperiorServers.co"
+                            }
+                        });
+                        break;
+                    case "MilRP":
+                        discord.SetPresence(new RichPresence()
+                        {
+                            Details = "Playing on MilRP",
+                            State = "",
+                            Timestamps = Timestamps.Now,
+                            Assets = new Assets()
+                            {
+                                LargeImageKey = "suplogo",
+                                LargeImageText = "SuperiorServers.co"
+                            }
+                        });
+                        break;
+                    case "CWRP #1":
+                        discord.SetPresence(new RichPresence()
+                        {
+                            Details = "Playing on CWRP #1",
+                            State = "",
+                            Timestamps = Timestamps.Now,
+                            Assets = new Assets()
+                            {
+                                LargeImageKey = "suplogo",
+                                LargeImageText = "SuperiorServers.co"
+                            }
+                        });
+                        break;
+                    case "CWRP #2":
+                        discord.SetPresence(new RichPresence()
+                        {
+                            Details = "Playing on CWRP #2",
+                            State = "",
+                            Timestamps = Timestamps.Now,
+                            Assets = new Assets()
+                            {
+                                LargeImageKey = "suplogo",
+                                LargeImageText = "SuperiorServers.co"
+                            }
+                        });
+                        break;
+                    default:
+                        discord.SetPresence(new RichPresence()
+                        {
+                            Details = "Waiting to join a server...",
+                            State = "",
+                            Timestamps = Timestamps.Now,
+                            Assets = new Assets()
+                            {
+                                LargeImageKey = "suplogo",
+                                LargeImageText = "SuperiorServers.co"
+                            }
+                        });
+                        break;
+                }
+            }
+        }
+
+        private void btnDRPRules_Click(object sender, EventArgs e)
+        {
+            Process.Start("https://superiorservers.co/darkrp/rules");
+        }
+
+        private void btnMilRPRules_Click(object sender, EventArgs e)
+        {
+            Process.Start("https://superiorservers.co/ssrp/milrp/rules");
+        }
+
+        private void btnCWRPRules_Click(object sender, EventArgs e)
+        {
+            Process.Start("https://superiorservers.co/ssrp/cwrp/rules");
         }
     }
     public static class MemoryStreamExtensions

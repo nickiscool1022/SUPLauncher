@@ -53,7 +53,18 @@
             this.chkAFK = new System.Windows.Forms.CheckBox();
             this.label1 = new System.Windows.Forms.Label();
             this.lblVersion = new System.Windows.Forms.Label();
+            this.Dupes = new System.Windows.Forms.ListBox();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.label3 = new System.Windows.Forms.Label();
+            this.tmrSteamQuery = new System.Windows.Forms.Timer(this.components);
+            this.chkDiscord = new System.Windows.Forms.CheckBox();
+            this.btnDRPRules = new System.Windows.Forms.Button();
+            this.btnMilRPRules = new System.Windows.Forms.Button();
+            this.btnCWRPRules = new System.Windows.Forms.Button();
             this.picImage = new OvalPictureBox();
+            this.lblServer = new System.Windows.Forms.Label();
+            this.contextMenuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picImage)).BeginInit();
             this.SuspendLayout();
             // 
@@ -154,7 +165,7 @@
             // 
             // btnForums
             // 
-            this.btnForums.Location = new System.Drawing.Point(163, 228);
+            this.btnForums.Location = new System.Drawing.Point(291, 223);
             this.btnForums.Name = "btnForums";
             this.btnForums.Size = new System.Drawing.Size(81, 33);
             this.btnForums.TabIndex = 11;
@@ -164,7 +175,7 @@
             // 
             // btnTS
             // 
-            this.btnTS.Location = new System.Drawing.Point(249, 228);
+            this.btnTS.Location = new System.Drawing.Point(384, 223);
             this.btnTS.Name = "btnTS";
             this.btnTS.Size = new System.Drawing.Size(81, 33);
             this.btnTS.TabIndex = 12;
@@ -178,7 +189,7 @@
             this.label5.BackColor = System.Drawing.Color.Transparent;
             this.label5.Font = new System.Drawing.Font("Roboto", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.SystemColors.Control;
-            this.label5.Location = new System.Drawing.Point(224, 205);
+            this.label5.Location = new System.Drawing.Point(355, 200);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(44, 18);
             this.label5.TabIndex = 13;
@@ -279,7 +290,7 @@
             this.chkAFK.BackColor = System.Drawing.Color.Transparent;
             this.chkAFK.Font = new System.Drawing.Font("Roboto Condensed", 9.75F);
             this.chkAFK.ForeColor = System.Drawing.SystemColors.Control;
-            this.chkAFK.Location = new System.Drawing.Point(373, 236);
+            this.chkAFK.Location = new System.Drawing.Point(294, 364);
             this.chkAFK.Name = "chkAFK";
             this.chkAFK.Size = new System.Drawing.Size(78, 19);
             this.chkAFK.TabIndex = 22;
@@ -306,12 +317,107 @@
             this.lblVersion.Cursor = System.Windows.Forms.Cursors.Hand;
             this.lblVersion.Font = new System.Drawing.Font("Prototype", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblVersion.ForeColor = System.Drawing.SystemColors.Control;
-            this.lblVersion.Location = new System.Drawing.Point(395, 207);
+            this.lblVersion.Location = new System.Drawing.Point(352, 410);
             this.lblVersion.Name = "lblVersion";
             this.lblVersion.Size = new System.Drawing.Size(34, 20);
             this.lblVersion.TabIndex = 27;
             this.lblVersion.Text = "1.1.1.1";
             this.lblVersion.Click += new System.EventHandler(this.lblVersion_Click);
+            // 
+            // Dupes
+            // 
+            this.Dupes.ContextMenuStrip = this.contextMenuStrip1;
+            this.Dupes.FormattingEnabled = true;
+            this.Dupes.Location = new System.Drawing.Point(12, 259);
+            this.Dupes.Name = "Dupes";
+            this.Dupes.Size = new System.Drawing.Size(232, 186);
+            this.Dupes.TabIndex = 28;
+            // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuItem1});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(118, 26);
+            this.contextMenuStrip1.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStrip1_Opening);
+            // 
+            // toolStripMenuItem1
+            // 
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(117, 22);
+            this.toolStripMenuItem1.Text = "Remove";
+            this.toolStripMenuItem1.Click += new System.EventHandler(this.toolStripMenuItem1_Click);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.BackColor = System.Drawing.Color.Transparent;
+            this.label3.Font = new System.Drawing.Font("Prototype", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.ForeColor = System.Drawing.SystemColors.Control;
+            this.label3.Location = new System.Drawing.Point(57, 237);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(143, 19);
+            this.label3.TabIndex = 29;
+            this.label3.Text = "Duplication Manager";
+            // 
+            // tmrSteamQuery
+            // 
+            this.tmrSteamQuery.Interval = 5000;
+            this.tmrSteamQuery.Tick += new System.EventHandler(this.tmrSteamQuery_Tick);
+            // 
+            // chkDiscord
+            // 
+            this.chkDiscord.AutoSize = true;
+            this.chkDiscord.BackColor = System.Drawing.Color.Transparent;
+            this.chkDiscord.Font = new System.Drawing.Font("Roboto Condensed", 9.75F);
+            this.chkDiscord.ForeColor = System.Drawing.SystemColors.Control;
+            this.chkDiscord.Location = new System.Drawing.Point(400, 364);
+            this.chkDiscord.Name = "chkDiscord";
+            this.chkDiscord.Size = new System.Drawing.Size(65, 19);
+            this.chkDiscord.TabIndex = 32;
+            this.chkDiscord.Text = "Discord";
+            this.chkDiscord.UseVisualStyleBackColor = false;
+            this.chkDiscord.CheckedChanged += new System.EventHandler(this.chkDiscord_CheckedChanged);
+            // 
+            // btnDRPRules
+            // 
+            this.btnDRPRules.BackColor = System.Drawing.SystemColors.Control;
+            this.btnDRPRules.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDRPRules.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.btnDRPRules.Location = new System.Drawing.Point(274, 285);
+            this.btnDRPRules.Margin = new System.Windows.Forms.Padding(0);
+            this.btnDRPRules.Name = "btnDRPRules";
+            this.btnDRPRules.Size = new System.Drawing.Size(204, 19);
+            this.btnDRPRules.TabIndex = 33;
+            this.btnDRPRules.Text = "DarkRP Rules/FAQ";
+            this.btnDRPRules.UseVisualStyleBackColor = false;
+            this.btnDRPRules.Click += new System.EventHandler(this.btnDRPRules_Click);
+            // 
+            // btnMilRPRules
+            // 
+            this.btnMilRPRules.BackColor = System.Drawing.SystemColors.Control;
+            this.btnMilRPRules.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnMilRPRules.Location = new System.Drawing.Point(274, 308);
+            this.btnMilRPRules.Margin = new System.Windows.Forms.Padding(0);
+            this.btnMilRPRules.Name = "btnMilRPRules";
+            this.btnMilRPRules.Size = new System.Drawing.Size(204, 19);
+            this.btnMilRPRules.TabIndex = 34;
+            this.btnMilRPRules.Text = "MilRP Rules/FAQ";
+            this.btnMilRPRules.UseVisualStyleBackColor = false;
+            this.btnMilRPRules.Click += new System.EventHandler(this.btnMilRPRules_Click);
+            // 
+            // btnCWRPRules
+            // 
+            this.btnCWRPRules.BackColor = System.Drawing.SystemColors.Control;
+            this.btnCWRPRules.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCWRPRules.Location = new System.Drawing.Point(274, 331);
+            this.btnCWRPRules.Margin = new System.Windows.Forms.Padding(0);
+            this.btnCWRPRules.Name = "btnCWRPRules";
+            this.btnCWRPRules.Size = new System.Drawing.Size(204, 19);
+            this.btnCWRPRules.TabIndex = 35;
+            this.btnCWRPRules.Text = "CWRP Rules/FAQ";
+            this.btnCWRPRules.UseVisualStyleBackColor = false;
+            this.btnCWRPRules.Click += new System.EventHandler(this.btnCWRPRules_Click);
             // 
             // picImage
             // 
@@ -320,13 +426,28 @@
             this.picImage.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.picImage.Cursor = System.Windows.Forms.Cursors.Hand;
             this.picImage.ErrorImage = global::SUPLauncher.Properties.Resources.suplogo;
-            this.picImage.Location = new System.Drawing.Point(188, 65);
+            this.picImage.Location = new System.Drawing.Point(185, 65);
             this.picImage.Name = "picImage";
             this.picImage.Size = new System.Drawing.Size(122, 129);
             this.picImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.picImage.TabIndex = 25;
             this.picImage.TabStop = false;
             this.picImage.Click += new System.EventHandler(this.picImage_Click);
+            // 
+            // lblServer
+            // 
+            this.lblServer.AutoSize = true;
+            this.lblServer.BackColor = System.Drawing.Color.Transparent;
+            this.lblServer.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.lblServer.Font = new System.Drawing.Font("Prototype", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblServer.ForeColor = System.Drawing.SystemColors.Control;
+            this.lblServer.Location = new System.Drawing.Point(290, 425);
+            this.lblServer.Name = "lblServer";
+            this.lblServer.Size = new System.Drawing.Size(34, 20);
+            this.lblServer.TabIndex = 36;
+            this.lblServer.Text = "1.1.1.1";
+            this.lblServer.Visible = false;
+            this.lblServer.TextChanged += new System.EventHandler(this.lblServer_TextChanged);
             // 
             // frmLauncher
             // 
@@ -335,7 +456,14 @@
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(99)))), ((int)(((byte)(145)))));
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(493, 267);
+            this.ClientSize = new System.Drawing.Size(493, 460);
+            this.Controls.Add(this.lblServer);
+            this.Controls.Add(this.btnCWRPRules);
+            this.Controls.Add(this.btnMilRPRules);
+            this.Controls.Add(this.btnDRPRules);
+            this.Controls.Add(this.chkDiscord);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.Dupes);
             this.Controls.Add(this.lblVersion);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.picImage);
@@ -369,6 +497,7 @@
             this.Text = "SUP Launcher";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmLauncher_FormClosing);
             this.Load += new System.EventHandler(this.frmLauncher_Load);
+            this.contextMenuStrip1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.picImage)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -401,6 +530,16 @@
         private OvalPictureBox picImage;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label lblVersion;
+        private System.Windows.Forms.ListBox Dupes;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Timer tmrSteamQuery;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
+        private System.Windows.Forms.CheckBox chkDiscord;
+        private System.Windows.Forms.Button btnDRPRules;
+        private System.Windows.Forms.Button btnMilRPRules;
+        private System.Windows.Forms.Button btnCWRPRules;
+        private System.Windows.Forms.Label lblServer;
     }
 }
 
