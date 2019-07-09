@@ -1,10 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <asmv1:assembly xsi:schemaLocation="urn:schemas-microsoft-com:asm.v1 assembly.adaptive.xsd" manifestVersion="1.0" xmlns:asmv1="urn:schemas-microsoft-com:asm.v1" xmlns="urn:schemas-microsoft-com:asm.v2" xmlns:asmv2="urn:schemas-microsoft-com:asm.v2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:co.v1="urn:schemas-microsoft-com:clickonce.v1" xmlns:asmv3="urn:schemas-microsoft-com:asm.v3" xmlns:dsig="http://www.w3.org/2000/09/xmldsig#" xmlns:co.v2="urn:schemas-microsoft-com:clickonce.v2">
-  <asmv1:assemblyIdentity name="SUPLauncher.exe" version="2.2.0.0" publicKeyToken="0000000000000000" language="en-US" processorArchitecture="msil" type="win32" />
+  <asmv1:assemblyIdentity name="SUPLauncher.exe" version="2.2.0.1" publicKeyToken="0000000000000000" language="en-US" processorArchitecture="msil" type="win32" />
   <description asmv2:iconFile="icon.ico" xmlns="urn:schemas-microsoft-com:asm.v1" />
   <application />
   <entryPoint>
-    <assemblyIdentity name="SUPLauncher" version="2.2.0.0" language="neutral" processorArchitecture="msil" />
+    <assemblyIdentity name="SUPLauncher" version="2.2.0.1" publicKeyToken="FD4453FE5FAF5C73" language="neutral" processorArchitecture="msil" />
     <commandLine file="SUPLauncher.exe" parameters="" />
   </entryPoint>
   <trustInfo>
@@ -43,14 +43,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="DiscordRPC.dll" size="78848">
-      <assemblyIdentity name="DiscordRPC" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="DiscordRPC.dll" size="84992">
+      <assemblyIdentity name="DiscordRPC" version="1.0.0.0" publicKeyToken="25B94B2886828F76" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>wLXJ9u5bIWsNGDiuP4bUpGzZ4KnUQFOjhgiZo2a8Qnk=</dsig:DigestValue>
+        <dsig:DigestValue>n+fjI0juPUCFgvQjN+gxHkhLsaQCnAkRQ62z7TZMsE4=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -91,14 +91,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="SUPLauncher.exe" size="1512456">
-      <assemblyIdentity name="SUPLauncher" version="2.2.0.0" language="neutral" processorArchitecture="msil" />
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="SUPLauncher.exe" size="1512968">
+      <assemblyIdentity name="SUPLauncher" version="2.2.0.1" publicKeyToken="FD4453FE5FAF5C73" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>TYRtxw9NTP6JiwwM5WRYIkr2W/trUOu1eKd8dO6DZZ8=</dsig:DigestValue>
+        <dsig:DigestValue>99HaLgoldOm9dmbTmwYXhxJdFMIb+VaQI89pGJEN4Bw=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

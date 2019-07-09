@@ -6,7 +6,6 @@ using System.IO;
 using System.Net.Sockets;
 using System.Collections.Generic;
 using System.Threading;
-using System.Globalization;
 using System.Net;
 using Microsoft.VisualBasic;
 using DiscordRPC;
@@ -32,6 +31,42 @@ namespace SUPLauncher
             Application.Run(new Splashscreen1());
         }
         DiscordRpcClient discord = new DiscordRpcClient("594668399653814335");
+        private void frmLauncher_Load(object sender, EventArgs e)
+        {
+            if (Process.GetProcessesByName("steam").Length == 0) // Check if steam is running (Thanks Red Means Recording)
+            {
+                MessageBox.Show("An error occurred. Please restart the program when steam is running.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Process.Start("steam:");
+                Interaction.Shell("taskkill /pid " + Process.GetCurrentProcess().Id.ToString() + " /f");
+            }
+            discord.Initialize();
+            GetUsername();
+            GetDiscordCheckStatus();
+            GetCurrentServer();
+            GetDupes();
+            try
+            {
+                if (chkDiscord.Checked)
+                {
+                    lblServer_TextChanged(this, new EventArgs());
+                }
+                lblVersion.Text = Application.ProductVersion;
+                var steam = new SteamBridge();
+                var client = new WebClient();
+                client.DownloadFile(new Uri("https://superiorservers.co/api/avatar/" + steam.GetSteamId().ToString()), "avatar.jpg");
+                picImage.Image = Image.FromFile("avatar.jpg");
+                client.Dispose();
+                t = new Thread(GetPlayerCountAllServers); // good idea penguin
+                t.Start();
+                Activate();
+                tmrSteamQuery.Start();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+                frmLauncher_FormClosing(this, new FormClosingEventArgs(CloseReason.ApplicationExitCall, false));
+            }
+        }
         private void btnDanktown_Click(object sender, EventArgs e)
         {
             
@@ -138,117 +173,6 @@ namespace SUPLauncher
             Process.Start("ts3server://TS.SuperiorServers.co:9987");
         }
 
-        private byte GetPlayerCount(string ip)
-        {
-            // DT: 208.103.169.12
-            // SD: 208.103.169.13 
-            // C18: 208.103.169.15
-            // ZRP: 208.103.169.14 
-            // MilRP: 208.103.169.18 
-            // CWRP: 208.103.169.16 
-            // CWRP #2: 208.103.169.17 
-
-            Socket socket = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
-            
-            byte[] rawData = new byte[512];
-            socket.Connect(ip, 27015);
-            byte[] sendBytes = { 0xFF, 0xFF, 0xFF, 0xFF, 0x54, 0x53, 0x6F, 0x75, 0x72, 0x63, 0x65, 0x20, 0x45, 0x6E, 0x67, 0x69, 0x6E, 0x65, 0x20, 0x51, 0x75, 0x65, 0x72, 0x79, 0x00 };
-            socket.Send(sendBytes);
-
-            socket.Receive(rawData);
-            using (var ms = new MemoryStream(rawData))
-            {
-                ms.ReadByte();
-                ms.ReadByte();
-                ms.ReadByte();
-                ms.ReadByte();
-
-                ms.ReadByte();
-                ms.ReadByte();
-
-                ms.ReadTerminatedString(); // FAIR WARNING THIS CODE PORTION IS ACTUALLY RETARDED & OBFUSCATED FOR A REASON
-                ms.ReadTerminatedString();
-                ms.ReadTerminatedString();
-                ms.ReadTerminatedString();
-                
-                ms.ReadByte();
-                ms.ReadByte();
-
-                return Convert.ToByte(ms.ReadByte());
-            }
-        }
-        private void GetPlayerCountAllServers()
-        {
-                do
-                {
-                    ThreadHelperClass.SetText(this, lblDT, GetPlayerCount("rp.superiorservers.co").ToString() + "/128");
-                    //ThreadHelperClass.SetText(this, lblSD, GetPlayerCount("208.103.169.13").ToString() + "/128");
-                    ThreadHelperClass.SetText(this, lblC18, GetPlayerCount("rp2.superiorservers.co").ToString() + "/128");
-                    ThreadHelperClass.SetText(this, lblZRP, GetPlayerCount("zrp.superiorservers.co").ToString() + "/128");
-                    ThreadHelperClass.SetText(this, lblMRP, GetPlayerCount("milrp.superiorservers.co").ToString() + "/128");
-                    ThreadHelperClass.SetText(this, lblCW1, GetPlayerCount("cwrp.superiorservers.co").ToString() + "/128");
-                    ThreadHelperClass.SetText(this, lblCW2, GetPlayerCount("cwrp2.superiorservers.co").ToString() + "/128");
-                    Thread.Sleep(120000);
-                } while (true);
-        }
-        private void frmLauncher_Load(object sender, EventArgs e)
-        {
-            GetUsername();
-            GetDiscordCheckStatus();
-            GetCurrentServer();
-            GetDupes();
-            try
-            {
-                if (chkDiscord.Checked)
-                {
-                    try
-                    {
-                        discord.Initialize();
-                    }
-                    catch (Exception)
-                    {
-                        lblServer_TextChanged(this, new EventArgs());
-                    }
-                    lblServer_TextChanged(this, new EventArgs());
-                }
-                lblVersion.Text = Application.ProductVersion;
-                var steam = new SteamBridge();
-                var client = new WebClient();
-                client.DownloadFile(new Uri("https://superiorservers.co/api/avatar/" + steam.GetSteamId().ToString()), "avatar.jpg");
-                picImage.Image = Image.FromFile("avatar.jpg");
-                client.Dispose();
-
-                t = new Thread(GetPlayerCountAllServers); // good idea penguin
-                t.Start();
-                Activate();
-                tmrSteamQuery.Start();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.ToString());
-                frmLauncher_FormClosing(this, new FormClosingEventArgs(CloseReason.ApplicationExitCall, false));
-            }
-        }
-        void GetUsername()
-        {
-            var steam = new SteamBridge();
-            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12; // Secure security protocol for querying the github API
-            HttpWebRequest request = WebRequest.CreateHttp("http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=27A2CB958256FB97DCFFEE9B634CD02E&steamids=" + steam.GetSteamId());
-            request.UserAgent = "Nick";
-            WebResponse response = null;
-            response = request.GetResponse(); // Get Response from webrequest
-            StreamReader sr = new StreamReader(response.GetResponseStream()); // Create stream to access web data
-            string currentRecord = sr.ReadToEnd(); // Read data from response stream
-            string raw = currentRecord.Substring(currentRecord.IndexOf("personaname") + "personaname".Length + 3, (currentRecord.IndexOf("lastlogoff") - (currentRecord.IndexOf("personaname") + "personaname".Length + 6)));
-            this.Text = "SUP Launcher (" + raw.ToString() + ")";
-        }
-        void GetDiscordCheckStatus()
-        {
-            if (File.Exists("1"))
-                chkDiscord.Checked = true;
-            else
-                chkDiscord.Checked = false;
-        }
         private void frmLauncher_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (chkDiscord.Checked && File.Exists("1") == false)
@@ -272,18 +196,6 @@ namespace SUPLauncher
                 process.Kill();
             }
             appStarted = false;
-            discord.SetPresence(new RichPresence()
-            {
-                Details = "Waiting to join a server...",
-                State = "",
-                Assets = new Assets()
-                {
-
-                    LargeImageKey = "suplogo",
-                    LargeImageText = "SuperiorServers.co"
-                    //SmallImageKey = "suplogo"
-                }
-            });
         }
 
         private void picImage_Click(object sender, EventArgs e)
@@ -291,12 +203,45 @@ namespace SUPLauncher
             var steam = new SteamBridge();
             Process.Start("https://superiorservers.co/profile/" + steam.GetSteamId().ToString());
         }
+        private void btnDRPRules_Click(object sender, EventArgs e)
+        {
+            Process.Start("https://superiorservers.co/darkrp/rules");
+        }
 
+        private void btnMilRPRules_Click(object sender, EventArgs e)
+        {
+            Process.Start("https://superiorservers.co/ssrp/milrp/rules");
+        }
+
+        private void btnCWRPRules_Click(object sender, EventArgs e)
+        {
+            Process.Start("https://superiorservers.co/ssrp/cwrp/rules");
+        }
         private void lblVersion_Click(object sender, EventArgs e)
         {
             MessageBox.Show("Auto-update temporary disabled. Sorry for any inconvenience.", "Disabled", MessageBoxButtons.OK, MessageBoxIcon.Error);
             //var updater = new ClientUpdater();
             //updater.Update();
+        }
+        void GetUsername()
+        {
+            var steam = new SteamBridge();
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12; // Secure security protocol for querying the github API
+            HttpWebRequest request = WebRequest.CreateHttp("http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=27A2CB958256FB97DCFFEE9B634CD02E&steamids=" + steam.GetSteamId());
+            request.UserAgent = "Nick";
+            WebResponse response = null;
+            response = request.GetResponse(); // Get Response from webrequest
+            StreamReader sr = new StreamReader(response.GetResponseStream()); // Create stream to access web data
+            string currentRecord = sr.ReadToEnd(); // Read data from response stream
+            string raw = currentRecord.Substring(currentRecord.IndexOf("personaname") + "personaname".Length + 3, (currentRecord.IndexOf("lastlogoff") - (currentRecord.IndexOf("personaname") + "personaname".Length + 6)));
+            this.Text = "SUP Launcher (" + raw.ToString() + ")";
+        }
+        void GetDiscordCheckStatus()
+        {
+            if (File.Exists("1"))
+                chkDiscord.Checked = true;
+            else
+                chkDiscord.Checked = false;
         }
         void GetDupes()
         {
@@ -443,23 +388,17 @@ namespace SUPLauncher
         {
             if (chkDiscord.Checked)
             {
-                try
-                {
-                    discord.Initialize();
-                }
-                catch (Exception)
-                {
-                    lblServer_TextChanged(this, new EventArgs());
-                }
                 lblServer_TextChanged(this, new EventArgs());
             }
             else
+            {
                 discord.ClearPresence();
+            }
         }
 
         private void lblServer_TextChanged(object sender, EventArgs e)
         {
-            if (discord.IsInitialized)
+            if (discord.IsInitialized && chkDiscord.Checked)
             {
                 switch (server)
                 {
@@ -555,22 +494,61 @@ namespace SUPLauncher
                         });
                         break;
                 }
+                
             }
         }
-
-        private void btnDRPRules_Click(object sender, EventArgs e)
+        private byte GetPlayerCount(string ip)
         {
-            Process.Start("https://superiorservers.co/darkrp/rules");
+            // DT: 208.103.169.12
+            // SD: 208.103.169.13 
+            // C18: 208.103.169.15
+            // ZRP: 208.103.169.14 
+            // MilRP: 208.103.169.18 
+            // CWRP: 208.103.169.16 
+            // CWRP #2: 208.103.169.17 
+
+            Socket socket = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
+
+            byte[] rawData = new byte[512];
+            socket.Connect(ip, 27015);
+            byte[] sendBytes = { 0xFF, 0xFF, 0xFF, 0xFF, 0x54, 0x53, 0x6F, 0x75, 0x72, 0x63, 0x65, 0x20, 0x45, 0x6E, 0x67, 0x69, 0x6E, 0x65, 0x20, 0x51, 0x75, 0x65, 0x72, 0x79, 0x00 };
+            socket.Send(sendBytes);
+
+            socket.Receive(rawData);
+            using (var ms = new MemoryStream(rawData))
+            {
+                ms.ReadByte();
+                ms.ReadByte();
+                ms.ReadByte();
+                ms.ReadByte();
+
+                ms.ReadByte();
+                ms.ReadByte();
+
+                ms.ReadTerminatedString(); // FAIR WARNING THIS CODE PORTION IS ACTUALLY RETARDED & OBFUSCATED FOR A REASON
+                ms.ReadTerminatedString();
+                ms.ReadTerminatedString();
+                ms.ReadTerminatedString();
+
+                ms.ReadByte();
+                ms.ReadByte();
+
+                return Convert.ToByte(ms.ReadByte());
+            }
         }
-
-        private void btnMilRPRules_Click(object sender, EventArgs e)
+        private void GetPlayerCountAllServers()
         {
-            Process.Start("https://superiorservers.co/ssrp/milrp/rules");
-        }
-
-        private void btnCWRPRules_Click(object sender, EventArgs e)
-        {
-            Process.Start("https://superiorservers.co/ssrp/cwrp/rules");
+            do
+            {
+                ThreadHelperClass.SetText(this, lblDT, GetPlayerCount("rp.superiorservers.co").ToString() + "/128");
+                //ThreadHelperClass.SetText(this, lblSD, GetPlayerCount("208.103.169.13").ToString() + "/128");
+                ThreadHelperClass.SetText(this, lblC18, GetPlayerCount("rp2.superiorservers.co").ToString() + "/128");
+                ThreadHelperClass.SetText(this, lblZRP, GetPlayerCount("zrp.superiorservers.co").ToString() + "/128");
+                ThreadHelperClass.SetText(this, lblMRP, GetPlayerCount("milrp.superiorservers.co").ToString() + "/128");
+                ThreadHelperClass.SetText(this, lblCW1, GetPlayerCount("cwrp.superiorservers.co").ToString() + "/128");
+                ThreadHelperClass.SetText(this, lblCW2, GetPlayerCount("cwrp2.superiorservers.co").ToString() + "/128");
+                Thread.Sleep(120000);
+            } while (true);
         }
     }
     public static class MemoryStreamExtensions

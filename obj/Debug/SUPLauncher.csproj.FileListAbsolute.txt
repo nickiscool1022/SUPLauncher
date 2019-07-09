@@ -11,7 +11,6 @@ D:\Programming\SUPLauncher\SUPLauncher\obj\Debug\SUPLauncher.frmLauncher.resourc
 D:\Programming\SUPLauncher - Copy\SUPLauncher\bin\Debug\SUPLauncher.exe.config
 D:\Programming\SUPLauncher - Copy\SUPLauncher\bin\Debug\SUPLauncher.exe
 D:\Programming\SUPLauncher - Copy\SUPLauncher\bin\Debug\SUPLauncher.pdb
-D:\Programming\SUPLauncher - Copy\SUPLauncher\obj\Debug\SUPLauncher.csprojAssemblyReference.cache
 D:\Programming\SUPLauncher - Copy\SUPLauncher\obj\Debug\SUPLauncher.frmLauncher.resources
 D:\Programming\SUPLauncher - Copy\SUPLauncher\obj\Debug\SUPLauncher.Properties.Resources.resources
 D:\Programming\SUPLauncher - Copy\SUPLauncher\obj\Debug\SUPLauncher.csproj.GenerateResource.cache
@@ -23,7 +22,6 @@ D:\Programming\SUPLauncher - Copy\SUPLauncher\bin\Debug\SUPLauncher.application
 D:\Programming\SUPLauncher - Copy\SUPLauncher\obj\Debug\SUPLauncher.exe.manifest
 D:\Programming\SUPLauncher - Copy\SUPLauncher\obj\Debug\SUPLauncher.application
 D:\Programming\SUPLauncher - Copy\SUPLauncher\obj\Debug\SUPLauncher.TrustInfo.xml
-D:\Programming\SUPLauncher - Copy\SUPLauncher\bin\Debug\DiscordRPC.dll
 D:\Programming\SUPLauncher - Copy\SUPLauncher\bin\Debug\Microsoft.Web.XmlTransform.dll
 D:\Programming\SUPLauncher - Copy\SUPLauncher\bin\Debug\Newtonsoft.Json.dll
 D:\Programming\SUPLauncher - Copy\SUPLauncher\bin\Debug\NuGet.Core.dll
@@ -31,3 +29,4 @@ D:\Programming\SUPLauncher - Copy\SUPLauncher\bin\Debug\Microsoft.Web.XmlTransfo
 D:\Programming\SUPLauncher - Copy\SUPLauncher\bin\Debug\Newtonsoft.Json.xml
 D:\Programming\SUPLauncher - Copy\SUPLauncher\obj\Debug\SUPLauncher.csproj.CopyComplete
 D:\Programming\SUPLauncher - Copy\SUPLauncher\obj\Debug\SUPLauncher.Splashscreen1.resources
+D:\Programming\SUPLauncher - Copy\SUPLauncher\obj\Debug\SUPLauncher.csprojAssemblyReference.cache
