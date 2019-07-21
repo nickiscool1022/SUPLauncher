@@ -9,6 +9,8 @@ using System.Threading;
 using System.Net;
 using Microsoft.VisualBasic;
 using DiscordRPC;
+using Newtonsoft;
+using Newtonsoft.Json.Linq;
 
 namespace SUPLauncher
 {
@@ -18,6 +20,8 @@ namespace SUPLauncher
         bool appStarted = false;
         string dupePath;
         string server;
+        string playerServer;
+        SteamBridge steam = new SteamBridge();
         public frmLauncher()
         {
             Thread trd = new Thread(new ThreadStart(Run));
@@ -42,7 +46,7 @@ namespace SUPLauncher
             discord.Initialize();
             GetUsername();
             GetDiscordCheckStatus();
-            GetCurrentServer();
+            GetCurrentServer(steam.GetSteamId().ToString(), true);
             GetDupes();
             try
             {
@@ -51,7 +55,6 @@ namespace SUPLauncher
                     lblServer_TextChanged(this, new EventArgs());
                 }
                 lblVersion.Text = Application.ProductVersion;
-                var steam = new SteamBridge();
                 var client = new WebClient();
                 client.DownloadFile(new Uri("https://superiorservers.co/api/avatar/" + steam.GetSteamId().ToString()), "avatar.jpg");
                 picImage.Image = Image.FromFile("avatar.jpg");
@@ -67,12 +70,17 @@ namespace SUPLauncher
                 frmLauncher_FormClosing(this, new FormClosingEventArgs(CloseReason.ApplicationExitCall, false));
             }
         }
+        // "Process.Start("steam:");" is for focusing steam
         private void btnDanktown_Click(object sender, EventArgs e)
         {
-            
+            AppStartCheck();
             if (chkAFK.Checked && appStarted == false)
             {
+                Process.Start("steam:");
+                WindowFocus.ActivateProcess(Process.GetProcessesByName("steam")[0].Id);
+                ProcessStartInfo startInfo = new ProcessStartInfo("steam");
                 Process.Start("steam://run/4000//-64bit -textmode -single_core -nojoy -low -nosound -sw -noshader -nopix -novid -nopreload -nopreloadmodels -multirun +connect rp.superiorservers.co");
+                startInfo.WindowStyle = ProcessWindowStyle.Minimized;
             }
             else
             {
@@ -85,6 +93,7 @@ namespace SUPLauncher
         //{
         //    if (chkAFK.Checked && appStarted == false)
         //    {
+        //        Process.Start("steam:");
         //        Process.Start("steam://run/4000//-64bit -textmode -single_core -nojoy -low -nosound -sw -noshader -nopix -novid -nopreload -nopreloadmodels -multirun +connect rp2.superiorservers.co");
         //    }
         //    else
@@ -96,8 +105,11 @@ namespace SUPLauncher
 
         private void btnC18_Click(object sender, EventArgs e)
         {
+            AppStartCheck();
             if (chkAFK.Checked && appStarted == false)
             {
+                Process.Start("steam:");
+                WindowFocus.ActivateProcess(Process.GetProcessesByName("steam")[0].Id);
                 Process.Start("steam://run/4000//-64bit -textmode -single_core -nojoy -low -nosound -sw -noshader -nopix -novid -nopreload -nopreloadmodels -multirun +connect rp2.superiorservers.co");
             }
             else
@@ -109,8 +121,11 @@ namespace SUPLauncher
 
         private void btnZombies_Click(object sender, EventArgs e)
         {
+            AppStartCheck();
             if (chkAFK.Checked && appStarted == false)
             {
+                Process.Start("steam:");
+                WindowFocus.ActivateProcess(Process.GetProcessesByName("steam")[0].Id);
                 Process.Start("steam://run/4000//-64bit -textmode -single_core -nojoy -low -nosound -sw -noshader -nopix -novid -nopreload -nopreloadmodels -multirun +connect zrp.superiorservers.co");
             }
             else
@@ -122,8 +137,11 @@ namespace SUPLauncher
 
         private void btnMilRP_Click(object sender, EventArgs e)
         {
+            AppStartCheck();
             if (chkAFK.Checked && appStarted == false)
             {
+                Process.Start("steam:");
+                WindowFocus.ActivateProcess(Process.GetProcessesByName("steam")[0].Id);
                 Process.Start("steam://run/4000//-64bit -textmode -single_core -nojoy -low -nosound -sw -noshader -nopix -novid -nopreload -nopreloadmodels -multirun +connect milrp.superiorservers.co");
             }
             else
@@ -135,8 +153,11 @@ namespace SUPLauncher
 
         private void btnCW1_Click(object sender, EventArgs e)
         {
+            AppStartCheck();
             if (chkAFK.Checked && appStarted == false)
             {
+                Process.Start("steam:");
+                WindowFocus.ActivateProcess(Process.GetProcessesByName("steam")[0].Id);
                 Process.Start("steam://run/4000//-64bit -textmode -single_core -nojoy -low -nosound -sw -noshader -nopix -novid -nopreload -nopreloadmodels -multirun +connect cwrp.superiorservers.co");
             }
             else
@@ -148,8 +169,11 @@ namespace SUPLauncher
 
         private void btnCW2_Click(object sender, EventArgs e)
         {
+            AppStartCheck();
             if (chkAFK.Checked && appStarted == false)
             {
+                Process.Start("steam:");
+                WindowFocus.ActivateProcess(Process.GetProcessesByName("steam")[0].Id);
                 Process.Start("steam://run/4000//-64bit -textmode -single_core -nojoy -low -nosound -sw -noshader -nopix -novid -nopreload -nopreloadmodels -multirun +connect cwrp2.superiorservers.co");
             }
             else
@@ -200,7 +224,6 @@ namespace SUPLauncher
 
         private void picImage_Click(object sender, EventArgs e)
         {
-            var steam = new SteamBridge();
             Process.Start("https://superiorservers.co/profile/" + steam.GetSteamId().ToString());
         }
         private void btnDRPRules_Click(object sender, EventArgs e)
@@ -225,7 +248,6 @@ namespace SUPLauncher
         }
         void GetUsername()
         {
-            var steam = new SteamBridge();
             ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12; // Secure security protocol for querying the github API
             HttpWebRequest request = WebRequest.CreateHttp("http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=27A2CB958256FB97DCFFEE9B634CD02E&steamids=" + steam.GetSteamId());
             request.UserAgent = "Nick";
@@ -242,6 +264,13 @@ namespace SUPLauncher
                 chkDiscord.Checked = true;
             else
                 chkDiscord.Checked = false;
+        }
+        void AppStartCheck()
+        {
+            if (Process.GetProcessesByName("hl2").Length == 0 && Process.GetProcessesByName("gmod").Length == 0)
+                appStarted = false;
+            else
+                appStarted = true;
         }
         void GetDupes()
         {
@@ -280,88 +309,140 @@ namespace SUPLauncher
             }
             Dupes.Items.AddRange(files);
         }
-        void GetCurrentServer()
+        /// <summary>
+        /// Gets the server name and IP the provided steam user is on
+        /// </summary>
+        /// <param name="steamID">The steamid to use</param>
+        /// <param name="normalState">Whether or not it is normally called via timer or not.</param>
+        void GetCurrentServer(string steamID, bool normalState)
         {
             try
             {
-                var steam = new SteamBridge();
-                ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12; // Secure security protocol for querying the github API
-                HttpWebRequest request = WebRequest.CreateHttp("http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=27A2CB958256FB97DCFFEE9B634CD02E&steamids=" + steam.GetSteamId());
+                ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12; // Secure security protocol for querying the steam API
+                HttpWebRequest request = WebRequest.CreateHttp("http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=27A2CB958256FB97DCFFEE9B634CD02E&steamids=" + steamID);
                 request.UserAgent = "Nick";
                 WebResponse response = null;
                 response = request.GetResponse(); // Get Response from webrequest
                 StreamReader sr = new StreamReader(response.GetResponseStream()); // Create stream to access web data
-                string currentRecord = sr.ReadToEnd(); // Read data from response stream
-                string raw = currentRecord.Substring(currentRecord.IndexOf("gameserverip") + "gameserverip".Length + 3, (currentRecord.IndexOf("27015") - (currentRecord.IndexOf("gameserverip") + "gameserverip".Length + 3)));
-                string refined = raw.Substring(0, raw.Length - 1);
-                switch (refined)
+                var rawResults = Newtonsoft.Json.JsonConvert.DeserializeObject<dynamic>(sr.ReadToEnd());
+                string ip = rawResults.response.players.First.gameserverip.ToString();
+                string playerName = rawResults.response.players.First.personaname.ToString();
+                switch (ip)
                 {
-                    case "208.103.169.12":
-                        btnDanktown.BackColor = Color.SpringGreen;
-                        btnC18.BackColor = Color.White;
-                        btnZombies.BackColor = Color.White;
-                        btnMilRP.BackColor = Color.White;
-                        btnCW1.BackColor = Color.White;
-                        btnCW2.BackColor = Color.White;
-                        server = "Danktown";
+                    case "208.103.169.12:27015":
+                        if (normalState)
+                        {
+                            btnDanktown.BackColor = Color.SpringGreen;
+                            btnC18.BackColor = Color.White;
+                            btnZombies.BackColor = Color.White;
+                            btnMilRP.BackColor = Color.White;
+                            btnCW1.BackColor = Color.White;
+                            btnCW2.BackColor = Color.White;
+                            lblServer.Text = "Danktown";
+                        }
+                        else
+                        {
+                            playerServer = playerName + "(" + steamID + ") is on Danktown(208.103.169.12:27015)";
+                        }
                         break;
-                    case "208.103.169.13":
-                        btnDanktown.BackColor = Color.White;
-                        btnC18.BackColor = Color.SpringGreen;
-                        btnZombies.BackColor = Color.White;
-                        btnMilRP.BackColor = Color.White;
-                        btnCW1.BackColor = Color.White;
-                        btnCW2.BackColor = Color.White;
-                        server = "C18";
+                    case "208.103.169.13:27015":
+                        if (normalState)
+                        {
+                            btnDanktown.BackColor = Color.White;
+                            btnC18.BackColor = Color.SpringGreen;
+                            btnZombies.BackColor = Color.White;
+                            btnMilRP.BackColor = Color.White;
+                            btnCW1.BackColor = Color.White;
+                            btnCW2.BackColor = Color.White;
+                            lblServer.Text = "C18";
+                        }
+                        else
+                        {
+                            playerServer = playerName + "(" + steamID + ") is on C18(208.103.169.13:27015)";
+                        }
                         break;
-                    case "208.103.169.14":
-                        btnDanktown.BackColor = Color.White;
-                        btnC18.BackColor = Color.White;
-                        btnZombies.BackColor = Color.SpringGreen;
-                        btnMilRP.BackColor = Color.White;
-                        btnCW1.BackColor = Color.White;
-                        btnCW2.BackColor = Color.White;
-                        server = "ZRP";
+                    case "208.103.169.14:27015":
+                        if (normalState)
+                        {
+                            btnDanktown.BackColor = Color.White;
+                            btnC18.BackColor = Color.White;
+                            btnZombies.BackColor = Color.SpringGreen;
+                            btnMilRP.BackColor = Color.White;
+                            btnCW1.BackColor = Color.White;
+                            btnCW2.BackColor = Color.White;
+                            lblServer.Text = "ZRP";
+                        }
+                        else
+                        {
+                            playerServer = playerName + "(" + steamID + ") is on ZombieRP(208.103.169.14:27015)";
+                        }
                         break;
-                    case "208.103.169.18":
-                        btnDanktown.BackColor = Color.White;
-                        btnC18.BackColor = Color.White;
-                        btnZombies.BackColor = Color.White;
-                        btnMilRP.BackColor = Color.SpringGreen;
-                        btnCW1.BackColor = Color.White;
-                        btnCW2.BackColor = Color.White;
-                        server = "MilRP";
+                    case "208.103.169.18:27015":
+                        if (normalState)
+                        {
+                            btnDanktown.BackColor = Color.White;
+                            btnC18.BackColor = Color.White;
+                            btnZombies.BackColor = Color.White;
+                            btnMilRP.BackColor = Color.SpringGreen;
+                            btnCW1.BackColor = Color.White;
+                            btnCW2.BackColor = Color.White;
+                            lblServer.Text = "MilRP";
+                        }
+                        else
+                        {
+                            playerServer = playerName + "(" + steamID + ") is on MilRP(208.103.169.18:27015)";
+                        }
                         break;
-                    case "208.103.169.16":
-                        btnDanktown.BackColor = Color.White;
-                        btnC18.BackColor = Color.White;
-                        btnZombies.BackColor = Color.White;
-                        btnMilRP.BackColor = Color.White;
-                        btnCW1.BackColor = Color.SpringGreen;
-                        btnCW2.BackColor = Color.White;
-                        server = "CWRP #1";
+                    case "208.103.169.16:27015":
+                        if (normalState)
+                        {
+                            btnDanktown.BackColor = Color.White;
+                            btnC18.BackColor = Color.White;
+                            btnZombies.BackColor = Color.White;
+                            btnMilRP.BackColor = Color.White;
+                            btnCW1.BackColor = Color.SpringGreen;
+                            btnCW2.BackColor = Color.White;
+                            lblServer.Text = "CWRP #1";
+                        }
+                        else
+                        {
+                            playerServer = playerName + "(" + steamID + ") is on CWRP #1(208.103.169.16:27015)";
+                        }
                         break;
-                    case "208.103.169.17":
-                        btnDanktown.BackColor = Color.White;
-                        btnC18.BackColor = Color.White;
-                        btnZombies.BackColor = Color.White;
-                        btnMilRP.BackColor = Color.White;
-                        btnCW1.BackColor = Color.White;
-                        btnCW2.BackColor = Color.SpringGreen;
-                        server = "CWRP #2";
+                    case "208.103.169.17:27015":
+                        if (normalState)
+                        {
+                            btnDanktown.BackColor = Color.White;
+                            btnC18.BackColor = Color.White;
+                            btnZombies.BackColor = Color.White;
+                            btnMilRP.BackColor = Color.White;
+                            btnCW1.BackColor = Color.White;
+                            btnCW2.BackColor = Color.SpringGreen;
+                            lblServer.Text = "CWRP #2";
+                        }
+                        else
+                        {
+                            playerServer = playerName + "(" + steamID + ") is on CWRP #2(208.103.169.17:27015)";
+                        }
                         break;
                 }
-                lblServer.Text = server;
             }
             catch (Exception)
             {
-                btnDanktown.BackColor = Color.White;
-                btnC18.BackColor = Color.White;
-                btnZombies.BackColor = Color.White;
-                btnMilRP.BackColor = Color.White;
-                btnCW1.BackColor = Color.White;
-                btnCW2.BackColor = Color.White;
-                server = "";
+                if (normalState)
+                {
+                    btnDanktown.BackColor = Color.White;
+                    btnC18.BackColor = Color.White;
+                    btnZombies.BackColor = Color.White;
+                    btnMilRP.BackColor = Color.White;
+                    btnCW1.BackColor = Color.White;
+                    btnCW2.BackColor = Color.White;
+                    lblServer.Text = "";
+                }
+                else
+                {
+                    playerServer = "This player is not playing on a server or has their steam profile private.";
+                }
             }
         }
     private void toolStripMenuItem1_Click(object sender, EventArgs e)
@@ -381,7 +462,7 @@ namespace SUPLauncher
 
         private void tmrSteamQuery_Tick(object sender, EventArgs e)
         {
-            GetCurrentServer();
+            GetCurrentServer(steam.GetSteamId().ToString(), true);
         }
 
         private void chkDiscord_CheckedChanged(object sender, EventArgs e)
@@ -400,7 +481,7 @@ namespace SUPLauncher
         {
             if (discord.IsInitialized && chkDiscord.Checked)
             {
-                switch (server)
+                switch (lblServer.Text)
                 {
                     case "Danktown":
                         discord.SetPresence(new RichPresence()
@@ -480,7 +561,7 @@ namespace SUPLauncher
                             }
                         });
                         break;
-                    default:
+                    case "":
                         discord.SetPresence(new RichPresence()
                         {
                             Details = "Waiting to join a server...",
@@ -525,7 +606,7 @@ namespace SUPLauncher
                 ms.ReadByte();
                 ms.ReadByte();
 
-                ms.ReadTerminatedString(); // FAIR WARNING THIS CODE PORTION IS ACTUALLY RETARDED & OBFUSCATED FOR A REASON
+                ms.ReadTerminatedString(); 
                 ms.ReadTerminatedString();
                 ms.ReadTerminatedString();
                 ms.ReadTerminatedString();
@@ -550,6 +631,76 @@ namespace SUPLauncher
                 Thread.Sleep(120000);
             } while (true);
         }
+
+        private void ServerToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            bool IDAquired = false;
+            bool dirty = false;
+            string rawID = Interaction.InputBox("Enter steamid.");
+            string refinedID = "";
+            if (rawID == "")
+                return;
+            if (rawID.StartsWith("7") && rawID.Length == 76561197960265728.ToString().Length)
+                IDAquired = true;
+            if (IDAquired == false && (rawID.Contains("STEAM_0:0:") || rawID.Contains("STEAM_0:1:")))
+            {
+                try
+                {
+                    if (rawID.StartsWith("STEAM_0:0"))
+                    {
+                        refinedID = ((Convert.ToInt32(rawID.Substring(10, rawID.Length - 10)) * 2) + 76561197960265728).ToString();
+                    }
+                    else if (rawID.StartsWith("STEAM_0:1"))
+                    {
+                        refinedID = ((Convert.ToInt32(rawID.Substring(10, rawID.Length - 10)) * 2) + 76561197960265729).ToString();
+                    }
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Invalid STEAMID.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    dirty = true;
+                }
+            }
+            else
+            {
+                MessageBox.Show("Invalid STEAMID.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                dirty = true;
+            }
+            if (dirty == false)
+            {
+                if (IDAquired)
+                {
+                    GetCurrentServer(rawID, false);
+                }
+                else
+                {
+                    GetCurrentServer(refinedID, false);
+                }
+                MessageBox.Show(playerServer, "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        private void ForumsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string steamid = Interaction.InputBox("Enter steamid.", "Enter info.", " ");
+            if ((steamid.Contains("STEAM_0:0:") || steamid.Contains("STEAM_0:1:")) || (steamid.StartsWith("7") && steamid.Length == 76561197960265728.ToString().Length))
+            {
+                Process.Start("https://superiorservers.co/profile/" + steamid);
+            }
+        }
+        //static void BringWindowToFront()
+        //{
+        //    Process[] processList = Process.GetProcessesByName("steam");
+
+        //    foreach (Process theProcess in processList)
+        //    {
+        //        string processName = theProcess.ProcessName;
+        //        string mainWindowTitle = theProcess.MainWindowTitle;
+        //        SetFocus(new HandleRef(null, theProcess.MainWindowHandle));
+        //    }
+        //}
+        //[DllImport("user32.dll", CharSet = CharSet.Auto, ExactSpelling = true)]
+        //public static extern IntPtr SetFocus(HandleRef hWnd);
     }
     public static class MemoryStreamExtensions
     {
@@ -590,6 +741,5 @@ namespace SUPLauncher
                 ctrl.Text = text;
             }
         }
-
     }
 }

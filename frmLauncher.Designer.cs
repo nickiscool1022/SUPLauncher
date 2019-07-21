@@ -62,16 +62,21 @@
             this.btnDRPRules = new System.Windows.Forms.Button();
             this.btnMilRPRules = new System.Windows.Forms.Button();
             this.btnCWRPRules = new System.Windows.Forms.Button();
-            this.picImage = new OvalPictureBox();
             this.lblServer = new System.Windows.Forms.Label();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.searchToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.serverToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.forumsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.picImage = new OvalPictureBox();
             this.contextMenuStrip1.SuspendLayout();
+            this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picImage)).BeginInit();
             this.SuspendLayout();
             // 
             // btnDanktown
             // 
             this.btnDanktown.BackColor = System.Drawing.SystemColors.Control;
-            this.btnDanktown.Location = new System.Drawing.Point(36, 65);
+            this.btnDanktown.Location = new System.Drawing.Point(36, 82);
             this.btnDanktown.Name = "btnDanktown";
             this.btnDanktown.Size = new System.Drawing.Size(81, 33);
             this.btnDanktown.TabIndex = 0;
@@ -82,7 +87,7 @@
             // btnSundown
             // 
             this.btnSundown.Enabled = false;
-            this.btnSundown.Location = new System.Drawing.Point(36, 105);
+            this.btnSundown.Location = new System.Drawing.Point(36, 122);
             this.btnSundown.Name = "btnSundown";
             this.btnSundown.Size = new System.Drawing.Size(81, 33);
             this.btnSundown.TabIndex = 1;
@@ -91,7 +96,7 @@
             // 
             // btnC18
             // 
-            this.btnC18.Location = new System.Drawing.Point(36, 145);
+            this.btnC18.Location = new System.Drawing.Point(36, 162);
             this.btnC18.Name = "btnC18";
             this.btnC18.Size = new System.Drawing.Size(81, 33);
             this.btnC18.TabIndex = 2;
@@ -101,7 +106,7 @@
             // 
             // btnZombies
             // 
-            this.btnZombies.Location = new System.Drawing.Point(36, 185);
+            this.btnZombies.Location = new System.Drawing.Point(36, 202);
             this.btnZombies.Name = "btnZombies";
             this.btnZombies.Size = new System.Drawing.Size(81, 33);
             this.btnZombies.TabIndex = 3;
@@ -111,7 +116,7 @@
             // 
             // btnMilRP
             // 
-            this.btnMilRP.Location = new System.Drawing.Point(336, 65);
+            this.btnMilRP.Location = new System.Drawing.Point(336, 82);
             this.btnMilRP.Name = "btnMilRP";
             this.btnMilRP.Size = new System.Drawing.Size(81, 33);
             this.btnMilRP.TabIndex = 4;
@@ -121,7 +126,7 @@
             // 
             // btnCW1
             // 
-            this.btnCW1.Location = new System.Drawing.Point(336, 104);
+            this.btnCW1.Location = new System.Drawing.Point(336, 121);
             this.btnCW1.Name = "btnCW1";
             this.btnCW1.Size = new System.Drawing.Size(81, 33);
             this.btnCW1.TabIndex = 5;
@@ -131,7 +136,7 @@
             // 
             // btnCW2
             // 
-            this.btnCW2.Location = new System.Drawing.Point(336, 144);
+            this.btnCW2.Location = new System.Drawing.Point(336, 161);
             this.btnCW2.Name = "btnCW2";
             this.btnCW2.Size = new System.Drawing.Size(81, 33);
             this.btnCW2.TabIndex = 6;
@@ -145,7 +150,7 @@
             this.label2.BackColor = System.Drawing.Color.Transparent;
             this.label2.Font = new System.Drawing.Font("Prototype", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.SystemColors.Control;
-            this.label2.Location = new System.Drawing.Point(15, 44);
+            this.label2.Location = new System.Drawing.Point(15, 61);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(124, 19);
             this.label2.TabIndex = 8;
@@ -157,7 +162,7 @@
             this.label4.BackColor = System.Drawing.Color.Transparent;
             this.label4.Font = new System.Drawing.Font("Prototype", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.SystemColors.Control;
-            this.label4.Location = new System.Drawing.Point(353, 46);
+            this.label4.Location = new System.Drawing.Point(353, 63);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(46, 19);
             this.label4.TabIndex = 10;
@@ -165,7 +170,7 @@
             // 
             // btnForums
             // 
-            this.btnForums.Location = new System.Drawing.Point(291, 223);
+            this.btnForums.Location = new System.Drawing.Point(291, 240);
             this.btnForums.Name = "btnForums";
             this.btnForums.Size = new System.Drawing.Size(81, 33);
             this.btnForums.TabIndex = 11;
@@ -175,7 +180,7 @@
             // 
             // btnTS
             // 
-            this.btnTS.Location = new System.Drawing.Point(384, 223);
+            this.btnTS.Location = new System.Drawing.Point(384, 240);
             this.btnTS.Name = "btnTS";
             this.btnTS.Size = new System.Drawing.Size(81, 33);
             this.btnTS.TabIndex = 12;
@@ -189,7 +194,7 @@
             this.label5.BackColor = System.Drawing.Color.Transparent;
             this.label5.Font = new System.Drawing.Font("Roboto", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.SystemColors.Control;
-            this.label5.Location = new System.Drawing.Point(355, 200);
+            this.label5.Location = new System.Drawing.Point(355, 217);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(44, 18);
             this.label5.TabIndex = 13;
@@ -201,7 +206,7 @@
             this.lblDT.BackColor = System.Drawing.Color.Transparent;
             this.lblDT.Font = new System.Drawing.Font("Roboto Condensed", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblDT.ForeColor = System.Drawing.SystemColors.Control;
-            this.lblDT.Location = new System.Drawing.Point(123, 74);
+            this.lblDT.Location = new System.Drawing.Point(123, 91);
             this.lblDT.Name = "lblDT";
             this.lblDT.Size = new System.Drawing.Size(48, 15);
             this.lblDT.TabIndex = 15;
@@ -218,7 +223,7 @@
             this.lblSD.BackColor = System.Drawing.Color.Transparent;
             this.lblSD.Font = new System.Drawing.Font("Roboto Condensed", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSD.ForeColor = System.Drawing.SystemColors.Control;
-            this.lblSD.Location = new System.Drawing.Point(123, 114);
+            this.lblSD.Location = new System.Drawing.Point(123, 131);
             this.lblSD.Name = "lblSD";
             this.lblSD.Size = new System.Drawing.Size(48, 15);
             this.lblSD.TabIndex = 16;
@@ -230,7 +235,7 @@
             this.lblC18.BackColor = System.Drawing.Color.Transparent;
             this.lblC18.Font = new System.Drawing.Font("Roboto Condensed", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblC18.ForeColor = System.Drawing.SystemColors.Control;
-            this.lblC18.Location = new System.Drawing.Point(123, 154);
+            this.lblC18.Location = new System.Drawing.Point(123, 171);
             this.lblC18.Name = "lblC18";
             this.lblC18.Size = new System.Drawing.Size(48, 15);
             this.lblC18.TabIndex = 17;
@@ -242,7 +247,7 @@
             this.lblZRP.BackColor = System.Drawing.Color.Transparent;
             this.lblZRP.Font = new System.Drawing.Font("Roboto Condensed", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblZRP.ForeColor = System.Drawing.SystemColors.Control;
-            this.lblZRP.Location = new System.Drawing.Point(123, 194);
+            this.lblZRP.Location = new System.Drawing.Point(123, 211);
             this.lblZRP.Name = "lblZRP";
             this.lblZRP.Size = new System.Drawing.Size(48, 15);
             this.lblZRP.TabIndex = 18;
@@ -254,7 +259,7 @@
             this.lblMRP.BackColor = System.Drawing.Color.Transparent;
             this.lblMRP.Font = new System.Drawing.Font("Roboto Condensed", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblMRP.ForeColor = System.Drawing.SystemColors.Control;
-            this.lblMRP.Location = new System.Drawing.Point(423, 74);
+            this.lblMRP.Location = new System.Drawing.Point(423, 91);
             this.lblMRP.Name = "lblMRP";
             this.lblMRP.Size = new System.Drawing.Size(48, 15);
             this.lblMRP.TabIndex = 19;
@@ -266,7 +271,7 @@
             this.lblCW1.BackColor = System.Drawing.Color.Transparent;
             this.lblCW1.Font = new System.Drawing.Font("Roboto Condensed", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblCW1.ForeColor = System.Drawing.SystemColors.Control;
-            this.lblCW1.Location = new System.Drawing.Point(423, 114);
+            this.lblCW1.Location = new System.Drawing.Point(423, 131);
             this.lblCW1.Name = "lblCW1";
             this.lblCW1.Size = new System.Drawing.Size(48, 15);
             this.lblCW1.TabIndex = 20;
@@ -278,7 +283,7 @@
             this.lblCW2.BackColor = System.Drawing.Color.Transparent;
             this.lblCW2.Font = new System.Drawing.Font("Roboto Condensed", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblCW2.ForeColor = System.Drawing.SystemColors.Control;
-            this.lblCW2.Location = new System.Drawing.Point(423, 153);
+            this.lblCW2.Location = new System.Drawing.Point(423, 170);
             this.lblCW2.Name = "lblCW2";
             this.lblCW2.Size = new System.Drawing.Size(48, 15);
             this.lblCW2.TabIndex = 21;
@@ -290,7 +295,7 @@
             this.chkAFK.BackColor = System.Drawing.Color.Transparent;
             this.chkAFK.Font = new System.Drawing.Font("Roboto Condensed", 9.75F);
             this.chkAFK.ForeColor = System.Drawing.SystemColors.Control;
-            this.chkAFK.Location = new System.Drawing.Point(294, 364);
+            this.chkAFK.Location = new System.Drawing.Point(294, 381);
             this.chkAFK.Name = "chkAFK";
             this.chkAFK.Size = new System.Drawing.Size(78, 19);
             this.chkAFK.TabIndex = 22;
@@ -304,7 +309,7 @@
             this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Font = new System.Drawing.Font("Prototype", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.SystemColors.Control;
-            this.label1.Location = new System.Drawing.Point(155, 9);
+            this.label1.Location = new System.Drawing.Point(155, 26);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(182, 29);
             this.label1.TabIndex = 26;
@@ -317,7 +322,7 @@
             this.lblVersion.Cursor = System.Windows.Forms.Cursors.Hand;
             this.lblVersion.Font = new System.Drawing.Font("Prototype", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblVersion.ForeColor = System.Drawing.SystemColors.Control;
-            this.lblVersion.Location = new System.Drawing.Point(352, 410);
+            this.lblVersion.Location = new System.Drawing.Point(352, 427);
             this.lblVersion.Name = "lblVersion";
             this.lblVersion.Size = new System.Drawing.Size(34, 20);
             this.lblVersion.TabIndex = 27;
@@ -328,7 +333,7 @@
             // 
             this.Dupes.ContextMenuStrip = this.contextMenuStrip1;
             this.Dupes.FormattingEnabled = true;
-            this.Dupes.Location = new System.Drawing.Point(12, 259);
+            this.Dupes.Location = new System.Drawing.Point(12, 276);
             this.Dupes.Name = "Dupes";
             this.Dupes.Size = new System.Drawing.Size(232, 186);
             this.Dupes.TabIndex = 28;
@@ -354,7 +359,7 @@
             this.label3.BackColor = System.Drawing.Color.Transparent;
             this.label3.Font = new System.Drawing.Font("Prototype", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.SystemColors.Control;
-            this.label3.Location = new System.Drawing.Point(57, 237);
+            this.label3.Location = new System.Drawing.Point(57, 254);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(143, 19);
             this.label3.TabIndex = 29;
@@ -371,7 +376,7 @@
             this.chkDiscord.BackColor = System.Drawing.Color.Transparent;
             this.chkDiscord.Font = new System.Drawing.Font("Roboto Condensed", 9.75F);
             this.chkDiscord.ForeColor = System.Drawing.SystemColors.Control;
-            this.chkDiscord.Location = new System.Drawing.Point(400, 364);
+            this.chkDiscord.Location = new System.Drawing.Point(400, 381);
             this.chkDiscord.Name = "chkDiscord";
             this.chkDiscord.Size = new System.Drawing.Size(65, 19);
             this.chkDiscord.TabIndex = 32;
@@ -384,7 +389,7 @@
             this.btnDRPRules.BackColor = System.Drawing.SystemColors.Control;
             this.btnDRPRules.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDRPRules.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnDRPRules.Location = new System.Drawing.Point(274, 285);
+            this.btnDRPRules.Location = new System.Drawing.Point(274, 302);
             this.btnDRPRules.Margin = new System.Windows.Forms.Padding(0);
             this.btnDRPRules.Name = "btnDRPRules";
             this.btnDRPRules.Size = new System.Drawing.Size(204, 19);
@@ -397,7 +402,7 @@
             // 
             this.btnMilRPRules.BackColor = System.Drawing.SystemColors.Control;
             this.btnMilRPRules.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnMilRPRules.Location = new System.Drawing.Point(274, 308);
+            this.btnMilRPRules.Location = new System.Drawing.Point(274, 325);
             this.btnMilRPRules.Margin = new System.Windows.Forms.Padding(0);
             this.btnMilRPRules.Name = "btnMilRPRules";
             this.btnMilRPRules.Size = new System.Drawing.Size(204, 19);
@@ -410,7 +415,7 @@
             // 
             this.btnCWRPRules.BackColor = System.Drawing.SystemColors.Control;
             this.btnCWRPRules.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCWRPRules.Location = new System.Drawing.Point(274, 331);
+            this.btnCWRPRules.Location = new System.Drawing.Point(274, 348);
             this.btnCWRPRules.Margin = new System.Windows.Forms.Padding(0);
             this.btnCWRPRules.Name = "btnCWRPRules";
             this.btnCWRPRules.Size = new System.Drawing.Size(204, 19);
@@ -419,21 +424,6 @@
             this.btnCWRPRules.UseVisualStyleBackColor = false;
             this.btnCWRPRules.Click += new System.EventHandler(this.btnCWRPRules_Click);
             // 
-            // picImage
-            // 
-            this.picImage.BackColor = System.Drawing.Color.Transparent;
-            this.picImage.BackgroundImage = global::SUPLauncher.Properties.Resources.suplogo;
-            this.picImage.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.picImage.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.picImage.ErrorImage = global::SUPLauncher.Properties.Resources.suplogo;
-            this.picImage.Location = new System.Drawing.Point(185, 65);
-            this.picImage.Name = "picImage";
-            this.picImage.Size = new System.Drawing.Size(122, 129);
-            this.picImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.picImage.TabIndex = 25;
-            this.picImage.TabStop = false;
-            this.picImage.Click += new System.EventHandler(this.picImage_Click);
-            // 
             // lblServer
             // 
             this.lblServer.AutoSize = true;
@@ -441,13 +431,63 @@
             this.lblServer.Cursor = System.Windows.Forms.Cursors.Hand;
             this.lblServer.Font = new System.Drawing.Font("Prototype", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblServer.ForeColor = System.Drawing.SystemColors.Control;
-            this.lblServer.Location = new System.Drawing.Point(290, 425);
+            this.lblServer.Location = new System.Drawing.Point(290, 442);
             this.lblServer.Name = "lblServer";
             this.lblServer.Size = new System.Drawing.Size(34, 20);
             this.lblServer.TabIndex = 36;
             this.lblServer.Text = "1.1.1.1";
             this.lblServer.Visible = false;
             this.lblServer.TextChanged += new System.EventHandler(this.lblServer_TextChanged);
+            // 
+            // menuStrip1
+            // 
+            this.menuStrip1.BackColor = System.Drawing.Color.Transparent;
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.searchToolStripMenuItem});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(493, 24);
+            this.menuStrip1.TabIndex = 37;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
+            // searchToolStripMenuItem
+            // 
+            this.searchToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.serverToolStripMenuItem,
+            this.forumsToolStripMenuItem});
+            this.searchToolStripMenuItem.ForeColor = System.Drawing.SystemColors.InactiveCaption;
+            this.searchToolStripMenuItem.Name = "searchToolStripMenuItem";
+            this.searchToolStripMenuItem.Size = new System.Drawing.Size(54, 20);
+            this.searchToolStripMenuItem.Text = "Search";
+            // 
+            // serverToolStripMenuItem
+            // 
+            this.serverToolStripMenuItem.Name = "serverToolStripMenuItem";
+            this.serverToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.serverToolStripMenuItem.Text = "Server";
+            this.serverToolStripMenuItem.Click += new System.EventHandler(this.ServerToolStripMenuItem_Click);
+            // 
+            // forumsToolStripMenuItem
+            // 
+            this.forumsToolStripMenuItem.Name = "forumsToolStripMenuItem";
+            this.forumsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.forumsToolStripMenuItem.Text = "Forums";
+            this.forumsToolStripMenuItem.Click += new System.EventHandler(this.ForumsToolStripMenuItem_Click);
+            // 
+            // picImage
+            // 
+            this.picImage.BackColor = System.Drawing.Color.Transparent;
+            this.picImage.BackgroundImage = global::SUPLauncher.Properties.Resources.suplogo;
+            this.picImage.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.picImage.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.picImage.ErrorImage = global::SUPLauncher.Properties.Resources.suplogo;
+            this.picImage.Location = new System.Drawing.Point(185, 82);
+            this.picImage.Name = "picImage";
+            this.picImage.Size = new System.Drawing.Size(122, 129);
+            this.picImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.picImage.TabIndex = 25;
+            this.picImage.TabStop = false;
+            this.picImage.Click += new System.EventHandler(this.picImage_Click);
             // 
             // frmLauncher
             // 
@@ -456,7 +496,8 @@
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(99)))), ((int)(((byte)(145)))));
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(493, 460);
+            this.ClientSize = new System.Drawing.Size(493, 472);
+            this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.lblServer);
             this.Controls.Add(this.btnCWRPRules);
             this.Controls.Add(this.btnMilRPRules);
@@ -490,6 +531,7 @@
             this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MainMenuStrip = this.menuStrip1;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmLauncher";
@@ -498,6 +540,8 @@
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmLauncher_FormClosing);
             this.Load += new System.EventHandler(this.frmLauncher_Load);
             this.contextMenuStrip1.ResumeLayout(false);
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picImage)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -540,6 +584,10 @@
         private System.Windows.Forms.Button btnMilRPRules;
         private System.Windows.Forms.Button btnCWRPRules;
         private System.Windows.Forms.Label lblServer;
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem searchToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem serverToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem forumsToolStripMenuItem;
     }
 }
 

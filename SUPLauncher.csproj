@@ -26,8 +26,8 @@
     <TargetCulture>en-US</TargetCulture>
     <ProductName>SUP Launcher</ProductName>
     <PublisherName>Nick</PublisherName>
-    <ApplicationRevision>1</ApplicationRevision>
-    <ApplicationVersion>2.2.0.1</ApplicationVersion>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>2.3.0.0</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -132,6 +132,7 @@
       <DependentUpon>Splashscreen1.cs</DependentUpon>
     </Compile>
     <Compile Include="SteamBridge.cs" />
+    <Compile Include="WindowFocus.cs" />
     <EmbeddedResource Include="frmLauncher.resx">
       <DependentUpon>frmLauncher.cs</DependentUpon>
     </EmbeddedResource>
