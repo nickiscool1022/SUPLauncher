@@ -53,10 +53,8 @@
             this.chkAFK = new System.Windows.Forms.CheckBox();
             this.label1 = new System.Windows.Forms.Label();
             this.lblVersion = new System.Windows.Forms.Label();
-            this.Dupes = new System.Windows.Forms.ListBox();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.label3 = new System.Windows.Forms.Label();
             this.tmrSteamQuery = new System.Windows.Forms.Timer(this.components);
             this.chkDiscord = new System.Windows.Forms.CheckBox();
             this.btnDRPRules = new System.Windows.Forms.Button();
@@ -67,18 +65,19 @@
             this.searchToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.serverToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.forumsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnDupes = new System.Windows.Forms.Button();
             this.picImage = new OvalPictureBox();
-            this.contextMenuStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picImage)).BeginInit();
             this.SuspendLayout();
             // 
             // btnDanktown
             // 
-            this.btnDanktown.BackColor = System.Drawing.SystemColors.Control;
-            this.btnDanktown.Location = new System.Drawing.Point(36, 82);
+            this.btnDanktown.BackColor = System.Drawing.Color.White;
+            this.btnDanktown.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnDanktown.Location = new System.Drawing.Point(31, 82);
             this.btnDanktown.Name = "btnDanktown";
-            this.btnDanktown.Size = new System.Drawing.Size(81, 33);
+            this.btnDanktown.Size = new System.Drawing.Size(90, 33);
             this.btnDanktown.TabIndex = 0;
             this.btnDanktown.Text = "Danktown";
             this.btnDanktown.UseVisualStyleBackColor = false;
@@ -86,62 +85,75 @@
             // 
             // btnSundown
             // 
+            this.btnSundown.BackColor = System.Drawing.Color.White;
             this.btnSundown.Enabled = false;
-            this.btnSundown.Location = new System.Drawing.Point(36, 122);
+            this.btnSundown.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSundown.Location = new System.Drawing.Point(31, 122);
             this.btnSundown.Name = "btnSundown";
-            this.btnSundown.Size = new System.Drawing.Size(81, 33);
+            this.btnSundown.Size = new System.Drawing.Size(90, 33);
             this.btnSundown.TabIndex = 1;
             this.btnSundown.Text = "Sundown";
-            this.btnSundown.UseVisualStyleBackColor = true;
+            this.btnSundown.UseVisualStyleBackColor = false;
             // 
             // btnC18
             // 
-            this.btnC18.Location = new System.Drawing.Point(36, 162);
+            this.btnC18.BackColor = System.Drawing.Color.White;
+            this.btnC18.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnC18.Location = new System.Drawing.Point(31, 162);
             this.btnC18.Name = "btnC18";
-            this.btnC18.Size = new System.Drawing.Size(81, 33);
+            this.btnC18.Size = new System.Drawing.Size(90, 33);
             this.btnC18.TabIndex = 2;
             this.btnC18.Text = "C18";
-            this.btnC18.UseVisualStyleBackColor = true;
+            this.btnC18.UseVisualStyleBackColor = false;
             this.btnC18.Click += new System.EventHandler(this.btnC18_Click);
             // 
             // btnZombies
             // 
-            this.btnZombies.Location = new System.Drawing.Point(36, 202);
+            this.btnZombies.BackColor = System.Drawing.Color.White;
+            this.btnZombies.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnZombies.Location = new System.Drawing.Point(31, 202);
             this.btnZombies.Name = "btnZombies";
-            this.btnZombies.Size = new System.Drawing.Size(81, 33);
+            this.btnZombies.Size = new System.Drawing.Size(90, 33);
             this.btnZombies.TabIndex = 3;
             this.btnZombies.Text = "Zombies";
-            this.btnZombies.UseVisualStyleBackColor = true;
+            this.btnZombies.UseVisualStyleBackColor = false;
             this.btnZombies.Click += new System.EventHandler(this.btnZombies_Click);
             // 
             // btnMilRP
             // 
-            this.btnMilRP.Location = new System.Drawing.Point(336, 82);
+            this.btnMilRP.BackColor = System.Drawing.Color.White;
+            this.btnMilRP.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnMilRP.Location = new System.Drawing.Point(329, 82);
             this.btnMilRP.Name = "btnMilRP";
-            this.btnMilRP.Size = new System.Drawing.Size(81, 33);
+            this.btnMilRP.Size = new System.Drawing.Size(90, 33);
             this.btnMilRP.TabIndex = 4;
             this.btnMilRP.Text = "MilitaryRP";
-            this.btnMilRP.UseVisualStyleBackColor = true;
+            this.btnMilRP.UseVisualStyleBackColor = false;
             this.btnMilRP.Click += new System.EventHandler(this.btnMilRP_Click);
             // 
             // btnCW1
             // 
-            this.btnCW1.Location = new System.Drawing.Point(336, 121);
+            this.btnCW1.BackColor = System.Drawing.Color.White;
+            this.btnCW1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCW1.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnCW1.Location = new System.Drawing.Point(329, 121);
             this.btnCW1.Name = "btnCW1";
-            this.btnCW1.Size = new System.Drawing.Size(81, 33);
+            this.btnCW1.Size = new System.Drawing.Size(90, 33);
             this.btnCW1.TabIndex = 5;
             this.btnCW1.Text = "Clonewars #1";
-            this.btnCW1.UseVisualStyleBackColor = true;
+            this.btnCW1.UseVisualStyleBackColor = false;
             this.btnCW1.Click += new System.EventHandler(this.btnCW1_Click);
             // 
             // btnCW2
             // 
-            this.btnCW2.Location = new System.Drawing.Point(336, 161);
+            this.btnCW2.BackColor = System.Drawing.Color.White;
+            this.btnCW2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCW2.Location = new System.Drawing.Point(329, 161);
             this.btnCW2.Name = "btnCW2";
-            this.btnCW2.Size = new System.Drawing.Size(81, 33);
+            this.btnCW2.Size = new System.Drawing.Size(90, 33);
             this.btnCW2.TabIndex = 6;
             this.btnCW2.Text = "Clonewars #2";
-            this.btnCW2.UseVisualStyleBackColor = true;
+            this.btnCW2.UseVisualStyleBackColor = false;
             this.btnCW2.Click += new System.EventHandler(this.btnCW2_Click);
             // 
             // label2
@@ -170,22 +182,26 @@
             // 
             // btnForums
             // 
+            this.btnForums.BackColor = System.Drawing.Color.White;
+            this.btnForums.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnForums.Location = new System.Drawing.Point(291, 240);
             this.btnForums.Name = "btnForums";
             this.btnForums.Size = new System.Drawing.Size(81, 33);
             this.btnForums.TabIndex = 11;
             this.btnForums.Text = "Forums";
-            this.btnForums.UseVisualStyleBackColor = true;
+            this.btnForums.UseVisualStyleBackColor = false;
             this.btnForums.Click += new System.EventHandler(this.btnForums_Click);
             // 
             // btnTS
             // 
+            this.btnTS.BackColor = System.Drawing.Color.White;
+            this.btnTS.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnTS.Location = new System.Drawing.Point(384, 240);
             this.btnTS.Name = "btnTS";
             this.btnTS.Size = new System.Drawing.Size(81, 33);
             this.btnTS.TabIndex = 12;
             this.btnTS.Text = "TS";
-            this.btnTS.UseVisualStyleBackColor = true;
+            this.btnTS.UseVisualStyleBackColor = false;
             this.btnTS.Click += new System.EventHandler(this.btnTS_Click);
             // 
             // label5
@@ -322,48 +338,22 @@
             this.lblVersion.Cursor = System.Windows.Forms.Cursors.Hand;
             this.lblVersion.Font = new System.Drawing.Font("Prototype", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblVersion.ForeColor = System.Drawing.SystemColors.Control;
-            this.lblVersion.Location = new System.Drawing.Point(352, 427);
+            this.lblVersion.Location = new System.Drawing.Point(353, 403);
             this.lblVersion.Name = "lblVersion";
             this.lblVersion.Size = new System.Drawing.Size(34, 20);
             this.lblVersion.TabIndex = 27;
             this.lblVersion.Text = "1.1.1.1";
             this.lblVersion.Click += new System.EventHandler(this.lblVersion_Click);
             // 
-            // Dupes
-            // 
-            this.Dupes.ContextMenuStrip = this.contextMenuStrip1;
-            this.Dupes.FormattingEnabled = true;
-            this.Dupes.Location = new System.Drawing.Point(12, 276);
-            this.Dupes.Name = "Dupes";
-            this.Dupes.Size = new System.Drawing.Size(232, 186);
-            this.Dupes.TabIndex = 28;
-            // 
             // contextMenuStrip1
             // 
-            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripMenuItem1});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(118, 26);
-            this.contextMenuStrip1.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStrip1_Opening);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
             // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(117, 22);
-            this.toolStripMenuItem1.Text = "Remove";
-            this.toolStripMenuItem1.Click += new System.EventHandler(this.toolStripMenuItem1_Click);
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.BackColor = System.Drawing.Color.Transparent;
-            this.label3.Font = new System.Drawing.Font("Prototype", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.ForeColor = System.Drawing.SystemColors.Control;
-            this.label3.Location = new System.Drawing.Point(57, 254);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(143, 19);
-            this.label3.TabIndex = 29;
-            this.label3.Text = "Duplication Manager";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(32, 19);
             // 
             // tmrSteamQuery
             // 
@@ -386,13 +376,14 @@
             // 
             // btnDRPRules
             // 
-            this.btnDRPRules.BackColor = System.Drawing.SystemColors.Control;
+            this.btnDRPRules.BackColor = System.Drawing.Color.White;
+            this.btnDRPRules.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDRPRules.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDRPRules.ForeColor = System.Drawing.SystemColors.ControlText;
             this.btnDRPRules.Location = new System.Drawing.Point(274, 302);
             this.btnDRPRules.Margin = new System.Windows.Forms.Padding(0);
             this.btnDRPRules.Name = "btnDRPRules";
-            this.btnDRPRules.Size = new System.Drawing.Size(204, 19);
+            this.btnDRPRules.Size = new System.Drawing.Size(204, 23);
             this.btnDRPRules.TabIndex = 33;
             this.btnDRPRules.Text = "DarkRP Rules/FAQ";
             this.btnDRPRules.UseVisualStyleBackColor = false;
@@ -400,12 +391,13 @@
             // 
             // btnMilRPRules
             // 
-            this.btnMilRPRules.BackColor = System.Drawing.SystemColors.Control;
+            this.btnMilRPRules.BackColor = System.Drawing.Color.White;
+            this.btnMilRPRules.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnMilRPRules.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnMilRPRules.Location = new System.Drawing.Point(274, 325);
+            this.btnMilRPRules.Location = new System.Drawing.Point(274, 328);
             this.btnMilRPRules.Margin = new System.Windows.Forms.Padding(0);
             this.btnMilRPRules.Name = "btnMilRPRules";
-            this.btnMilRPRules.Size = new System.Drawing.Size(204, 19);
+            this.btnMilRPRules.Size = new System.Drawing.Size(204, 23);
             this.btnMilRPRules.TabIndex = 34;
             this.btnMilRPRules.Text = "MilRP Rules/FAQ";
             this.btnMilRPRules.UseVisualStyleBackColor = false;
@@ -413,12 +405,13 @@
             // 
             // btnCWRPRules
             // 
-            this.btnCWRPRules.BackColor = System.Drawing.SystemColors.Control;
+            this.btnCWRPRules.BackColor = System.Drawing.Color.White;
+            this.btnCWRPRules.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCWRPRules.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCWRPRules.Location = new System.Drawing.Point(274, 348);
+            this.btnCWRPRules.Location = new System.Drawing.Point(274, 354);
             this.btnCWRPRules.Margin = new System.Windows.Forms.Padding(0);
             this.btnCWRPRules.Name = "btnCWRPRules";
-            this.btnCWRPRules.Size = new System.Drawing.Size(204, 19);
+            this.btnCWRPRules.Size = new System.Drawing.Size(204, 23);
             this.btnCWRPRules.TabIndex = 35;
             this.btnCWRPRules.Text = "CWRP Rules/FAQ";
             this.btnCWRPRules.UseVisualStyleBackColor = false;
@@ -463,16 +456,28 @@
             // serverToolStripMenuItem
             // 
             this.serverToolStripMenuItem.Name = "serverToolStripMenuItem";
-            this.serverToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.serverToolStripMenuItem.Size = new System.Drawing.Size(114, 22);
             this.serverToolStripMenuItem.Text = "Server";
             this.serverToolStripMenuItem.Click += new System.EventHandler(this.ServerToolStripMenuItem_Click);
             // 
             // forumsToolStripMenuItem
             // 
             this.forumsToolStripMenuItem.Name = "forumsToolStripMenuItem";
-            this.forumsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.forumsToolStripMenuItem.Size = new System.Drawing.Size(114, 22);
             this.forumsToolStripMenuItem.Text = "Forums";
             this.forumsToolStripMenuItem.Click += new System.EventHandler(this.ForumsToolStripMenuItem_Click);
+            // 
+            // btnDupes
+            // 
+            this.btnDupes.BackColor = System.Drawing.Color.White;
+            this.btnDupes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnDupes.Location = new System.Drawing.Point(48, 308);
+            this.btnDupes.Name = "btnDupes";
+            this.btnDupes.Size = new System.Drawing.Size(158, 63);
+            this.btnDupes.TabIndex = 38;
+            this.btnDupes.Text = "Open Dupe Manager";
+            this.btnDupes.UseVisualStyleBackColor = false;
+            this.btnDupes.Click += new System.EventHandler(this.BtnDupes_Click);
             // 
             // picImage
             // 
@@ -496,15 +501,14 @@
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(99)))), ((int)(((byte)(145)))));
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(493, 472);
+            this.ClientSize = new System.Drawing.Size(493, 428);
+            this.Controls.Add(this.btnDupes);
             this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.lblServer);
             this.Controls.Add(this.btnCWRPRules);
             this.Controls.Add(this.btnMilRPRules);
             this.Controls.Add(this.btnDRPRules);
             this.Controls.Add(this.chkDiscord);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.Dupes);
             this.Controls.Add(this.lblVersion);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.picImage);
@@ -539,7 +543,6 @@
             this.Text = "SUP Launcher";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmLauncher_FormClosing);
             this.Load += new System.EventHandler(this.frmLauncher_Load);
-            this.contextMenuStrip1.ResumeLayout(false);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picImage)).EndInit();
@@ -574,8 +577,6 @@
         private OvalPictureBox picImage;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label lblVersion;
-        private System.Windows.Forms.ListBox Dupes;
-        private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Timer tmrSteamQuery;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
@@ -588,6 +589,7 @@
         private System.Windows.Forms.ToolStripMenuItem searchToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem serverToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem forumsToolStripMenuItem;
+        private System.Windows.Forms.Button btnDupes;
     }
 }
 

@@ -30,3 +30,4 @@ D:\Programming\SUPLauncher - Copy\SUPLauncher\bin\Debug\Newtonsoft.Json.xml
 D:\Programming\SUPLauncher - Copy\SUPLauncher\obj\Debug\SUPLauncher.csproj.CopyComplete
 D:\Programming\SUPLauncher - Copy\SUPLauncher\obj\Debug\SUPLauncher.Splashscreen1.resources
 D:\Programming\SUPLauncher - Copy\SUPLauncher\obj\Debug\SUPLauncher.csprojAssemblyReference.cache
+D:\Programming\SUPLauncher - Copy\SUPLauncher\obj\Debug\SUPLauncher.DupeManager.resources

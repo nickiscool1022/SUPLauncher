@@ -9,8 +9,6 @@ using System.Threading;
 using System.Net;
 using Microsoft.VisualBasic;
 using DiscordRPC;
-using Newtonsoft;
-using Newtonsoft.Json.Linq;
 
 namespace SUPLauncher
 {
@@ -18,8 +16,7 @@ namespace SUPLauncher
     {
         Thread t;
         bool appStarted = false;
-        string dupePath;
-        string server;
+        public static string dupePath = "";
         string playerServer;
         SteamBridge steam = new SteamBridge();
         public frmLauncher()
@@ -307,7 +304,6 @@ namespace SUPLauncher
                 files[z] = Path.GetFileName(i);
                 z++;
             }
-            Dupes.Items.AddRange(files);
         }
         /// <summary>
         /// Gets the server name and IP the provided steam user is on
@@ -444,20 +440,6 @@ namespace SUPLauncher
                     playerServer = "This player is not playing on a server or has their steam profile private.";
                 }
             }
-        }
-    private void toolStripMenuItem1_Click(object sender, EventArgs e)
-        {
-            if (MessageBox.Show("Are you sure you want to delete " + Dupes.SelectedItem.ToString() + "?", "Are you sure?", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation) == DialogResult.Yes)
-            {
-                File.Delete(dupePath + @"\" + Dupes.SelectedItem);
-                Dupes.Items.RemoveAt(Dupes.SelectedIndex);
-            }
-        }
-
-        private void contextMenuStrip1_Opening(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-            if (Dupes.SelectedIndex == -1)
-                e.Cancel = true;
         }
 
         private void tmrSteamQuery_Tick(object sender, EventArgs e)
@@ -661,11 +643,6 @@ namespace SUPLauncher
                     dirty = true;
                 }
             }
-            else
-            {
-                MessageBox.Show("Invalid STEAMID.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                dirty = true;
-            }
             if (dirty == false)
             {
                 if (IDAquired)
@@ -678,6 +655,12 @@ namespace SUPLauncher
                 }
                 MessageBox.Show(playerServer, "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
+            else
+            {
+                MessageBox.Show("Invalid STEAMID.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                dirty = true;
+            }
+           
         }
 
         private void ForumsToolStripMenuItem_Click(object sender, EventArgs e)
@@ -687,6 +670,11 @@ namespace SUPLauncher
             {
                 Process.Start("https://superiorservers.co/profile/" + steamid);
             }
+        }
+
+        private void BtnDupes_Click(object sender, EventArgs e)
+        {
+            new DupeManager().ShowDialog();
         }
         //static void BringWindowToFront()
         //{
