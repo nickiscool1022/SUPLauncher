@@ -31,3 +31,16 @@ D:\Programming\SUPLauncher - Copy\SUPLauncher\obj\Debug\SUPLauncher.csproj.CopyC
 D:\Programming\SUPLauncher - Copy\SUPLauncher\obj\Debug\SUPLauncher.Splashscreen1.resources
 D:\Programming\SUPLauncher - Copy\SUPLauncher\obj\Debug\SUPLauncher.csprojAssemblyReference.cache
 D:\Programming\SUPLauncher - Copy\SUPLauncher\obj\Debug\SUPLauncher.DupeManager.resources
+D:\Programming\SUPLauncher\SUPLauncher\bin\Debug\SUPLauncher.exe.manifest
+D:\Programming\SUPLauncher\SUPLauncher\bin\Debug\SUPLauncher.application
+D:\Programming\SUPLauncher\SUPLauncher\bin\Debug\Microsoft.Web.XmlTransform.dll
+D:\Programming\SUPLauncher\SUPLauncher\bin\Debug\Newtonsoft.Json.dll
+D:\Programming\SUPLauncher\SUPLauncher\bin\Debug\NuGet.Core.dll
+D:\Programming\SUPLauncher\SUPLauncher\bin\Debug\Microsoft.Web.XmlTransform.pdb
+D:\Programming\SUPLauncher\SUPLauncher\bin\Debug\Newtonsoft.Json.xml
+D:\Programming\SUPLauncher\SUPLauncher\obj\Debug\SUPLauncher.DupeManager.resources
+D:\Programming\SUPLauncher\SUPLauncher\obj\Debug\SUPLauncher.Splashscreen1.resources
+D:\Programming\SUPLauncher\SUPLauncher\obj\Debug\SUPLauncher.TrustInfo.xml
+D:\Programming\SUPLauncher\SUPLauncher\obj\Debug\SUPLauncher.exe.manifest
+D:\Programming\SUPLauncher\SUPLauncher\obj\Debug\SUPLauncher.application
+D:\Programming\SUPLauncher\SUPLauncher\obj\Debug\SUPLauncher.csproj.CopyComplete

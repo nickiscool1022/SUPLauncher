@@ -28,8 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Splashscreen1));
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.picImage = new OvalPictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.picImage)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -56,14 +59,29 @@
             this.label2.TabIndex = 1;
             this.label2.Text = "By: Nick";
             // 
+            // picImage
+            // 
+            this.picImage.BackColor = System.Drawing.Color.Transparent;
+            this.picImage.BackgroundImage = global::SUPLauncher.Properties.Resources.suplogo;
+            this.picImage.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.picImage.Cursor = System.Windows.Forms.Cursors.Default;
+            this.picImage.ErrorImage = global::SUPLauncher.Properties.Resources.suplogo;
+            this.picImage.Location = new System.Drawing.Point(181, 62);
+            this.picImage.Name = "picImage";
+            this.picImage.Size = new System.Drawing.Size(191, 186);
+            this.picImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.picImage.TabIndex = 26;
+            this.picImage.TabStop = false;
+            // 
             // Splashscreen1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackgroundImage = global::SUPLauncher.Properties.Resources.background;
+            this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(557, 315);
+            this.ClientSize = new System.Drawing.Size(553, 311);
             this.ControlBox = false;
+            this.Controls.Add(this.picImage);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -72,6 +90,7 @@
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Load += new System.EventHandler(this.Splashscreen1_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.picImage)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -81,5 +100,6 @@
 
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
+        private OvalPictureBox picImage;
     }
 }

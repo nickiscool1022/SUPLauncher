@@ -328,12 +328,12 @@ namespace SUPLauncher
                     case "208.103.169.12:27015":
                         if (normalState)
                         {
-                            btnDanktown.BackColor = Color.SpringGreen;
-                            btnC18.BackColor = Color.White;
-                            btnZombies.BackColor = Color.White;
-                            btnMilRP.BackColor = Color.White;
-                            btnCW1.BackColor = Color.White;
-                            btnCW2.BackColor = Color.White;
+                            panDanktown.BackColor = Color.SpringGreen;
+                            panC18.BackColor = Color.RoyalBlue;
+                            panZombies.BackColor = Color.RoyalBlue;
+                            panMilRP.BackColor = Color.RoyalBlue;
+                            panCW1.BackColor = Color.RoyalBlue;
+                            panCW2.BackColor = Color.RoyalBlue;
                             lblServer.Text = "Danktown";
                         }
                         else
@@ -344,12 +344,12 @@ namespace SUPLauncher
                     case "208.103.169.13:27015":
                         if (normalState)
                         {
-                            btnDanktown.BackColor = Color.White;
-                            btnC18.BackColor = Color.SpringGreen;
-                            btnZombies.BackColor = Color.White;
-                            btnMilRP.BackColor = Color.White;
-                            btnCW1.BackColor = Color.White;
-                            btnCW2.BackColor = Color.White;
+                            panDanktown.BackColor = Color.RoyalBlue;
+                            panC18.BackColor = Color.SpringGreen;
+                            panZombies.BackColor = Color.RoyalBlue;
+                            panMilRP.BackColor = Color.RoyalBlue;
+                            panCW1.BackColor = Color.RoyalBlue;
+                            panCW2.BackColor = Color.RoyalBlue;
                             lblServer.Text = "C18";
                         }
                         else
@@ -360,12 +360,12 @@ namespace SUPLauncher
                     case "208.103.169.14:27015":
                         if (normalState)
                         {
-                            btnDanktown.BackColor = Color.White;
-                            btnC18.BackColor = Color.White;
-                            btnZombies.BackColor = Color.SpringGreen;
-                            btnMilRP.BackColor = Color.White;
-                            btnCW1.BackColor = Color.White;
-                            btnCW2.BackColor = Color.White;
+                            panDanktown.BackColor = Color.RoyalBlue;
+                            panC18.BackColor = Color.RoyalBlue;
+                            panZombies.BackColor = Color.SpringGreen;
+                            panMilRP.BackColor = Color.RoyalBlue;
+                            panCW1.BackColor = Color.RoyalBlue;
+                            panCW2.BackColor = Color.RoyalBlue;
                             lblServer.Text = "ZRP";
                         }
                         else
@@ -376,12 +376,12 @@ namespace SUPLauncher
                     case "208.103.169.18:27015":
                         if (normalState)
                         {
-                            btnDanktown.BackColor = Color.White;
-                            btnC18.BackColor = Color.White;
-                            btnZombies.BackColor = Color.White;
-                            btnMilRP.BackColor = Color.SpringGreen;
-                            btnCW1.BackColor = Color.White;
-                            btnCW2.BackColor = Color.White;
+                            panDanktown.BackColor = Color.RoyalBlue;
+                            panC18.BackColor = Color.RoyalBlue;
+                            panZombies.BackColor = Color.RoyalBlue;
+                            panMilRP.BackColor = Color.SpringGreen;
+                            panCW1.BackColor = Color.RoyalBlue;
+                            panCW2.BackColor = Color.RoyalBlue;
                             lblServer.Text = "MilRP";
                         }
                         else
@@ -392,12 +392,12 @@ namespace SUPLauncher
                     case "208.103.169.16:27015":
                         if (normalState)
                         {
-                            btnDanktown.BackColor = Color.White;
-                            btnC18.BackColor = Color.White;
-                            btnZombies.BackColor = Color.White;
-                            btnMilRP.BackColor = Color.White;
-                            btnCW1.BackColor = Color.SpringGreen;
-                            btnCW2.BackColor = Color.White;
+                            panDanktown.BackColor = Color.RoyalBlue;
+                            panC18.BackColor = Color.RoyalBlue;
+                            panZombies.BackColor = Color.RoyalBlue;
+                            panMilRP.BackColor = Color.RoyalBlue;
+                            panCW1.BackColor = Color.SpringGreen;
+                            panCW2.BackColor = Color.RoyalBlue;
                             lblServer.Text = "CWRP #1";
                         }
                         else
@@ -408,12 +408,12 @@ namespace SUPLauncher
                     case "208.103.169.17:27015":
                         if (normalState)
                         {
-                            btnDanktown.BackColor = Color.White;
-                            btnC18.BackColor = Color.White;
-                            btnZombies.BackColor = Color.White;
-                            btnMilRP.BackColor = Color.White;
-                            btnCW1.BackColor = Color.White;
-                            btnCW2.BackColor = Color.SpringGreen;
+                            panDanktown.BackColor = Color.RoyalBlue;
+                            panC18.BackColor = Color.RoyalBlue;
+                            panZombies.BackColor = Color.RoyalBlue;
+                            panMilRP.BackColor = Color.RoyalBlue;
+                            panCW1.BackColor = Color.RoyalBlue;
+                            panCW2.BackColor = Color.SpringGreen;
                             lblServer.Text = "CWRP #2";
                         }
                         else
@@ -427,12 +427,12 @@ namespace SUPLauncher
             {
                 if (normalState)
                 {
-                    btnDanktown.BackColor = Color.White;
-                    btnC18.BackColor = Color.White;
-                    btnZombies.BackColor = Color.White;
-                    btnMilRP.BackColor = Color.White;
-                    btnCW1.BackColor = Color.White;
-                    btnCW2.BackColor = Color.White;
+                    panDanktown.BackColor = Color.RoyalBlue;
+                    panC18.BackColor = Color.RoyalBlue;
+                    panZombies.BackColor = Color.RoyalBlue;
+                    panMilRP.BackColor = Color.RoyalBlue;
+                    panCW1.BackColor = Color.RoyalBlue;
+                    panCW2.BackColor = Color.RoyalBlue;
                     lblServer.Text = "";
                 }
                 else
@@ -614,7 +614,12 @@ namespace SUPLauncher
             } while (true);
         }
 
-        private void ServerToolStripMenuItem_Click(object sender, EventArgs e)
+        private void BtnDupes_Click(object sender, EventArgs e)
+        {
+            new DupeManager().ShowDialog();
+        }
+
+        private void LblSERVERLookup_Click(object sender, EventArgs e)
         {
             bool IDAquired = false;
             bool dirty = false;
@@ -660,21 +665,15 @@ namespace SUPLauncher
                 MessageBox.Show("Invalid STEAMID.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 dirty = true;
             }
-           
         }
 
-        private void ForumsToolStripMenuItem_Click(object sender, EventArgs e)
+        private void LblFORUMLookup_Click(object sender, EventArgs e)
         {
             string steamid = Interaction.InputBox("Enter steamid.", "Enter info.", " ");
             if ((steamid.Contains("STEAM_0:0:") || steamid.Contains("STEAM_0:1:")) || (steamid.StartsWith("7") && steamid.Length == 76561197960265728.ToString().Length))
             {
                 Process.Start("https://superiorservers.co/profile/" + steamid);
             }
-        }
-
-        private void BtnDupes_Click(object sender, EventArgs e)
-        {
-            new DupeManager().ShowDialog();
         }
         //static void BringWindowToFront()
         //{

@@ -63,7 +63,8 @@ namespace SUPLauncher
         {
             if (MessageBox.Show("Are you sure you want to delete " + Dupes.SelectedItem.ToString() + "?", "Are you sure?", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation) == DialogResult.Yes)
             {
-                File.Delete(frmLauncher.dupePath + @"\" + Dupes.SelectedItem);
+
+                File.Delete(frmLauncher.dupePath + treeView1.SelectedNode.FullPath.Substring(8, treeView1.SelectedNode.FullPath.Length - 8) + @"\" + Dupes.SelectedItem);
                 Dupes.Items.RemoveAt(Dupes.SelectedIndex);
             }
         }
