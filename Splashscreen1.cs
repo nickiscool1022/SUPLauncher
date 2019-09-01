@@ -16,10 +16,5 @@ namespace SUPLauncher
         {
             InitializeComponent();
         }
-
-        private void Splashscreen1_Load(object sender, EventArgs e)
-        {
-
-        }
     }
 }

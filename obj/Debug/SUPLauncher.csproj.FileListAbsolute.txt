@@ -1,46 +1,25 @@
-D:\Programming\SUPLauncher\SUPLauncher\obj\Debug\SUPLauncher.Properties.Resources.resources
-D:\Programming\SUPLauncher\SUPLauncher\obj\Debug\SUPLauncher.csproj.GenerateResource.cache
-D:\Programming\SUPLauncher\SUPLauncher\obj\Debug\SUPLauncher.csproj.CoreCompileInputs.cache
-D:\Programming\SUPLauncher\SUPLauncher\bin\Debug\SUPLauncher.exe.config
-D:\Programming\SUPLauncher\SUPLauncher\bin\Debug\SUPLauncher.exe
-D:\Programming\SUPLauncher\SUPLauncher\bin\Debug\SUPLauncher.pdb
-D:\Programming\SUPLauncher\SUPLauncher\obj\Debug\SUPLauncher.exe
-D:\Programming\SUPLauncher\SUPLauncher\obj\Debug\SUPLauncher.pdb
-D:\Programming\SUPLauncher\SUPLauncher\obj\Debug\SUPLauncher.csprojAssemblyReference.cache
-D:\Programming\SUPLauncher\SUPLauncher\obj\Debug\SUPLauncher.frmLauncher.resources
-D:\Programming\SUPLauncher - Copy\SUPLauncher\bin\Debug\SUPLauncher.exe.config
-D:\Programming\SUPLauncher - Copy\SUPLauncher\bin\Debug\SUPLauncher.exe
-D:\Programming\SUPLauncher - Copy\SUPLauncher\bin\Debug\SUPLauncher.pdb
-D:\Programming\SUPLauncher - Copy\SUPLauncher\obj\Debug\SUPLauncher.frmLauncher.resources
-D:\Programming\SUPLauncher - Copy\SUPLauncher\obj\Debug\SUPLauncher.Properties.Resources.resources
-D:\Programming\SUPLauncher - Copy\SUPLauncher\obj\Debug\SUPLauncher.csproj.GenerateResource.cache
-D:\Programming\SUPLauncher - Copy\SUPLauncher\obj\Debug\SUPLauncher.csproj.CoreCompileInputs.cache
-D:\Programming\SUPLauncher - Copy\SUPLauncher\obj\Debug\SUPLauncher.exe
-D:\Programming\SUPLauncher - Copy\SUPLauncher\obj\Debug\SUPLauncher.pdb
-D:\Programming\SUPLauncher - Copy\SUPLauncher\bin\Debug\SUPLauncher.exe.manifest
-D:\Programming\SUPLauncher - Copy\SUPLauncher\bin\Debug\SUPLauncher.application
-D:\Programming\SUPLauncher - Copy\SUPLauncher\obj\Debug\SUPLauncher.exe.manifest
-D:\Programming\SUPLauncher - Copy\SUPLauncher\obj\Debug\SUPLauncher.application
-D:\Programming\SUPLauncher - Copy\SUPLauncher\obj\Debug\SUPLauncher.TrustInfo.xml
-D:\Programming\SUPLauncher - Copy\SUPLauncher\bin\Debug\Microsoft.Web.XmlTransform.dll
-D:\Programming\SUPLauncher - Copy\SUPLauncher\bin\Debug\Newtonsoft.Json.dll
-D:\Programming\SUPLauncher - Copy\SUPLauncher\bin\Debug\NuGet.Core.dll
-D:\Programming\SUPLauncher - Copy\SUPLauncher\bin\Debug\Microsoft.Web.XmlTransform.pdb
-D:\Programming\SUPLauncher - Copy\SUPLauncher\bin\Debug\Newtonsoft.Json.xml
-D:\Programming\SUPLauncher - Copy\SUPLauncher\obj\Debug\SUPLauncher.csproj.CopyComplete
-D:\Programming\SUPLauncher - Copy\SUPLauncher\obj\Debug\SUPLauncher.Splashscreen1.resources
-D:\Programming\SUPLauncher - Copy\SUPLauncher\obj\Debug\SUPLauncher.csprojAssemblyReference.cache
-D:\Programming\SUPLauncher - Copy\SUPLauncher\obj\Debug\SUPLauncher.DupeManager.resources
-D:\Programming\SUPLauncher\SUPLauncher\bin\Debug\SUPLauncher.exe.manifest
-D:\Programming\SUPLauncher\SUPLauncher\bin\Debug\SUPLauncher.application
-D:\Programming\SUPLauncher\SUPLauncher\bin\Debug\Microsoft.Web.XmlTransform.dll
-D:\Programming\SUPLauncher\SUPLauncher\bin\Debug\Newtonsoft.Json.dll
-D:\Programming\SUPLauncher\SUPLauncher\bin\Debug\NuGet.Core.dll
-D:\Programming\SUPLauncher\SUPLauncher\bin\Debug\Microsoft.Web.XmlTransform.pdb
-D:\Programming\SUPLauncher\SUPLauncher\bin\Debug\Newtonsoft.Json.xml
-D:\Programming\SUPLauncher\SUPLauncher\obj\Debug\SUPLauncher.DupeManager.resources
-D:\Programming\SUPLauncher\SUPLauncher\obj\Debug\SUPLauncher.Splashscreen1.resources
-D:\Programming\SUPLauncher\SUPLauncher\obj\Debug\SUPLauncher.TrustInfo.xml
-D:\Programming\SUPLauncher\SUPLauncher\obj\Debug\SUPLauncher.exe.manifest
-D:\Programming\SUPLauncher\SUPLauncher\obj\Debug\SUPLauncher.application
-D:\Programming\SUPLauncher\SUPLauncher\obj\Debug\SUPLauncher.csproj.CopyComplete
+D:\Programming\repos\SUPLauncher-experimental\SUPLauncher\obj\Debug\SUPLauncher.Bans.resources
+D:\Programming\repos\SUPLauncher-experimental\SUPLauncher\obj\Debug\SUPLauncher.DupeManager.resources
+D:\Programming\repos\SUPLauncher-experimental\SUPLauncher\obj\Debug\SUPLauncher.frmLauncher.resources
+D:\Programming\repos\SUPLauncher-experimental\SUPLauncher\obj\Debug\NewProgressBar.resources
+D:\Programming\repos\SUPLauncher-experimental\SUPLauncher\obj\Debug\SUPLauncher.Overlay.resources
+D:\Programming\repos\SUPLauncher-experimental\SUPLauncher\obj\Debug\SUPLauncher.PO.resources
+D:\Programming\repos\SUPLauncher-experimental\SUPLauncher\obj\Debug\SUPLauncher.Properties.Resources.resources
+D:\Programming\repos\SUPLauncher-experimental\SUPLauncher\obj\Debug\SUPLauncher.Splashscreen1.resources
+D:\Programming\repos\SUPLauncher-experimental\SUPLauncher\obj\Debug\SUPLauncher.csproj.GenerateResource.cache
+D:\Programming\repos\SUPLauncher-experimental\SUPLauncher\obj\Debug\SUPLauncher.csproj.CoreCompileInputs.cache
+D:\Programming\repos\SUPLauncher-experimental\SUPLauncher\obj\Debug\SUPLauncher.exe
+D:\Programming\repos\SUPLauncher-experimental\SUPLauncher\obj\Debug\SUPLauncher.pdb
+D:\Programming\repos\SUPLauncher-experimental\SUPLauncher\bin\Debug\SUPLauncher.exe.config
+D:\Programming\repos\SUPLauncher-experimental\SUPLauncher\bin\Debug\SUPLauncher.exe.manifest
+D:\Programming\repos\SUPLauncher-experimental\SUPLauncher\bin\Debug\SUPLauncher.application
+D:\Programming\repos\SUPLauncher-experimental\SUPLauncher\bin\Debug\SUPLauncher.exe
+D:\Programming\repos\SUPLauncher-experimental\SUPLauncher\bin\Debug\SUPLauncher.pdb
+D:\Programming\repos\SUPLauncher-experimental\SUPLauncher\bin\Debug\DiscordRPC.xml
+D:\Programming\repos\SUPLauncher-experimental\SUPLauncher\bin\Debug\Newtonsoft.Json.xml
+D:\Programming\repos\SUPLauncher-experimental\SUPLauncher\obj\Debug\SUPLauncher.csproj.Fody.CopyLocal.cache
+D:\Programming\repos\SUPLauncher-experimental\SUPLauncher\obj\Debug\SUPLauncher.TrustInfo.xml
+D:\Programming\repos\SUPLauncher-experimental\SUPLauncher\obj\Debug\SUPLauncher.exe.manifest
+D:\Programming\repos\SUPLauncher-experimental\SUPLauncher\obj\Debug\SUPLauncher.application
+D:\Programming\repos\SUPLauncher-experimental\SUPLauncher\obj\Debug\SUPLauncher.csproj.CopyComplete
+D:\Programming\repos\SUPLauncher-experimental\SUPLauncher\obj\Debug\SUPLauncher.csprojAssemblyReference.cache

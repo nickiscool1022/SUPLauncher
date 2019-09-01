@@ -9,16 +9,115 @@ using System.Threading;
 using System.Net;
 using Microsoft.VisualBasic;
 using DiscordRPC;
+using System.Drawing.Drawing2D;
+using Newtonsoft.Json.Linq;
+using System.Runtime.InteropServices;
 
 namespace SUPLauncher
 {
+
+
+
     public partial class frmLauncher : Form
     {
-        Thread t;
+        int refresh = 0;
         bool appStarted = false;
         public static string dupePath = "";
         string playerServer;
-        SteamBridge steam = new SteamBridge();
+        private readonly SteamBridge steam = new SteamBridge();
+        public static string forumSteamIDLookup = "";
+        bool isTopPanelDragged = false;
+        bool isWindowMaximized = false;
+        Point offset;
+        Size _normalWindowSize;
+        Point _normalWindowLocation = Point.Empty;
+        private Image refresh_img;
+        Image original_refreshimg;
+        public static bool overlayVisable = false;
+        public static Overlay overlay = new Overlay();
+        private void rotateInThread(Bitmap bm, float angle)
+        {
+                if (InvokeRequired)
+                {
+                    this.Invoke(new Action<Bitmap, float>(rotateInThread), new object[] { bm, angle });
+                   
+                }
+           refresh_img = RotateBitmap(bm, angle);
+        }
+
+        private void GetPointBounds(PointF[] points,
+    out float xmin, out float xmax,
+    out float ymin, out float ymax)
+        {
+            xmin = points[0].X;
+            xmax = xmin;
+            ymin = points[0].Y;
+            ymax = ymin;
+            foreach (PointF point in points)
+            {
+                if (xmin > point.X) xmin = point.X;
+                if (xmax < point.X) xmax = point.X;
+                if (ymin > point.Y) ymin = point.Y;
+                if (ymax < point.Y) ymax = point.Y;
+            }
+        }
+
+        private Bitmap RotateBitmap(Bitmap bm, float angle)
+        {
+            // Make a Matrix to represent rotation
+            // by this angle.
+            Matrix rotate_at_origin = new Matrix();
+            rotate_at_origin.Rotate(angle);
+
+            // Rotate the image's corners to see how big
+            // it will be after rotation.
+            PointF[] points =
+            {
+        new PointF(0, 0),
+        new PointF(bm.Width, 0),
+        new PointF(bm.Width, bm.Height),
+        new PointF(0, bm.Height),
+    };
+            rotate_at_origin.TransformPoints(points);
+            float xmin, xmax, ymin, ymax;
+            GetPointBounds(points, out xmin, out xmax,
+                out ymin, out ymax);
+
+            // Make a bitmap to hold the rotated result.
+            int wid = (int)Math.Round(xmax - xmin);
+            int hgt = (int)Math.Round(ymax - ymin);
+            Bitmap result = new Bitmap(wid, hgt);
+
+            // Create the real rotation transformation.
+            Matrix rotate_at_center = new Matrix();
+            rotate_at_center.RotateAt(angle,
+                new PointF(wid / 2f, hgt / 2f));
+
+            // Draw the image onto the new bitmap rotated.
+            using (Graphics gr = Graphics.FromImage(result))
+            {
+                // Use smooth image interpolation.
+                gr.InterpolationMode = InterpolationMode.High;
+
+                // Clear with the color in the image's upper left corner.
+                gr.Clear(bm.GetPixel(0, 0));
+
+                //// For debugging. (It's easier to see the background.)
+                //gr.Clear(Color.LightBlue);
+
+                // Set up the transformation to rotate.
+                gr.Transform = rotate_at_center;
+
+                // Draw the image centered on the bitmap.
+                int x = (wid - bm.Width) / 2;
+                int y = (hgt - bm.Height) / 2;
+                gr.DrawImage(bm, x, y);
+            }
+
+            // Return the result bitmap.
+            return result;
+        }
+        private GlobalKeyboardHook _globalKeyboardHook;
         public frmLauncher()
         {
             Thread trd = new Thread(new ThreadStart(Run));
@@ -26,14 +125,137 @@ namespace SUPLauncher
             InitializeComponent();
             Thread.Sleep(5000);
             trd.Abort();
+            refresh_img = imgrefresh.Image;
+            original_refreshimg = imgrefresh.Image;
+            _globalKeyboardHook = new GlobalKeyboardHook();
+            _globalKeyboardHook.KeyboardPressed += Keyboard;
+
+            
         }
+      
+        bool altdown = false;
+        bool sdown = false;
+        [DllImport("user32.dll")]
+        static extern bool SetForegroundWindow(IntPtr hWnd);
+        private void Keyboard(object sender, GlobalKeyboardHookEventArgs e)
+        {
+            //MessageBox.Show(e.KeyboardState.ToString(), e.KeyboardData.VirtualCode.ToString());
+            if ((e.KeyboardState == GlobalKeyboardHook.KeyboardState.SysKeyDown || e.KeyboardState == GlobalKeyboardHook.KeyboardState.KeyDown) && e.KeyboardData.VirtualCode == 164)
+            {
+                altdown = true;
+            } else if ((e.KeyboardState == GlobalKeyboardHook.KeyboardState.SysKeyUp || e.KeyboardState == GlobalKeyboardHook.KeyboardState.KeyUp) && e.KeyboardData.VirtualCode == 164)
+            {
+               altdown = false;
+            }
+
+            if ((e.KeyboardState == GlobalKeyboardHook.KeyboardState.SysKeyDown|| e.KeyboardState == GlobalKeyboardHook.KeyboardState.KeyDown) && e.KeyboardData.VirtualCode == 83)
+            {
+                sdown = true;
+            }
+            else if ((e.KeyboardState == GlobalKeyboardHook.KeyboardState.SysKeyUp || e.KeyboardState == GlobalKeyboardHook.KeyboardState.KeyUp) && e.KeyboardData.VirtualCode == 83)
+            {
+                sdown = false;
+            }
+            if (altdown & sdown)
+            {
+                try
+                {
+                    if (overlayVisable)
+                    {
+                        SetForegroundWindow(Process.GetProcessesByName("hl2")[0].MainWindowHandle);
+                        overlay.Visible = false;
+                    }
+                    else
+                    {
+                        SetForegroundWindow(Process.GetProcessesByName("hl2")[0].MainWindowHandle);
+                        overlay.Visible = true;
+                    }
+                }
+                catch
+                {
+                    overlay.Visible = false;
+                }
+            }
+
+
+        }
+
         public void Run()
         {
             Application.Run(new Splashscreen1());
         }
-        DiscordRpcClient discord = new DiscordRpcClient("594668399653814335");
-        private void frmLauncher_Load(object sender, EventArgs e)
+
+        private void TopBar_MouseUp(object sender, MouseEventArgs e)
         {
+            isTopPanelDragged = false;
+            if (this.Location.Y <= 5)
+            {
+                if (!isWindowMaximized)
+                {
+                    _normalWindowSize = this.Size;
+                    _normalWindowLocation = this.Location;
+
+                    Rectangle rect = Screen.PrimaryScreen.WorkingArea;
+                    this.Location = new Point(0, 0);
+                    this.Size = new System.Drawing.Size(rect.Width, rect.Height);
+
+                    isWindowMaximized = true;
+                }
+            }
+        }
+
+        private void TopBar_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (isTopPanelDragged)
+            {
+                Point newPoint = topBar.PointToScreen(new Point(e.X, e.Y));
+                newPoint.Offset(offset);
+                this.Location = newPoint;
+
+                if (this.Location.X > 2 || this.Location.Y > 2)
+                {
+                    if (this.WindowState == FormWindowState.Maximized)
+                    {
+                        this.Location = _normalWindowLocation;
+                        this.Size = _normalWindowSize;
+
+                        isWindowMaximized = false;
+                    }
+                }
+            }
+        }
+
+        private void TopBar_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                isTopPanelDragged = true;
+                Point pointStartPosition = this.PointToScreen(new Point(e.X, e.Y));
+                offset = new Point
+                {
+                    X = this.Location.X - pointStartPosition.X,
+                    Y = this.Location.Y - pointStartPosition.Y
+                };
+            }
+            else
+            {
+                isTopPanelDragged = false;
+            }
+            if (e.Clicks == 2)
+            {
+                isTopPanelDragged = false;
+
+            }
+        }
+
+        private readonly DiscordRpcClient discord = new DiscordRpcClient("594668399653814335");
+   
+        private void FrmLauncher_Load(object sender, EventArgs e)
+        { 
+            imgrefresh.SizeMode = PictureBoxSizeMode.StretchImage;
+            imgrefresh.Refresh();
+
+            //new Bans().ShowDialog();
             if (Process.GetProcessesByName("steam").Length == 0) // Check if steam is running (Thanks Red Means Recording)
             {
                 MessageBox.Show("An error occurred. Please restart the program when steam is running.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -49,26 +271,29 @@ namespace SUPLauncher
             {
                 if (chkDiscord.Checked)
                 {
-                    lblServer_TextChanged(this, new EventArgs());
+                    LblServer_TextChanged(this, new EventArgs());
                 }
                 lblVersion.Text = Application.ProductVersion;
                 var client = new WebClient();
-                client.DownloadFile(new Uri("https://superiorservers.co/api/avatar/" + steam.GetSteamId().ToString()), "avatar.jpg");
-                picImage.Image = Image.FromFile("avatar.jpg");
-                client.Dispose();
-                t = new Thread(GetPlayerCountAllServers); // good idea penguin
-                t.Start();
+                byte[] avatardata = client.DownloadData(new Uri("https://superiorservers.co/api/avatar/" + steam.GetSteamId().ToString()));
+                using (var ms = new MemoryStream(avatardata))
+                {
+                    picImage.Image = Image.FromStream(ms);
+                    client.Dispose();
+                    ms.Close();
+                }
+                GetPlayerCountAllServers(true);
                 Activate();
                 tmrSteamQuery.Start();
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.ToString());
-                frmLauncher_FormClosing(this, new FormClosingEventArgs(CloseReason.ApplicationExitCall, false));
+                FrmLauncher_FormClosing(this, new FormClosingEventArgs(CloseReason.ApplicationExitCall, false));
             }
         }
         // "Process.Start("steam:");" is for focusing steam
-        private void btnDanktown_Click(object sender, EventArgs e)
+        private void BtnDanktown_Click(object sender, EventArgs e)
         {
             AppStartCheck();
             if (chkAFK.Checked && appStarted == false)
@@ -99,8 +324,7 @@ namespace SUPLauncher
         //    }
         //    appStarted = true;
         //}
-
-        private void btnC18_Click(object sender, EventArgs e)
+        private void BtnC18_Click(object sender, EventArgs e)
         {
             AppStartCheck();
             if (chkAFK.Checked && appStarted == false)
@@ -115,8 +339,7 @@ namespace SUPLauncher
             }
             appStarted = true;
         }
-
-        private void btnZombies_Click(object sender, EventArgs e)
+        private void BtnZombies_Click(object sender, EventArgs e)
         {
             AppStartCheck();
             if (chkAFK.Checked && appStarted == false)
@@ -131,8 +354,7 @@ namespace SUPLauncher
             }
             appStarted = true;
         }
-
-        private void btnMilRP_Click(object sender, EventArgs e)
+        private void BtnMilRP_Click(object sender, EventArgs e)
         {
             AppStartCheck();
             if (chkAFK.Checked && appStarted == false)
@@ -147,8 +369,7 @@ namespace SUPLauncher
             }
             appStarted = true;
         }
-
-        private void btnCW1_Click(object sender, EventArgs e)
+        private void BtnCW1_Click(object sender, EventArgs e)
         {
             AppStartCheck();
             if (chkAFK.Checked && appStarted == false)
@@ -163,8 +384,7 @@ namespace SUPLauncher
             }
             appStarted = true;
         }
-
-        private void btnCW2_Click(object sender, EventArgs e)
+        private void BtnCW2_Click(object sender, EventArgs e)
         {
             AppStartCheck();
             if (chkAFK.Checked && appStarted == false)
@@ -179,22 +399,19 @@ namespace SUPLauncher
             }
             appStarted = true;
         }
-        private void panel1_MouseClick(object sender, MouseEventArgs e)
+        private void Panel1_MouseClick(object sender, MouseEventArgs e)
         {
             MessageBox.Show("Keep in mind that this program is still being worked on and is not an official release of the SUP Launcher. In order to use this program, you must just simply click on a button and watch the magic happen. The credit for this idea goes to aStonedPenguin, and all new releases will available on the github (nicksuperiorservers/SUPLauncher). Thanks for using this nice little program I made, and have a fun time playing SuperiorServers." + Environment.NewLine + Environment.NewLine + "-Nick", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
-
-        private void btnForums_Click(object sender, EventArgs e)
+        private void BtnForums_Click(object sender, EventArgs e)
         {
             Process.Start("https://forum.superiorservers.co");
         }
-
-        private void btnTS_Click(object sender, EventArgs e)
+        private void BtnTS_Click(object sender, EventArgs e)
         {
             Process.Start("ts3server://TS.SuperiorServers.co:9987");
         }
-
-        private void frmLauncher_FormClosing(object sender, FormClosingEventArgs e)
+        private void FrmLauncher_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (chkDiscord.Checked && File.Exists("1") == false)
             {
@@ -205,12 +422,19 @@ namespace SUPLauncher
                 File.Delete("1");
             Interaction.Shell("taskkill /pid " + Process.GetCurrentProcess().Id.ToString() + " /f /t"); // Whoops
         }
-
-        private void chkAFK_CheckedChanged(object sender, EventArgs e)
+        private void ChkAFK_CheckedChanged(object sender, EventArgs e)
         {
             foreach (var process in Process.GetProcessesByName("hl2"))
             {
-                process.Kill();
+                try
+                {
+                    process.Kill();
+                } catch (System.ComponentModel.Win32Exception)
+                {
+                    // Does nothing if permission is denied...
+                    // As doing something may bring up usless errors
+                    // Even though gmod is already closed
+                }
             }
             foreach (var process in Process.GetProcessesByName("gmod"))
             {
@@ -218,26 +442,24 @@ namespace SUPLauncher
             }
             appStarted = false;
         }
-
-        private void picImage_Click(object sender, EventArgs e)
+        private void PicImage_Click(object sender, EventArgs e)
         {
-            Process.Start("https://superiorservers.co/profile/" + steam.GetSteamId().ToString());
+            new Bans(steam.GetSteamId().ToString()).Show();
         }
-        private void btnDRPRules_Click(object sender, EventArgs e)
+        private void BtnDRPRules_Click(object sender, EventArgs e)
         {
             Process.Start("https://superiorservers.co/darkrp/rules");
         }
-
-        private void btnMilRPRules_Click(object sender, EventArgs e)
+        private void BtnMilRPRules_Click(object sender, EventArgs e)
         {
             Process.Start("https://superiorservers.co/ssrp/milrp/rules");
         }
 
-        private void btnCWRPRules_Click(object sender, EventArgs e)
+        private void BtnCWRPRules_Click(object sender, EventArgs e)
         {
             Process.Start("https://superiorservers.co/ssrp/cwrp/rules");
         }
-        private void lblVersion_Click(object sender, EventArgs e)
+        private void LblVersion_Click(object sender, EventArgs e)
         {
             MessageBox.Show("Auto-update temporary disabled. Sorry for any inconvenience.", "Disabled", MessageBoxButtons.OK, MessageBoxIcon.Error);
             //var updater = new ClientUpdater();
@@ -247,13 +469,20 @@ namespace SUPLauncher
         {
             ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12; // Secure security protocol for querying the github API
             HttpWebRequest request = WebRequest.CreateHttp("http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=27A2CB958256FB97DCFFEE9B634CD02E&steamids=" + steam.GetSteamId());
-            request.UserAgent = "Nick";
+            request.UserAgent = new Random().NextDouble().ToString();
             WebResponse response = null;
-            response = request.GetResponse(); // Get Response from webrequest
-            StreamReader sr = new StreamReader(response.GetResponseStream()); // Create stream to access web data
-            string currentRecord = sr.ReadToEnd(); // Read data from response stream
-            string raw = currentRecord.Substring(currentRecord.IndexOf("personaname") + "personaname".Length + 3, (currentRecord.IndexOf("lastlogoff") - (currentRecord.IndexOf("personaname") + "personaname".Length + 6)));
-            this.Text = "SUP Launcher (" + raw.ToString() + ")";
+            try
+            {
+                response = request.GetResponse();
+                StreamReader sr = new StreamReader(response.GetResponseStream()); // Create stream to access web data
+                string currentRecord = sr.ReadToEnd(); // Read data from response stream
+                string raw = currentRecord.Substring(currentRecord.IndexOf("personaname") + "personaname".Length + 3, (currentRecord.IndexOf("lastlogoff") - (currentRecord.IndexOf("personaname") + "personaname".Length + 6)));
+                lblUsername.Text = "SUP Launcher (" + raw.ToString() + ")";
+            }
+            catch (Exception)
+            {
+                lblUsername.Text = "SUP Launcher";
+            }
         }
         void GetDiscordCheckStatus()
         {
@@ -442,16 +671,16 @@ namespace SUPLauncher
             }
         }
 
-        private void tmrSteamQuery_Tick(object sender, EventArgs e)
+        private void TmrSteamQuery_Tick(object sender, EventArgs e)
         {
             GetCurrentServer(steam.GetSteamId().ToString(), true);
         }
 
-        private void chkDiscord_CheckedChanged(object sender, EventArgs e)
+        private void ChkDiscord_CheckedChanged(object sender, EventArgs e)
         {
             if (chkDiscord.Checked)
             {
-                lblServer_TextChanged(this, new EventArgs());
+                LblServer_TextChanged(this, new EventArgs());
             }
             else
             {
@@ -459,7 +688,7 @@ namespace SUPLauncher
             }
         }
 
-        private void lblServer_TextChanged(object sender, EventArgs e)
+        private void LblServer_TextChanged(object sender, EventArgs e)
         {
             if (discord.IsInitialized && chkDiscord.Checked)
             {
@@ -599,9 +828,11 @@ namespace SUPLauncher
                 return Convert.ToByte(ms.ReadByte());
             }
         }
-        private void GetPlayerCountAllServers()
+        private void GetPlayerCountAllServers(bool startup)
         {
-            do
+            //do
+            //{
+            if (refresh == 0 || startup)
             {
                 ThreadHelperClass.SetText(this, lblDT, GetPlayerCount("rp.superiorservers.co").ToString() + "/128");
                 //ThreadHelperClass.SetText(this, lblSD, GetPlayerCount("208.103.169.13").ToString() + "/128");
@@ -610,8 +841,11 @@ namespace SUPLauncher
                 ThreadHelperClass.SetText(this, lblMRP, GetPlayerCount("milrp.superiorservers.co").ToString() + "/128");
                 ThreadHelperClass.SetText(this, lblCW1, GetPlayerCount("cwrp.superiorservers.co").ToString() + "/128");
                 ThreadHelperClass.SetText(this, lblCW2, GetPlayerCount("cwrp2.superiorservers.co").ToString() + "/128");
-                Thread.Sleep(120000);
-            } while (true);
+                refresh++;
+                tmrRefresh.Start();
+            }
+            //    Thread.Sleep(120000);
+            //} while (true);
         }
 
         private void BtnDupes_Click(object sender, EventArgs e)
@@ -623,7 +857,7 @@ namespace SUPLauncher
         {
             bool IDAquired = false;
             bool dirty = false;
-            string rawID = Interaction.InputBox("Enter steamid.");
+            string rawID = Interaction.InputBox("Enter steamid.", "Enter info.", " ");
             string refinedID = "";
             if (rawID == "")
                 return;
@@ -663,7 +897,6 @@ namespace SUPLauncher
             else
             {
                 MessageBox.Show("Invalid STEAMID.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                dirty = true;
             }
         }
 
@@ -672,9 +905,105 @@ namespace SUPLauncher
             string steamid = Interaction.InputBox("Enter steamid.", "Enter info.", " ");
             if ((steamid.Contains("STEAM_0:0:") || steamid.Contains("STEAM_0:1:")) || (steamid.StartsWith("7") && steamid.Length == 76561197960265728.ToString().Length))
             {
-                Process.Start("https://superiorservers.co/profile/" + steamid);
+                //Process.Start("https://superiorservers.co/profile/" + steamid);
+                forumSteamIDLookup = steamid;
+                new Bans(steamid).Show();
+                //wbForumbrowser.Url = new Uri("https://superiorservers.co/profile/" + steamid);
+                //wbForumbrowser.Size = new Size(1280, 720);
+                //wbForumbrowser.Visible = true;
             }
         }
+
+        private void LblRefresh_Click(object sender, EventArgs e)
+        {
+            new Thread(() =>
+            {
+                int i = 0;
+            while (i != 10)
+            {
+                i = i + 1;
+                    Thread.Sleep(70);
+                    rotateInThread(new Bitmap(refresh_img), 90);
+                    imgrefresh.Image = refresh_img;
+            }
+                imgrefresh.Image = original_refreshimg;
+                return;
+
+            }).Start();
+                GetPlayerCountAllServers(false);
+        }
+
+        private void TmrRefresh_Tick(object sender, EventArgs e)
+        {
+            if (refresh > 0 && refresh < 60)
+            {
+                refresh++;
+            }
+            else
+            {
+                refresh = 0;
+            }
+        }
+
+        private void RoundButton1_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void TextBox1_KeyDown(object sender, KeyEventArgs e)
+        {
+            
+            
+            if (e.KeyCode == Keys.Enter)
+            {
+                if ((textBox1.Text.Contains("STEAM_0:0:") || textBox1.Text.Contains("STEAM_0:1:")) || (textBox1.Text.StartsWith("7") && textBox1.Text.Length == 76561197960265728.ToString().Length))
+                {
+                    //Process.Start("https://superiorservers.co/profile/" + steamid);
+                    forumSteamIDLookup = textBox1.Text;
+                    new Bans(textBox1.Text).Show();
+                    //wbForumbrowser.Url = new Uri("https://superiorservers.co/profile/" + steamid);
+                    //wbForumbrowser.Size = new Size(1280, 720);
+                    //wbForumbrowser.Visible = true;
+                } else
+                {
+                    MessageBox.Show("Invalid SteamID. Make sure you have the correct SteamID", "Error");
+                }
+
+            }
+
+        }
+
+        private void TextBox1_MouseClick(object sender, MouseEventArgs e)
+        {
+
+            
+            
+        }
+
+
+        private void TextBox1_Leave(object sender, EventArgs e)
+        {
+            textBox1.Text = "STEAM_0:X:XXXXXXXXX";
+            
+        }
+
+        private void TextBox1_Enter(object sender, EventArgs e)
+        {
+            textBox1.Text = "";
+        }
+
+        private void FrmLauncher_Click(object sender, EventArgs e)
+        {
+            pictureBox1.Focus();
+        }
+
+        private void Button1_Click(object sender, EventArgs e)
+        {
+
+            
+
+        }
+
         //static void BringWindowToFront()
         //{
         //    Process[] processList = Process.GetProcessesByName("steam");
