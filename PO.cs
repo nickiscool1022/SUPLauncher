@@ -29,17 +29,31 @@ namespace SUPLauncher
             Offender_label.Text = Offender;
             offenderID = OffenderSteamID64;
             adminID = AdminSteamID64;
-            byte[] offenderimageData = new WebClient().DownloadData("https://superiorservers.co/api/avatar/" + OffenderSteamID64);
-            using (var ms = new MemoryStream(offenderimageData))
+            try
             {
-                OffenderPic.BackgroundImage = Image.FromStream(ms);
-                ms.Close();
+                byte[] offenderimageData = new WebClient().DownloadData("https://superiorservers.co/api/avatar/" + OffenderSteamID64);
+                using (var ms = new MemoryStream(offenderimageData))
+                {
+                    OffenderPic.BackgroundImage = Image.FromStream(ms);
+                    ms.Close();
+                }
             }
-            byte[] adminimageData = new WebClient().DownloadData("https://superiorservers.co/api/avatar/" + AdminSteamID64);
-            using (var ms = new MemoryStream(adminimageData))
+            catch
             {
-                AdminPic.BackgroundImage = Image.FromStream(ms);
-                ms.Close();
+                OffenderPic.BackgroundImage = Properties.Resources.suplogo;
+            }
+            try
+            {
+                byte[] adminimageData = new WebClient().DownloadData("https://superiorservers.co/api/avatar/" + AdminSteamID64);
+                using (var ms = new MemoryStream(adminimageData))
+                {
+                    AdminPic.BackgroundImage = Image.FromStream(ms);
+                    ms.Close();
+                }
+            }
+            catch
+            {
+                AdminPic.BackgroundImage = Properties.Resources.suplogo;
             }
             //OffenderPic.Load("https://superiorservers.co/api/avatar/" + OffenderSteamID64);
             Admin_label.Text = Admin;

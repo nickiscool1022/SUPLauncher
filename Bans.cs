@@ -49,13 +49,27 @@ namespace SUPLauncher
             }
             lblUsername.Text = accountData["Badmin"]["Name"].ToString();
             Avatar.Size = new Size(100, 100);
-            byte[] imageData = new WebClient().DownloadData("https://superiorservers.co/api/avatar/" + accountData["SteamID64"].ToString());
-            using (var ms = new MemoryStream(imageData))
+            try
             {
-                Avatar.BackgroundImage = Image.FromStream(ms);
-                ms.Close();
+                byte[] imageData = new WebClient().DownloadData("https://superiorservers.co/api/avatar/" + accountData["SteamID64"].ToString());
+                using (var ms = new MemoryStream(imageData))
+                {
+                    Avatar.BackgroundImage = Image.FromStream(ms);
+                    ms.Close();
+                }
             }
-            lblFirstJoin.Text = Epoch2string(Convert.ToInt32(accountData["Badmin"]["FirstJoin"]), "M/d/yyyy, h:mm:ss tt");
+            catch
+            {
+                Avatar.BackgroundImage = Properties.Resources.suplogo;
+            }
+            try
+            {
+                lblFirstJoin.Text = Epoch2string(Convert.ToInt32(accountData["Badmin"]["FirstJoin"]), "M/d/yyyy, h:mm:ss tt");
+            }
+            catch
+            {
+                lblFirstJoin.Text = "NEVER";
+            }
             var time = int.Parse(accountData["Badmin"]["LastSeen"].ToString());
             if ((time / 60) <= 2)
                 lblLastSeen.Text = "RIGHT NOW";
