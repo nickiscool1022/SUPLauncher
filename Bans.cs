@@ -275,13 +275,13 @@ namespace SUPLauncher
                 }
                 else
                     format += "00:";
-                if (t.Minutes > 0)
+                if (t.Minutes.ToString().Length > 1)
                 {
                     format += t.Minutes + ":";
                 }
                 else
-                    format += "00";
-                if (t.Seconds > 0)
+                    format += "0" + t.Minutes + ":";
+                if (t.Seconds.ToString().Length > 1)
                     format += t.Seconds;
                 else
                     format += "0" + t.Seconds;
