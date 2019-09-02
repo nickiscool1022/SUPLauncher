@@ -1,14 +1,8 @@
 ﻿using Newtonsoft.Json.Linq;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.Diagnostics;
-using System.Linq;
 using System.Net;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
 
@@ -18,6 +12,7 @@ namespace SUPLauncher
     // FORM SIZE (W/ BANS) :
     public partial class Bans : Form
     {
+        public static Image avatarImage;
         private readonly string steamid = "";
         bool isTopPanelDragged = false;
         bool isWindowMaximized = false;
@@ -34,34 +29,14 @@ namespace SUPLauncher
         {
             InitializeComponent();
             steamid = steamID;
-        }
-        
-        
-        // NORMAL: 499, 321
-        // NOT NORMAL: 499, 251
-
-        private void Bans_Load(object sender, EventArgs e)
-        {
             using (WebClient wc = new WebClient())
             {
                 string s = wc.DownloadString("https://superiorservers.co/api/profile/" + steamid);
                 accountData = JObject.Parse(s);
             }
             lblUsername.Text = accountData["Badmin"]["Name"].ToString();
-            Avatar.Size = new Size(100, 100);
-            try
-            {
-                byte[] imageData = new WebClient().DownloadData("https://superiorservers.co/api/avatar/" + accountData["SteamID64"].ToString());
-                using (var ms = new MemoryStream(imageData))
-                {
-                    Avatar.BackgroundImage = Image.FromStream(ms);
-                    ms.Close();
-                }
-            }
-            catch
-            {
-                Avatar.BackgroundImage = Properties.Resources.suplogo;
-            }
+            //Avatar.Size = new Size(100, 100);
+            GetAvatar();
             try
             {
                 lblFirstJoin.Text = Epoch2string(Convert.ToInt32(accountData["Badmin"]["FirstJoin"]), "M/d/yyyy, h:mm:ss tt");
@@ -92,18 +67,19 @@ namespace SUPLauncher
 
                 foreach (JArray staff in staffData)
                 {
-                 if (accountData["SteamID64"].ToString() == staff[1].ToString())
+                    if (accountData["SteamID64"].ToString() == staff[1].ToString())
                     {
                         if (Int32.Parse(staff[3].ToString()) >= 0)
                         {
                             drpExpire.Text = "Expires in: " + ConvertTime(Int32.Parse(staff[3].ToString()), false, "W,D,H,M,");
-                        } else
+                        }
+                        else
                         {
                             drpExpire.Text = "Never Expires";
                         }
                         drpExpire.Visible = true;
-                        
-                    }   
+
+                    }
                 }
             }
             if (milrpExpire.Text.ToLower() != "user" || milrpExpire.Text.ToLower() != "vip")
@@ -170,7 +146,7 @@ namespace SUPLauncher
                 lblForumHeader.Visible = false;
             }
 
-            
+
             lblUsername.Text = lblUsername.Text.ToUpper();
             lblFirstJoin.Text = lblFirstJoin.Text.ToUpper();
             lblLastSeen.Text = lblLastSeen.Text.ToUpper();
@@ -197,7 +173,7 @@ namespace SUPLauncher
                 panel13.Location = new Point(panel13.Location.X + (Move / 2), panel13.Location.Y);
                 panel10.Location = new Point(panel10.Location.X + (Move / 2), panel10.Location.Y);
                 label19.Location = new Point(label19.Location.X + (Move / 2), label19.Location.Y);
-                label15.Location = new Point(label15.Location.X + (Move / 2), label15.Location.Y); 
+                label15.Location = new Point(label15.Location.X + (Move / 2), label15.Location.Y);
                 label17.Location = new Point(label17.Location.X + (Move / 2), label17.Location.Y);
                 Avatar.Location = new Point(Avatar.Location.X + Move, Avatar.Location.Y);
                 POsPanel.Size = new System.Drawing.Size(POsPanel.Size.Width + Move, POsPanel.Size.Height);
@@ -207,6 +183,8 @@ namespace SUPLauncher
                 milrpExpire.Location = new Point(milrpExpire.Location.X + (Move / 2), milrpExpire.Location.Y);
                 cwrpExpire.Location = new Point(cwrpExpire.Location.X + (Move / 2), cwrpExpire.Location.Y);
             }
+            panel15.Width = POsPanel.Width;
+            //Sep1.Location = new Point()
             //MaximumSize = new Size(this.Size.Width + Move, this.Size.Height);
             //MaximumSize = new System.Drawing.Size(this.Size.Width + Move, this.Size.Height);
             //Size = new System.Drawing.Size(this.Size.Width + Move, this.Size.Height);
@@ -223,6 +201,30 @@ namespace SUPLauncher
             }
             MaximumSize = new Size(this.Size.Width + Move, this.Size.Height);
             this.TopMost = true;
+        }
+        // NORMAL: 499, 321
+        // NOT NORMAL: 499, 251
+
+        private void Bans_Load(object sender, EventArgs e)
+        {
+
+        }
+        void GetAvatar()
+        {
+            try
+            {
+                byte[] imagedata = new WebClient().DownloadData("https://superiorservers.co/api/avatar/" + accountData["SteamID64"].ToString());
+                Avatar.BackgroundImage = Image.FromStream(new MemoryStream(imagedata));
+                avatarImage = Avatar.BackgroundImage;
+                
+                //return;
+            }
+            catch
+            {
+                Avatar.BackgroundImage = Properties.Resources.suplogo;
+                avatarImage = Avatar.BackgroundImage;
+                //return;
+            }
         }
         private string Epoch2string(int epoch, string format) // https://www.epochconverter.com/
         {
@@ -388,6 +390,11 @@ namespace SUPLauncher
             poitem.Size = new Size(POsPanel.Size.Width, poitem.Height);
             this.MaximumSize = new Size(this.Size.Width, this.Size.Height + 47);
             this.Size = new Size(this.Size.Width, this.Size.Height + 47);
+        }
+
+        private void Panel15_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }
