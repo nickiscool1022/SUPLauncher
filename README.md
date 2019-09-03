@@ -1,1 +1,1 @@
-SUPLauncher-experimental
+SUPLauncher
