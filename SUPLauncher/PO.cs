@@ -122,5 +122,35 @@ namespace SUPLauncher
             BackColor = Ban_panel.BackColor;
 
         }
+
+        private void Offender_label_MouseHover_1(object sender, EventArgs e)
+        {
+            Offender_label.ForeColor = Color.White;
+        }
+
+        private void Offender_label_MouseLeave(object sender, EventArgs e)
+        {
+            Offender_label.ForeColor = Color.Silver;
+        }
+
+        private void Admin_label_MouseHover_1(object sender, EventArgs e)
+        {
+            Admin_label.ForeColor = Color.White;
+        }
+
+        private void Admin_label_MouseLeave(object sender, EventArgs e)
+        {
+            Admin_label.ForeColor = Color.Silver;
+        }
+
+        private void Offender_label_Click(object sender, EventArgs e)
+        {
+            new Bans(offenderID).Show();
+        }
+
+        private void Admin_label_Click(object sender, EventArgs e)
+        {
+            new Bans(adminID).Show();
+        }
     }
 }
