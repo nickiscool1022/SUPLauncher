@@ -174,6 +174,8 @@ namespace SUPLauncher
                         {
                             SetForegroundWindow(Process.GetProcessesByName("hl2")[0].MainWindowHandle);
                             overlay.Visible = true;
+                            
+                            SetForegroundWindow(Process.GetCurrentProcess().MainWindowHandle);
                         }
                     }
                     catch

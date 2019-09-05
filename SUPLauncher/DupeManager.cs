@@ -408,6 +408,7 @@ namespace SUPLauncher
                 {
                     if (Path.GetFileName(dupe).EndsWith(".txt"))
                     {
+                        Drop.Visible = false;
                         File.Copy(dupe, frmLauncher.dupePath + treeView1.SelectedNode.FullPath.Substring(8, treeView1.SelectedNode.FullPath.Length - 8) + @"\" + treeView1.SelectedNode.Name + "/" + Path.GetFileName(dupe));
                     }
                 }
