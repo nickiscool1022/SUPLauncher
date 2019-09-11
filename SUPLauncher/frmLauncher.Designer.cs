@@ -43,7 +43,6 @@
             this.lblCW2 = new System.Windows.Forms.Label();
             this.chkAFK = new System.Windows.Forms.CheckBox();
             this.lblVersion = new System.Windows.Forms.Label();
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.tmrSteamQuery = new System.Windows.Forms.Timer(this.components);
             this.chkDiscord = new System.Windows.Forms.CheckBox();
@@ -69,22 +68,22 @@
             this.panC18 = new System.Windows.Forms.Panel();
             this.panSD = new System.Windows.Forms.Panel();
             this.panDanktown = new System.Windows.Forms.Panel();
+            this.picImage = new OvalPictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.topBar = new System.Windows.Forms.Panel();
             this.button1 = new System.Windows.Forms.Button();
             this.lblUsername = new System.Windows.Forms.Label();
+            this.ovalPictureBox1 = new OvalPictureBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.chkOverlay = new System.Windows.Forms.CheckBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.ovalPictureBox1 = new OvalPictureBox();
-            this.picImage = new OvalPictureBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.imgrefresh)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picImage)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.topBar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ovalPictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picImage)).BeginInit();
             this.SuspendLayout();
             // 
             // btnForums
@@ -248,11 +247,6 @@
             this.lblVersion.TabIndex = 27;
             this.lblVersion.Text = "1.1.1.1";
             this.lblVersion.Click += new System.EventHandler(this.LblVersion_Click);
-            // 
-            // contextMenuStrip1
-            // 
-            this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
             // 
             // toolStripMenuItem1
             // 
@@ -574,6 +568,21 @@
             this.panDanktown.Size = new System.Drawing.Size(10, 33);
             this.panDanktown.TabIndex = 41;
             // 
+            // picImage
+            // 
+            this.picImage.BackColor = System.Drawing.Color.Transparent;
+            this.picImage.BackgroundImage = global::SUPLauncher.Properties.Resources.suplogo;
+            this.picImage.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.picImage.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.picImage.ErrorImage = global::SUPLauncher.Properties.Resources.suplogo;
+            this.picImage.Location = new System.Drawing.Point(12, 352);
+            this.picImage.Name = "picImage";
+            this.picImage.Size = new System.Drawing.Size(100, 100);
+            this.picImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.picImage.TabIndex = 25;
+            this.picImage.TabStop = false;
+            this.picImage.Click += new System.EventHandler(this.PicImage_Click);
+            // 
             // pictureBox1
             // 
             this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
@@ -633,6 +642,21 @@
             this.lblUsername.TabIndex = 46;
             this.lblUsername.Text = "SUP Launcher (Name)";
             // 
+            // ovalPictureBox1
+            // 
+            this.ovalPictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.ovalPictureBox1.BackColor = System.Drawing.Color.Transparent;
+            this.ovalPictureBox1.BackgroundImage = global::SUPLauncher.Properties.Resources.suplogo;
+            this.ovalPictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.ovalPictureBox1.Cursor = System.Windows.Forms.Cursors.Arrow;
+            this.ovalPictureBox1.ErrorImage = global::SUPLauncher.Properties.Resources.suplogo;
+            this.ovalPictureBox1.Location = new System.Drawing.Point(3, 1);
+            this.ovalPictureBox1.Name = "ovalPictureBox1";
+            this.ovalPictureBox1.Size = new System.Drawing.Size(28, 27);
+            this.ovalPictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.ovalPictureBox1.TabIndex = 49;
+            this.ovalPictureBox1.TabStop = false;
+            // 
             // textBox1
             // 
             this.textBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(31)))), ((int)(((byte)(40)))));
@@ -684,36 +708,6 @@
             this.label3.TabIndex = 48;
             this.label3.Text = "Player Lookup";
             // 
-            // ovalPictureBox1
-            // 
-            this.ovalPictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.ovalPictureBox1.BackColor = System.Drawing.Color.Transparent;
-            this.ovalPictureBox1.BackgroundImage = global::SUPLauncher.Properties.Resources.suplogo;
-            this.ovalPictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ovalPictureBox1.Cursor = System.Windows.Forms.Cursors.Arrow;
-            this.ovalPictureBox1.ErrorImage = global::SUPLauncher.Properties.Resources.suplogo;
-            this.ovalPictureBox1.Location = new System.Drawing.Point(3, 1);
-            this.ovalPictureBox1.Name = "ovalPictureBox1";
-            this.ovalPictureBox1.Size = new System.Drawing.Size(28, 27);
-            this.ovalPictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.ovalPictureBox1.TabIndex = 49;
-            this.ovalPictureBox1.TabStop = false;
-            // 
-            // picImage
-            // 
-            this.picImage.BackColor = System.Drawing.Color.Transparent;
-            this.picImage.BackgroundImage = global::SUPLauncher.Properties.Resources.suplogo;
-            this.picImage.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.picImage.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.picImage.ErrorImage = global::SUPLauncher.Properties.Resources.suplogo;
-            this.picImage.Location = new System.Drawing.Point(12, 352);
-            this.picImage.Name = "picImage";
-            this.picImage.Size = new System.Drawing.Size(100, 100);
-            this.picImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.picImage.TabIndex = 25;
-            this.picImage.TabStop = false;
-            this.picImage.Click += new System.EventHandler(this.PicImage_Click);
-            // 
             // frmLauncher
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -747,16 +741,17 @@
             this.Name = "frmLauncher";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "SUP Launcher";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmLauncher_FormClosing);
             this.Load += new System.EventHandler(this.FrmLauncher_Load);
             this.Click += new System.EventHandler(this.FrmLauncher_Click);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.imgrefresh)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picImage)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.topBar.ResumeLayout(false);
             this.topBar.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ovalPictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picImage)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -778,7 +773,6 @@
         private OvalPictureBox picImage;
         private System.Windows.Forms.Label lblVersion;
         private System.Windows.Forms.Timer tmrSteamQuery;
-        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
         private System.Windows.Forms.CheckBox chkDiscord;
         private System.Windows.Forms.Button btnDRPRules;

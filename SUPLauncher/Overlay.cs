@@ -90,9 +90,12 @@ namespace SUPLauncher
             {
                 if ((textBox1.Text.Contains("STEAM_0:0:") || textBox1.Text.Contains("STEAM_0:1:")) || (textBox1.Text.StartsWith("7") && textBox1.Text.Length == 76561197960265728.ToString().Length))
                 {
-                   Bans ban = new Bans(textBox1.Text);
+                    Bans ban;
+                    ban = new Bans(textBox1.Text);
                     ban.Show();
                     ban.TopMost = true;
+                   //Bans ban = new Bans(textBox1.Text);
+                    
                 }
                 else
                 {

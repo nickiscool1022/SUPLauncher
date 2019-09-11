@@ -13,6 +13,7 @@ using System.Drawing.Drawing2D;
 using Newtonsoft.Json.Linq;
 using System.Runtime.InteropServices;
 using System.Net.NetworkInformation;
+using CefSharp;
 
 namespace SUPLauncher
 {
@@ -36,6 +37,7 @@ namespace SUPLauncher
         Image original_refreshimg;
         public static bool overlayVisable = false;
         public static Overlay overlay = new Overlay();
+        public static Bans banPage = null;
         private void rotateInThread(Bitmap bm, float angle)
         {
                 if (InvokeRequired)
@@ -46,9 +48,7 @@ namespace SUPLauncher
            refresh_img = RotateBitmap(bm, angle);
         }
 
-        private void GetPointBounds(PointF[] points,
-    out float xmin, out float xmax,
-    out float ymin, out float ymax)
+        private void GetPointBounds(PointF[] points, out float xmin, out float xmax, out float ymin, out float ymax)
         {
             xmin = points[0].X;
             xmax = xmin;
@@ -258,6 +258,7 @@ namespace SUPLauncher
    
         private void FrmLauncher_Load(object sender, EventArgs e)
         {
+            //new Profile().ShowDialog();
             imgrefresh.SizeMode = PictureBoxSizeMode.StretchImage;
             imgrefresh.Refresh();
             if (Process.GetProcessesByName("steam").Length == 0) // Check if steam is running (Thanks Red Means Recording)
@@ -424,6 +425,7 @@ namespace SUPLauncher
             }
             else
                 File.Delete("1");
+            Cef.Shutdown();
             Interaction.Shell("taskkill /pid " + Process.GetCurrentProcess().Id.ToString() + " /f /t"); // Whoops
         }
         private void ChkAFK_CheckedChanged(object sender, EventArgs e)
@@ -471,7 +473,7 @@ namespace SUPLauncher
         }
         void GetUsername()
         {
-            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12; // Secure security protocol for querying the github API
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12; // Secure security protocol for querying the steam API
             HttpWebRequest request = WebRequest.CreateHttp("http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=27A2CB958256FB97DCFFEE9B634CD02E&steamids=" + steam.GetSteamId());
             request.UserAgent = new Random().NextDouble().ToString();
             WebResponse response = null;
