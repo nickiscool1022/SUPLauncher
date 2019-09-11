@@ -675,6 +675,8 @@
             // 
             this.chkOverlay.AutoSize = true;
             this.chkOverlay.BackColor = System.Drawing.Color.Transparent;
+            this.chkOverlay.Checked = true;
+            this.chkOverlay.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chkOverlay.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
             this.chkOverlay.ForeColor = System.Drawing.Color.White;
             this.chkOverlay.Location = new System.Drawing.Point(331, 434);
