@@ -260,7 +260,22 @@ namespace SUPLauncher
    
         private void FrmLauncher_Load(object sender, EventArgs e)
         {
-            //new Profile().ShowDialog();
+
+            if (ClientUpdater.checkForUpdates())
+            {
+                versionWarn.Visible = true;
+                toolTip1.SetToolTip(lblVersion, "You are using an\noutdated version\nof SUPLauncher.\n\nClick to install the\nlatest version");
+                toolTip1.SetToolTip(versionWarn, "You are using an\noutdated version\nof SUPLauncher.\n\nClick to install the\nlatest version");
+            }
+
+
+            // If a update is avaliable ask
+            if (Properties.Settings.Default.updatePopup == false) // Check if user has already had a update popup
+            {
+                ClientUpdater.Update();
+            }
+
+
             imgrefresh.SizeMode = PictureBoxSizeMode.StretchImage;
             imgrefresh.Refresh();
             if (Process.GetProcessesByName("steam").Length == 0) // Check if steam is running (Thanks Red Means Recording)
@@ -469,9 +484,7 @@ namespace SUPLauncher
         }
         private void LblVersion_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Auto-update temporary disabled. Sorry for any inconvenience.", "Disabled", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            //var updater = new ClientUpdater();
-            //updater.Update();
+            ClientUpdater.Update();
         }
         void GetUsername()
         {
@@ -987,6 +1000,11 @@ namespace SUPLauncher
         private void Button1_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void PictureBox2_Click(object sender, EventArgs e)
+        {
+            ClientUpdater.Update();
         }
     }
     public static class MemoryStreamExtensions

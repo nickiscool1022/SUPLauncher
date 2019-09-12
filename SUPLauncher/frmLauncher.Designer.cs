@@ -60,6 +60,7 @@
             this.btnDanktown = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.versionWarn = new System.Windows.Forms.PictureBox();
             this.imgrefresh = new System.Windows.Forms.PictureBox();
             this.panCW2 = new System.Windows.Forms.Panel();
             this.panCW1 = new System.Windows.Forms.Panel();
@@ -78,7 +79,9 @@
             this.chkOverlay = new System.Windows.Forms.CheckBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.versionWarn)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.imgrefresh)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picImage)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -468,6 +471,7 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.panel1.Controls.Add(this.versionWarn);
             this.panel1.Controls.Add(this.imgrefresh);
             this.panel1.Controls.Add(this.btnDupes);
             this.panel1.Controls.Add(this.label2);
@@ -499,6 +503,17 @@
             this.panel1.Size = new System.Drawing.Size(263, 467);
             this.panel1.TabIndex = 39;
             this.panel1.Click += new System.EventHandler(this.FrmLauncher_Click);
+            // 
+            // versionWarn
+            // 
+            this.versionWarn.Image = ((System.Drawing.Image)(resources.GetObject("versionWarn.Image")));
+            this.versionWarn.Location = new System.Drawing.Point(144, 425);
+            this.versionWarn.Name = "versionWarn";
+            this.versionWarn.Size = new System.Drawing.Size(23, 19);
+            this.versionWarn.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.versionWarn.TabIndex = 49;
+            this.versionWarn.TabStop = false;
+            this.versionWarn.Visible = false;
             // 
             // imgrefresh
             // 
@@ -710,6 +725,10 @@
             this.label3.TabIndex = 48;
             this.label3.Text = "Player Lookup";
             // 
+            // toolTip1
+            // 
+            this.toolTip1.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Warning;
+            // 
             // frmLauncher
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -748,6 +767,7 @@
             this.Click += new System.EventHandler(this.FrmLauncher_Click);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.versionWarn)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.imgrefresh)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picImage)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
@@ -808,6 +828,8 @@
         private System.Windows.Forms.CheckBox chkOverlay;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.PictureBox versionWarn;
+        private System.Windows.Forms.ToolTip toolTip1;
     }
 }
 

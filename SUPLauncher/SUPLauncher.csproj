@@ -174,9 +174,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="ILMerge" Version="2.15.0" />
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="Bans.cs">
       <SubType>Form</SubType>
     </Compile>
