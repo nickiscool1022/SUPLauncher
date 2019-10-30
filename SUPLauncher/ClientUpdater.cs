@@ -31,12 +31,12 @@ namespace SUPLauncher
             {
                 if (Interaction.MsgBox("You do not have the lastest version(" + newestVersion + "). Would you like to go download the latest version?", MsgBoxStyle.YesNo, "Download latest version") == MsgBoxResult.Yes) // If they choose to update
                 {
-                    int counter = 0;
-                    while (webData[counter].Contains("browser_download_url") == false) // Search for browser download url
-                    {
-                        counter++;
-                    }
-                    string downloadURL = webData[counter].Substring(webData[counter].IndexOf("https://"), webData[counter].LastIndexOf("}") - 1 - webData[counter].IndexOf("https://")); // Get download URL
+                    //int counter = 0;
+                    //while (webData[counter].Contains("browser_download_url") == false) // Search for browser download url
+                    //{
+                    //    counter++;
+                    //}
+                    string downloadURL = "https://github.com/nicksuperiorservers/SUPLauncher/raw/dev/SUPLauncher.exe";   //webData[counter].Substring(webData[counter].IndexOf("https://"), webData[counter].LastIndexOf("}") - 1 - webData[counter].IndexOf("https://")); // Get download URL
                     HttpWebRequest requestDL = WebRequest.CreateHttp(downloadURL); // Download Request
                     WebResponse responseDL = null; // Download response
                     responseDL = requestDL.GetResponse(); // Get response from Download Request
@@ -58,7 +58,7 @@ namespace SUPLauncher
                     }
                     fs.Close(); // Close file stream after it is done
                     s.Close();
-                    using (var batFile = new StreamWriter(File.Create(Application.StartupPath + "/Update.bat")))
+                    using (var batFile = new StreamWriter(File.Create(Application.StartupPath + "/Update.bat"))) // Best of all was here xdxd
                     {
                         batFile.WriteLine("@ECHO OFF");
 
