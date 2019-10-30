@@ -42,9 +42,6 @@ namespace SUPLauncher
                     responseDL = requestDL.GetResponse(); // Get response from Download Request
                     Stream s = responseDL.GetResponseStream(); // Get Response Stream from Download Request and store it
 
-
-
-
                     if (File.Exists(Application.StartupPath + "/update.bat"))
                     {
                         File.Delete(Application.StartupPath + "/update.bat");
@@ -60,6 +57,7 @@ namespace SUPLauncher
                         count = s.Read(read, 0, read.Length); // Get new count
                     }
                     fs.Close(); // Close file stream after it is done
+                    s.Close();
                     using (var batFile = new StreamWriter(File.Create(Application.StartupPath + "/Update.bat")))
                     {
                         batFile.WriteLine("@ECHO OFF");

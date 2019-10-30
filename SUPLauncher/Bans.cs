@@ -28,7 +28,7 @@ namespace SUPLauncher
         Size _normalWindowSize;
         Point _normalWindowLocation = Point.Empty;
         string steamid = "";
-        ChromiumWebBrowser chrome = new ChromiumWebBrowser("", null);
+        ChromiumWebBrowser chrome = new ChromiumWebBrowser();
         bool opened = false;
         
         //bool opened = false;
@@ -38,52 +38,10 @@ namespace SUPLauncher
         /// <param name="steamID">The steamid of the profile to display. Can be 32 or 64</param>
         public Bans(string steamID)
         {
-            AppDomain.CurrentDomain.AssemblyResolve += (sender, args) =>
-            {
-                String resourceName = "AssemblyLoadingAndReflection." +
-
-                new AssemblyName(args.Name).Name + ".dll";
-
-                using (var stream = Assembly.GetExecutingAssembly().GetManifestResourceStream(resourceName))
-                {
-
-                    Byte[] assemblyData = new Byte[stream.Length];
-
-                    stream.Read(assemblyData, 0, assemblyData.Length);
-
-                    return Assembly.Load(assemblyData);
-                }
-            };
             InitializeComponent();
             InitializeChromium(steamID);
             steamid = steamID;
         }
-
-        //private System.Reflection.Assembly CurrentDomain_AssemblyResolve(object sender, ResolveEventArgs args)
-        //{
-        //    var currentAssembly = Assembly.GetExecutingAssembly();
-        //    var requiredDllName = $"{(new AssemblyName(args.Name).Name)}.dll";
-        //    var resource = currentAssembly.GetManifestResourceNames().Where(s => s.EndsWith(requiredDllName)).FirstOrDefault();
-
-        //    if (resource != null)
-        //    {
-        //        using (var stream = currentAssembly.GetManifestResourceStream(resource))
-        //        {
-        //            if (stream == null)
-        //            {
-        //                return null;
-        //            }
-
-        //            var block = new byte[stream.Length];
-        //            stream.Read(block, 0, block.Length);
-        //            return Assembly.Load(block);
-        //        }
-        //    }
-        //    else
-        //    {
-        //        return null;
-        //    }
-        //}
 
         private void InitializeChromium(string steamID)
         {
@@ -154,10 +112,10 @@ namespace SUPLauncher
             this.Hide();
         }
 
-        private void Bans_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            Cef.Shutdown();
-        }
+        //private void Bans_FormClosing(object sender, FormClosingEventArgs e)
+        //{
+        //    Cef.Shutdown();
+        //}
 
         private void Bans_Load(object sender, EventArgs e)
         {

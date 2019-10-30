@@ -69,24 +69,25 @@
             this.panC18 = new System.Windows.Forms.Panel();
             this.panSD = new System.Windows.Forms.Panel();
             this.panDanktown = new System.Windows.Forms.Panel();
-            this.picImage = new OvalPictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.topBar = new System.Windows.Forms.Panel();
             this.button1 = new System.Windows.Forms.Button();
             this.lblUsername = new System.Windows.Forms.Label();
-            this.ovalPictureBox1 = new OvalPictureBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.chkOverlay = new System.Windows.Forms.CheckBox();
-            this.label1 = new System.Windows.Forms.Label();
+            this.lblALTS = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
+            this.ovalPictureBox1 = new OvalPictureBox();
+            this.picImage = new OvalPictureBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.versionWarn)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.imgrefresh)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picImage)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.topBar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ovalPictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picImage)).BeginInit();
             this.SuspendLayout();
             // 
             // btnForums
@@ -102,6 +103,8 @@
             this.btnForums.Size = new System.Drawing.Size(81, 33);
             this.btnForums.TabIndex = 11;
             this.btnForums.Text = "Forums";
+            this.toolTip1.SetToolTip(this.btnForums, "Opens your default web browser\r\nand automatically opens the\r\nSuperiorServers webs" +
+        "ite!");
             this.btnForums.UseVisualStyleBackColor = false;
             this.btnForums.Click += new System.EventHandler(this.BtnForums_Click);
             // 
@@ -118,6 +121,7 @@
             this.btnTS.Size = new System.Drawing.Size(81, 33);
             this.btnTS.TabIndex = 12;
             this.btnTS.Text = "TS";
+            this.toolTip1.SetToolTip(this.btnTS, "Connects to the TeamSpeak server\r\n(ts.superiorservers.co)");
             this.btnTS.UseVisualStyleBackColor = false;
             this.btnTS.Click += new System.EventHandler(this.BtnTS_Click);
             // 
@@ -234,6 +238,8 @@
             this.chkAFK.Size = new System.Drawing.Size(90, 20);
             this.chkAFK.TabIndex = 22;
             this.chkAFK.Text = "AFK Mode";
+            this.toolTip1.SetToolTip(this.chkAFK, "Pressing this will forcefully restart your game\r\nand put you in AFK Mode, which w" +
+        "ill launch\r\nthe game in a command prompt window,\r\nusing less system resources.");
             this.chkAFK.UseVisualStyleBackColor = false;
             this.chkAFK.CheckedChanged += new System.EventHandler(this.ChkAFK_CheckedChanged);
             // 
@@ -249,6 +255,7 @@
             this.lblVersion.Size = new System.Drawing.Size(34, 20);
             this.lblVersion.TabIndex = 27;
             this.lblVersion.Text = "1.1.1.1";
+            this.toolTip1.SetToolTip(this.lblVersion, "dd");
             this.lblVersion.Click += new System.EventHandler(this.LblVersion_Click);
             // 
             // toolStripMenuItem1
@@ -265,6 +272,8 @@
             // 
             this.chkDiscord.AutoSize = true;
             this.chkDiscord.BackColor = System.Drawing.Color.Transparent;
+            this.chkDiscord.Checked = true;
+            this.chkDiscord.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chkDiscord.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
             this.chkDiscord.ForeColor = System.Drawing.SystemColors.Control;
             this.chkDiscord.Location = new System.Drawing.Point(372, 408);
@@ -272,6 +281,9 @@
             this.chkDiscord.Size = new System.Drawing.Size(114, 20);
             this.chkDiscord.TabIndex = 32;
             this.chkDiscord.Text = "Discord Status";
+            this.toolTip1.SetToolTip(this.chkDiscord, "Having this enabled will have the SUP Launcher\r\nDiscord status be enabled in your" +
+        " discord application\r\nfor you and your friends to see what SUP Server you are on" +
+        ".");
             this.chkDiscord.UseVisualStyleBackColor = false;
             this.chkDiscord.CheckedChanged += new System.EventHandler(this.ChkDiscord_CheckedChanged);
             // 
@@ -289,6 +301,7 @@
             this.btnDRPRules.Size = new System.Drawing.Size(204, 23);
             this.btnDRPRules.TabIndex = 33;
             this.btnDRPRules.Text = "DarkRP Rules/FAQ";
+            this.toolTip1.SetToolTip(this.btnDRPRules, "Opens the DarkRP rules via your\r\ndefault web browser.");
             this.btnDRPRules.UseVisualStyleBackColor = false;
             this.btnDRPRules.Click += new System.EventHandler(this.BtnDRPRules_Click);
             // 
@@ -306,6 +319,7 @@
             this.btnMilRPRules.Size = new System.Drawing.Size(204, 23);
             this.btnMilRPRules.TabIndex = 34;
             this.btnMilRPRules.Text = "MilRP Rules/FAQ";
+            this.toolTip1.SetToolTip(this.btnMilRPRules, "Opens the MilRP rules via your\r\ndefault web browser.");
             this.btnMilRPRules.UseVisualStyleBackColor = false;
             this.btnMilRPRules.Click += new System.EventHandler(this.BtnMilRPRules_Click);
             // 
@@ -323,6 +337,7 @@
             this.btnCWRPRules.Size = new System.Drawing.Size(204, 23);
             this.btnCWRPRules.TabIndex = 35;
             this.btnCWRPRules.Text = "CWRP Rules/FAQ";
+            this.toolTip1.SetToolTip(this.btnCWRPRules, "Opens the CWRP rules via your\r\ndefault web browser.");
             this.btnCWRPRules.UseVisualStyleBackColor = false;
             this.btnCWRPRules.Click += new System.EventHandler(this.BtnCWRPRules_Click);
             // 
@@ -352,6 +367,7 @@
             this.btnCW2.Size = new System.Drawing.Size(200, 33);
             this.btnCW2.TabIndex = 6;
             this.btnCW2.Text = "Clonewars #2";
+            this.toolTip1.SetToolTip(this.btnCW2, "Connects to CWRP #2\r\n(208.103.169.17:27015)");
             this.btnCW2.UseVisualStyleBackColor = false;
             this.btnCW2.Click += new System.EventHandler(this.BtnCW2_Click);
             // 
@@ -367,6 +383,7 @@
             this.btnCW1.Size = new System.Drawing.Size(200, 33);
             this.btnCW1.TabIndex = 5;
             this.btnCW1.Text = "Clonewars #1";
+            this.toolTip1.SetToolTip(this.btnCW1, "Connects to CWRP #1\r\n(208.103.169.16:27015)\r\n");
             this.btnCW1.UseVisualStyleBackColor = false;
             this.btnCW1.Click += new System.EventHandler(this.BtnCW1_Click);
             // 
@@ -381,6 +398,7 @@
             this.btnMilRP.Size = new System.Drawing.Size(200, 33);
             this.btnMilRP.TabIndex = 4;
             this.btnMilRP.Text = "MilitaryRP";
+            this.toolTip1.SetToolTip(this.btnMilRP, "Connects to MilRP\r\n(208.103.169.18:27015)\r\n\r\n");
             this.btnMilRP.UseVisualStyleBackColor = false;
             this.btnMilRP.Click += new System.EventHandler(this.BtnMilRP_Click);
             // 
@@ -395,6 +413,7 @@
             this.btnZombies.Size = new System.Drawing.Size(200, 33);
             this.btnZombies.TabIndex = 3;
             this.btnZombies.Text = "Zombies";
+            this.toolTip1.SetToolTip(this.btnZombies, "Connects to ZombiesRP\r\n(208.103.169.14:27015)\r\n\r\n\r\n");
             this.btnZombies.UseVisualStyleBackColor = false;
             this.btnZombies.Click += new System.EventHandler(this.BtnZombies_Click);
             // 
@@ -409,6 +428,7 @@
             this.btnC18.Size = new System.Drawing.Size(200, 33);
             this.btnC18.TabIndex = 2;
             this.btnC18.Text = "C18";
+            this.toolTip1.SetToolTip(this.btnC18, "Connects to C18\r\n(208.103.169.13:27015)\r\n\r\n\r\n");
             this.btnC18.UseVisualStyleBackColor = false;
             this.btnC18.Click += new System.EventHandler(this.BtnC18_Click);
             // 
@@ -439,6 +459,7 @@
             this.btnDupes.Size = new System.Drawing.Size(91, 41);
             this.btnDupes.TabIndex = 38;
             this.btnDupes.Text = "Open Dupe Manager";
+            this.toolTip1.SetToolTip(this.btnDupes, "Opens the Dupe Manager window.");
             this.btnDupes.UseVisualStyleBackColor = false;
             this.btnDupes.Click += new System.EventHandler(this.BtnDupes_Click);
             // 
@@ -453,6 +474,7 @@
             this.btnDanktown.Size = new System.Drawing.Size(197, 33);
             this.btnDanktown.TabIndex = 0;
             this.btnDanktown.Text = "Danktown";
+            this.toolTip1.SetToolTip(this.btnDanktown, "Connects to Danktown\r\n(208.103.169.12:27015)\r\n\r\n\r\n");
             this.btnDanktown.UseVisualStyleBackColor = false;
             this.btnDanktown.Click += new System.EventHandler(this.BtnDanktown_Click);
             // 
@@ -513,7 +535,9 @@
             this.versionWarn.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.versionWarn.TabIndex = 49;
             this.versionWarn.TabStop = false;
+            this.toolTip1.SetToolTip(this.versionWarn, "d");
             this.versionWarn.Visible = false;
+            this.versionWarn.Click += new System.EventHandler(this.LblVersion_Click);
             // 
             // imgrefresh
             // 
@@ -583,21 +607,6 @@
             this.panDanktown.Size = new System.Drawing.Size(10, 33);
             this.panDanktown.TabIndex = 41;
             // 
-            // picImage
-            // 
-            this.picImage.BackColor = System.Drawing.Color.Transparent;
-            this.picImage.BackgroundImage = global::SUPLauncher.Properties.Resources.suplogo;
-            this.picImage.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.picImage.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.picImage.ErrorImage = global::SUPLauncher.Properties.Resources.suplogo;
-            this.picImage.Location = new System.Drawing.Point(12, 352);
-            this.picImage.Name = "picImage";
-            this.picImage.Size = new System.Drawing.Size(100, 100);
-            this.picImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.picImage.TabIndex = 25;
-            this.picImage.TabStop = false;
-            this.picImage.Click += new System.EventHandler(this.PicImage_Click);
-            // 
             // pictureBox1
             // 
             this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
@@ -657,21 +666,6 @@
             this.lblUsername.TabIndex = 46;
             this.lblUsername.Text = "SUP Launcher (Name)";
             // 
-            // ovalPictureBox1
-            // 
-            this.ovalPictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.ovalPictureBox1.BackColor = System.Drawing.Color.Transparent;
-            this.ovalPictureBox1.BackgroundImage = global::SUPLauncher.Properties.Resources.suplogo;
-            this.ovalPictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ovalPictureBox1.Cursor = System.Windows.Forms.Cursors.Arrow;
-            this.ovalPictureBox1.ErrorImage = global::SUPLauncher.Properties.Resources.suplogo;
-            this.ovalPictureBox1.Location = new System.Drawing.Point(3, 1);
-            this.ovalPictureBox1.Name = "ovalPictureBox1";
-            this.ovalPictureBox1.Size = new System.Drawing.Size(28, 27);
-            this.ovalPictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.ovalPictureBox1.TabIndex = 49;
-            this.ovalPictureBox1.TabStop = false;
-            // 
             // textBox1
             // 
             this.textBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(31)))), ((int)(((byte)(40)))));
@@ -682,6 +676,8 @@
             this.textBox1.Size = new System.Drawing.Size(193, 20);
             this.textBox1.TabIndex = 45;
             this.textBox1.Text = "STEAM_0:X:XXXXXXXXX";
+            this.toolTip1.SetToolTip(this.textBox1, "Search up a player\'s information\r\non SuperiorServers by pasting \r\ntheir SteamID32" +
+        " or 64 in the search box.");
             this.textBox1.Enter += new System.EventHandler(this.TextBox1_Enter);
             this.textBox1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TextBox1_KeyDown);
             this.textBox1.Leave += new System.EventHandler(this.TextBox1_Leave);
@@ -690,8 +686,6 @@
             // 
             this.chkOverlay.AutoSize = true;
             this.chkOverlay.BackColor = System.Drawing.Color.Transparent;
-            this.chkOverlay.Checked = true;
-            this.chkOverlay.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chkOverlay.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
             this.chkOverlay.ForeColor = System.Drawing.Color.White;
             this.chkOverlay.Location = new System.Drawing.Point(331, 434);
@@ -699,19 +693,23 @@
             this.chkOverlay.Size = new System.Drawing.Size(74, 20);
             this.chkOverlay.TabIndex = 46;
             this.chkOverlay.Text = "Overlay";
+            this.toolTip1.SetToolTip(this.chkOverlay, "If enabled, the SUP overlay will be be drawn\r\neverytime the ALT key and the S key" +
+        " is pressed.");
             this.chkOverlay.UseVisualStyleBackColor = false;
             // 
-            // label1
+            // lblALTS
             // 
-            this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.65F);
-            this.label1.ForeColor = System.Drawing.SystemColors.ButtonShadow;
-            this.label1.Location = new System.Drawing.Point(398, 435);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(57, 15);
-            this.label1.TabIndex = 47;
-            this.label1.Text = "(ALT + S)";
+            this.lblALTS.AutoSize = true;
+            this.lblALTS.BackColor = System.Drawing.Color.Transparent;
+            this.lblALTS.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.65F);
+            this.lblALTS.ForeColor = System.Drawing.SystemColors.ButtonShadow;
+            this.lblALTS.Location = new System.Drawing.Point(398, 435);
+            this.lblALTS.Name = "lblALTS";
+            this.lblALTS.Size = new System.Drawing.Size(57, 15);
+            this.lblALTS.TabIndex = 47;
+            this.lblALTS.Text = "(ALT + S)";
+            this.toolTip1.SetToolTip(this.lblALTS, "If enabled, the SUP overlay will be be drawn\r\neverytime the ALT key and the S key" +
+        " is pressed.\r\n");
             // 
             // label3
             // 
@@ -728,6 +726,44 @@
             // toolTip1
             // 
             this.toolTip1.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Warning;
+            this.toolTip1.Popup += new System.Windows.Forms.PopupEventHandler(this.ToolTip1_Popup);
+            // 
+            // notifyIcon1
+            // 
+            this.notifyIcon1.BalloonTipIcon = System.Windows.Forms.ToolTipIcon.Info;
+            this.notifyIcon1.Icon = ((System.Drawing.Icon)(resources.GetObject("notifyIcon1.Icon")));
+            // 
+            // ovalPictureBox1
+            // 
+            this.ovalPictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.ovalPictureBox1.BackColor = System.Drawing.Color.Transparent;
+            this.ovalPictureBox1.BackgroundImage = global::SUPLauncher.Properties.Resources.suplogo;
+            this.ovalPictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.ovalPictureBox1.Cursor = System.Windows.Forms.Cursors.Arrow;
+            this.ovalPictureBox1.ErrorImage = global::SUPLauncher.Properties.Resources.suplogo;
+            this.ovalPictureBox1.Location = new System.Drawing.Point(3, 1);
+            this.ovalPictureBox1.Name = "ovalPictureBox1";
+            this.ovalPictureBox1.Size = new System.Drawing.Size(28, 27);
+            this.ovalPictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.ovalPictureBox1.TabIndex = 49;
+            this.ovalPictureBox1.TabStop = false;
+            // 
+            // picImage
+            // 
+            this.picImage.BackColor = System.Drawing.Color.Transparent;
+            this.picImage.BackgroundImage = global::SUPLauncher.Properties.Resources.suplogo;
+            this.picImage.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.picImage.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.picImage.ErrorImage = global::SUPLauncher.Properties.Resources.suplogo;
+            this.picImage.Location = new System.Drawing.Point(12, 352);
+            this.picImage.Name = "picImage";
+            this.picImage.Size = new System.Drawing.Size(100, 100);
+            this.picImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.picImage.TabIndex = 25;
+            this.picImage.TabStop = false;
+            this.toolTip1.SetToolTip(this.picImage, "This is your avatar that is stored\r\non your SUP profile. Clicking this\r\nopens you" +
+        "r SUP profile in a new\r\nbrowser window.");
+            this.picImage.Click += new System.EventHandler(this.PicImage_Click);
             // 
             // frmLauncher
             // 
@@ -738,7 +774,7 @@
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(493, 464);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.lblALTS);
             this.Controls.Add(this.chkOverlay);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.topBar);
@@ -769,11 +805,11 @@
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.versionWarn)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.imgrefresh)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picImage)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.topBar.ResumeLayout(false);
             this.topBar.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ovalPictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picImage)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -826,10 +862,11 @@
         private System.Windows.Forms.Label lblUsername;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.CheckBox chkOverlay;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblALTS;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.PictureBox versionWarn;
         private System.Windows.Forms.ToolTip toolTip1;
+        private System.Windows.Forms.NotifyIcon notifyIcon1;
     }
 }
 

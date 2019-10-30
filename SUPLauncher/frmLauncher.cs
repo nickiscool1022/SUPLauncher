@@ -10,10 +10,9 @@ using System.Net;
 using Microsoft.VisualBasic;
 using DiscordRPC;
 using System.Drawing.Drawing2D;
-using Newtonsoft.Json.Linq;
 using System.Runtime.InteropServices;
-using System.Net.NetworkInformation;
 using CefSharp;
+using System.Linq;
 
 namespace SUPLauncher
 {
@@ -264,8 +263,8 @@ namespace SUPLauncher
             if (ClientUpdater.checkForUpdates())
             {
                 versionWarn.Visible = true;
-                toolTip1.SetToolTip(lblVersion, "You are using an\noutdated version\nof SUPLauncher.\n\nClick to install the\nlatest version");
                 toolTip1.SetToolTip(versionWarn, "You are using an\noutdated version\nof SUPLauncher.\n\nClick to install the\nlatest version");
+                toolTip1.SetToolTip(lblVersion, "You are using an\noutdated version\nof SUPLauncher.\n\nClick to install the\nlatest version");
             }
 
 
@@ -447,24 +446,34 @@ namespace SUPLauncher
         }
         private void ChkAFK_CheckedChanged(object sender, EventArgs e)
         {
-            foreach (var process in Process.GetProcessesByName("hl2"))
+            if (chkAFK.Checked)
             {
-                try
-                {
-                    process.Kill();
-                } catch (System.ComponentModel.Win32Exception)
-                {
-                    // Does nothing if permission is denied...
-                    // As doing something may bring up usless errors
-                    // Even though gmod is already closed
-                }
+                notifyIcon1.ShowBalloonTip(5000, "AFK Mode", "You are now in AFK Mode. Press on a server from the list on the menu and confirm it in steam to begin AFKing on SUP!", ToolTipIcon.Info);
             }
-            foreach (var process in Process.GetProcessesByName("gmod"))
+            else
             {
-                process.Kill();
+                notifyIcon1.ShowBalloonTip(5000, "AFK Mode", "You are no longer in AFK Mode. Pressing on a server will launch the game normally.", ToolTipIcon.Info);
+            }
+            try
+            {
+                Process.GetProcessesByName("hl2")[0].Kill();
+            }
+            catch (Exception)
+            {
+                // Does nothing if permission is denied...
+                // As doing something may bring up usless errors
+                // Even though gmod is already closed
+            }
+            try
+            {
+                Process.GetProcessesByName("gmod")[0].Kill();
+            } catch (Exception)
+            {
+                // Do nothing if process does not exist
             }
             appStarted = false;
         }
+
         private void PicImage_Click(object sender, EventArgs e)
         {
             new Bans(steam.GetSteamId().ToString()).Show();
@@ -1005,6 +1014,30 @@ namespace SUPLauncher
         private void PictureBox2_Click(object sender, EventArgs e)
         {
             ClientUpdater.Update();
+        }
+
+        private void ToolTip1_Draw(object sender, DrawToolTipEventArgs e)
+        {
+        }
+
+        private void ToolTip1_Popup(object sender, PopupEventArgs e)
+        {
+            if ((e.AssociatedControl.Name != lblVersion.Name) && (e.AssociatedControl.Name != versionWarn.Name))
+            {
+                toolTip1.ToolTipIcon = ToolTipIcon.Info;
+            }
+            else
+            {
+                toolTip1.ToolTipIcon = ToolTipIcon.Warning;
+            }
+            if (e.AssociatedControl == lblALTS)
+                toolTip1.ToolTipTitle = "Overlay";
+            else if (e.AssociatedControl == versionWarn)
+                toolTip1.ToolTipTitle = lblVersion.Text;
+            else if (e.AssociatedControl == picImage)
+                toolTip1.ToolTipTitle = "Your avatar";
+            else
+                toolTip1.ToolTipTitle = e.AssociatedControl.Text;
         }
     }
     public static class MemoryStreamExtensions

@@ -91,7 +91,6 @@
             this.MaximizeBox = false;
             this.Name = "Bans";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Bans_FormClosing);
             this.Load += new System.EventHandler(this.Bans_Load);
             this.topBar.ResumeLayout(false);
             this.ResumeLayout(false);
