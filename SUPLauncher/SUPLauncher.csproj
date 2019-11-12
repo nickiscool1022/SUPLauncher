@@ -265,6 +265,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <EmbeddedResource Include="Resources\Prototype_0.ttf" />
     <None Include="SUPLauncher_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>

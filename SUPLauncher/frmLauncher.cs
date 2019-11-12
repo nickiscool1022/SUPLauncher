@@ -266,13 +266,11 @@ namespace SUPLauncher
                 toolTip1.SetToolTip(lblVersion, "You are using an\noutdated version\nof SUPLauncher.\n\nClick to install the\nlatest version");
             }
 
-
             // If a update is avaliable ask
             if (Properties.Settings.Default.updatePopup == false) // Check if user has already had a update popup
             {
                 ClientUpdater.Update();
             }
-
 
             imgrefresh.SizeMode = PictureBoxSizeMode.StretchImage;
             imgrefresh.Refresh();
@@ -295,7 +293,7 @@ namespace SUPLauncher
                 }
                 lblVersion.Text = Application.ProductVersion;
                 var client = new WebClient();
-                client.Headers.Add("user-agent", "SUP Launcher: v" + Application.ProductVersion); // Set a header for the SUP API web request so it doesn't get blocked :)
+                client.Headers.Add("user-agent", "SUP Launcher: v" + Application.ProductVersion); // Set a header for the SUP Avatar API web request so it doesn't get blocked :)
                 byte[] avatardata = client.DownloadData(new Uri("https://superiorservers.co/api/avatar/" + steam.GetSteamId().ToString()));
                 using (var ms = new MemoryStream(avatardata))
                 {
