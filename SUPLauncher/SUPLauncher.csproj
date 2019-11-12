@@ -37,8 +37,8 @@
     <TargetCulture>en-US</TargetCulture>
     <ProductName>SUP Launcher</ProductName>
     <PublisherName>Nick</PublisherName>
-    <ApplicationRevision>0</ApplicationRevision>
-    <ApplicationVersion>2.5.0.0</ApplicationVersion>
+    <ApplicationRevision>1</ApplicationRevision>
+    <ApplicationVersion>2.5.0.1</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -265,7 +265,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <EmbeddedResource Include="Resources\Prototype_0.ttf" />
+    <EmbeddedResource Include="Resources\Prototype.ttf" />
     <None Include="SUPLauncher_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
@@ -273,6 +273,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="favicon.ico" />
+    <None Include="Resources\Prototype.bmp" />
     <None Include="Resources\background2.jpg" />
     <None Include="Resources\suplogo.png" />
   </ItemGroup>

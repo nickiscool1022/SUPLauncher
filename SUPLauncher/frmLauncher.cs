@@ -12,6 +12,7 @@ using DiscordRPC;
 using System.Drawing.Drawing2D;
 using System.Runtime.InteropServices;
 using CefSharp;
+using System.Drawing.Text;
 
 namespace SUPLauncher
 {
@@ -117,6 +118,11 @@ namespace SUPLauncher
             return result;
         }
         private GlobalKeyboardHook _globalKeyboardHook;
+        [System.Runtime.InteropServices.DllImport("gdi32.dll")]
+        private static extern IntPtr AddFontMemResourceEx(IntPtr pbFont, uint cbFont,
+               IntPtr pdv, [System.Runtime.InteropServices.In] ref uint pcFonts);
+
+        private PrivateFontCollection fonts = new PrivateFontCollection();
         public frmLauncher()
         {
             Thread trd = new Thread(new ThreadStart(Run));
@@ -128,8 +134,21 @@ namespace SUPLauncher
             original_refreshimg = imgrefresh.Image;
             _globalKeyboardHook = new GlobalKeyboardHook();
             _globalKeyboardHook.KeyboardPressed += Keyboard;
+            byte[] fontData = Properties.Resources.Prototype;
+            IntPtr fontPtr = System.Runtime.InteropServices.Marshal.AllocCoTaskMem(fontData.Length);
+            System.Runtime.InteropServices.Marshal.Copy(fontData, 0, fontPtr, fontData.Length);
+            uint dummy = 0;
+            fonts.AddMemoryFont(fontPtr, Properties.Resources.Prototype.Length);
+            AddFontMemResourceEx(fontPtr, (uint)Properties.Resources.Prototype.Length, IntPtr.Zero, ref dummy);
+            System.Runtime.InteropServices.Marshal.FreeCoTaskMem(fontPtr);
 
-            
+            lblUsername.Font = new Font(fonts.Families[0], lblUsername.Font.Size);
+            btnForums.Font = new Font(fonts.Families[0], btnForums.Font.Size);
+            btnTS.Font = new Font(fonts.Families[0], btnTS.Font.Size);
+            btnDRPRules.Font = new Font(fonts.Families[0], btnDRPRules.Font.Size);
+            btnMilRP.Font = new Font(fonts.Families[0], btnMilRP.Font.Size);
+            btnCWRPRules.Font = new Font(fonts.Families[0], btnCWRPRules.Font.Size);
+            btnDupes.Font = new Font(fonts.Families[0], btnDupes.Font.Size);
         }
       
         bool altdown = false;
@@ -182,8 +201,6 @@ namespace SUPLauncher
                     }
                 }
             }
-
-
         }
 
         public void Run()
