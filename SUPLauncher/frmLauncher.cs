@@ -12,7 +12,6 @@ using DiscordRPC;
 using System.Drawing.Drawing2D;
 using System.Runtime.InteropServices;
 using CefSharp;
-using System.Linq;
 
 namespace SUPLauncher
 {
@@ -296,6 +295,7 @@ namespace SUPLauncher
                 }
                 lblVersion.Text = Application.ProductVersion;
                 var client = new WebClient();
+                client.Headers.Add("user-agent", "SUP Launcher: v" + Application.ProductVersion); // Set a header for the SUP API web request so it doesn't get blocked :)
                 byte[] avatardata = client.DownloadData(new Uri("https://superiorservers.co/api/avatar/" + steam.GetSteamId().ToString()));
                 using (var ms = new MemoryStream(avatardata))
                 {
@@ -446,6 +446,7 @@ namespace SUPLauncher
         }
         private void ChkAFK_CheckedChanged(object sender, EventArgs e)
         {
+            notifyIcon1.Visible = true;
             if (chkAFK.Checked)
             {
                 notifyIcon1.ShowBalloonTip(5000, "AFK Mode", "You are now in AFK Mode. Press on a server from the list on the menu and confirm it in steam to begin AFKing on SUP!", ToolTipIcon.Info);
@@ -703,7 +704,7 @@ namespace SUPLauncher
 
         private void TmrSteamQuery_Tick(object sender, EventArgs e)
         {
-            GetCurrentServer(steam.GetSteamId().ToString(), true);
+            //GetCurrentServer(steam.GetSteamId().ToString(), true);
         }
 
         private void ChkDiscord_CheckedChanged(object sender, EventArgs e)
@@ -914,11 +915,11 @@ namespace SUPLauncher
             {
                 if (IDAquired)
                 {
-                    GetCurrentServer(rawID, false);
+                    //GetCurrentServer(rawID, false);
                 }
                 else
                 {
-                    GetCurrentServer(refinedID, false);
+                   // GetCurrentServer(refinedID, false);
                 }
                 MessageBox.Show(playerServer, "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
@@ -950,7 +951,7 @@ namespace SUPLauncher
             while (i != 10)
             {
                 i = i + 1;
-                    Thread.Sleep(70);
+                    Thread.Sleep(30);
                     rotateInThread(new Bitmap(refresh_img), 90);
                     imgrefresh.Image = refresh_img;
             }
