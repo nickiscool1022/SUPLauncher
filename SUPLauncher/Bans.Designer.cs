@@ -44,7 +44,7 @@
             this.topBar.Dock = System.Windows.Forms.DockStyle.Top;
             this.topBar.Location = new System.Drawing.Point(0, 0);
             this.topBar.Name = "topBar";
-            this.topBar.Size = new System.Drawing.Size(1214, 29);
+            this.topBar.Size = new System.Drawing.Size(1918, 29);
             this.topBar.TabIndex = 5;
             this.topBar.MouseDown += new System.Windows.Forms.MouseEventHandler(this.TopBar_MouseDown);
             this.topBar.MouseMove += new System.Windows.Forms.MouseEventHandler(this.TopBar_MouseMove);
@@ -58,7 +58,7 @@
             this.btnClose.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Silver;
             this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnClose.ForeColor = System.Drawing.Color.Silver;
-            this.btnClose.Location = new System.Drawing.Point(1176, 0);
+            this.btnClose.Location = new System.Drawing.Point(1880, 0);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(36, 27);
             this.btnClose.TabIndex = 0;
@@ -71,7 +71,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 29);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1214, 615);
+            this.panel1.Size = new System.Drawing.Size(1918, 615);
             this.panel1.TabIndex = 6;
             // 
             // Bans
@@ -81,7 +81,7 @@
             this.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.BackgroundImage = global::SUPLauncher.Properties.Resources.background2;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(1214, 644);
+            this.ClientSize = new System.Drawing.Size(1918, 644);
             this.ControlBox = false;
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.topBar);

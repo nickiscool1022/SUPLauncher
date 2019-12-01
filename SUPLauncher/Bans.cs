@@ -18,8 +18,6 @@ using System.Reflection;
 
 namespace SUPLauncher
 {
-    // FORM SIZE (W/O BANS): 1049, 650
-    // FORM SIZE (W/ BANS) :
     public partial class Bans : Form
     {
         bool isTopPanelDragged = false;
@@ -41,6 +39,8 @@ namespace SUPLauncher
             InitializeComponent();
             InitializeChromium(steamID);
             steamid = steamID;
+            Width = Screen.PrimaryScreen.WorkingArea.Width;
+            Height = Screen.PrimaryScreen.WorkingArea.Height / 2 + 100;
         }
 
         private void InitializeChromium(string steamID)

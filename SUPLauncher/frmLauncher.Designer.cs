@@ -242,6 +242,7 @@
         "ill launch\r\nthe game in a command prompt window,\r\nusing less system resources.");
             this.chkAFK.UseVisualStyleBackColor = false;
             this.chkAFK.CheckedChanged += new System.EventHandler(this.ChkAFK_CheckedChanged);
+            this.chkAFK.Click += new System.EventHandler(this.ChkAFK_CheckedChanged);
             // 
             // lblVersion
             // 
@@ -265,7 +266,7 @@
             // 
             // tmrSteamQuery
             // 
-            this.tmrSteamQuery.Interval = 10000;
+            this.tmrSteamQuery.Interval = 300000;
             this.tmrSteamQuery.Tick += new System.EventHandler(this.TmrSteamQuery_Tick);
             // 
             // chkDiscord
@@ -361,6 +362,7 @@
             this.btnCW2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.btnCW2.FlatAppearance.BorderSize = 0;
             this.btnCW2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCW2.Font = new System.Drawing.Font("Prototype", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCW2.ForeColor = System.Drawing.Color.White;
             this.btnCW2.Location = new System.Drawing.Point(0, 307);
             this.btnCW2.Name = "btnCW2";
@@ -376,6 +378,7 @@
             this.btnCW1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.btnCW1.FlatAppearance.BorderSize = 0;
             this.btnCW1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCW1.Font = new System.Drawing.Font("Prototype", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCW1.ForeColor = System.Drawing.Color.White;
             this.btnCW1.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnCW1.Location = new System.Drawing.Point(0, 268);
@@ -392,6 +395,7 @@
             this.btnMilRP.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.btnMilRP.FlatAppearance.BorderSize = 0;
             this.btnMilRP.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnMilRP.Font = new System.Drawing.Font("Prototype", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnMilRP.ForeColor = System.Drawing.Color.White;
             this.btnMilRP.Location = new System.Drawing.Point(0, 229);
             this.btnMilRP.Name = "btnMilRP";
@@ -407,6 +411,7 @@
             this.btnZombies.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.btnZombies.FlatAppearance.BorderSize = 0;
             this.btnZombies.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnZombies.Font = new System.Drawing.Font("Prototype", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnZombies.ForeColor = System.Drawing.Color.White;
             this.btnZombies.Location = new System.Drawing.Point(0, 190);
             this.btnZombies.Name = "btnZombies";
@@ -422,6 +427,7 @@
             this.btnC18.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.btnC18.FlatAppearance.BorderSize = 0;
             this.btnC18.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnC18.Font = new System.Drawing.Font("Prototype", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnC18.ForeColor = System.Drawing.Color.White;
             this.btnC18.Location = new System.Drawing.Point(0, 151);
             this.btnC18.Name = "btnC18";
@@ -438,6 +444,7 @@
             this.btnSundown.Enabled = false;
             this.btnSundown.FlatAppearance.BorderSize = 0;
             this.btnSundown.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSundown.Font = new System.Drawing.Font("Prototype", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSundown.ForeColor = System.Drawing.Color.White;
             this.btnSundown.Location = new System.Drawing.Point(0, 112);
             this.btnSundown.Name = "btnSundown";
@@ -468,6 +475,7 @@
             this.btnDanktown.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.btnDanktown.FlatAppearance.BorderSize = 0;
             this.btnDanktown.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnDanktown.Font = new System.Drawing.Font("Prototype", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDanktown.ForeColor = System.Drawing.Color.White;
             this.btnDanktown.Location = new System.Drawing.Point(3, 73);
             this.btnDanktown.Name = "btnDanktown";

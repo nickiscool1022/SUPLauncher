@@ -128,6 +128,7 @@ namespace SUPLauncher
             Thread trd = new Thread(new ThreadStart(Run));
             trd.Start();
             InitializeComponent();
+            GetCurrentServer(steam.GetSteamId().ToString(), true);
             Thread.Sleep(5000);
             trd.Abort();
             refresh_img = imgrefresh.Image;
@@ -141,14 +142,20 @@ namespace SUPLauncher
             fonts.AddMemoryFont(fontPtr, Properties.Resources.Prototype.Length);
             AddFontMemResourceEx(fontPtr, (uint)Properties.Resources.Prototype.Length, IntPtr.Zero, ref dummy);
             System.Runtime.InteropServices.Marshal.FreeCoTaskMem(fontPtr);
-
             lblUsername.Font = new Font(fonts.Families[0], lblUsername.Font.Size);
             btnForums.Font = new Font(fonts.Families[0], btnForums.Font.Size);
             btnTS.Font = new Font(fonts.Families[0], btnTS.Font.Size);
             btnDRPRules.Font = new Font(fonts.Families[0], btnDRPRules.Font.Size);
-            btnMilRP.Font = new Font(fonts.Families[0], btnMilRP.Font.Size);
+            btnMilRPRules.Font = new Font(fonts.Families[0], btnMilRPRules.Font.Size);
             btnCWRPRules.Font = new Font(fonts.Families[0], btnCWRPRules.Font.Size);
             btnDupes.Font = new Font(fonts.Families[0], btnDupes.Font.Size);
+            btnDanktown.Font = new Font(fonts.Families[0], btnDanktown.Font.Size);
+            btnSundown.Font = new Font(fonts.Families[0], btnSundown.Font.Size);
+            btnC18.Font = new Font(fonts.Families[0], btnC18.Font.Size);
+            btnZombies.Font = new Font(fonts.Families[0], btnZombies.Font.Size);
+            btnMilRP.Font = new Font(fonts.Families[0], btnMilRP.Font.Size);
+            btnCW1.Font = new Font(fonts.Families[0], btnCW1.Font.Size);
+            btnCW2.Font = new Font(fonts.Families[0], btnCW2.Font.Size);
         }
       
         bool altdown = false;
@@ -299,7 +306,7 @@ namespace SUPLauncher
             }
             discord.Initialize();
             GetUsername();
-            GetDiscordCheckStatus();
+            //GetDiscordCheckStatus();
             GetCurrentServer(steam.GetSteamId().ToString(), true);
             GetDupes();
             try
@@ -465,6 +472,7 @@ namespace SUPLauncher
             if (chkAFK.Checked)
             {
                 notifyIcon1.ShowBalloonTip(5000, "AFK Mode", "You are now in AFK Mode. Press on a server from the list on the menu and confirm it in steam to begin AFKing on SUP!", ToolTipIcon.Info);
+                
             }
             else
             {
@@ -483,7 +491,8 @@ namespace SUPLauncher
             try
             {
                 Process.GetProcessesByName("gmod")[0].Kill();
-            } catch (Exception)
+            }
+            catch (Exception)
             {
                 // Do nothing if process does not exist
             }
@@ -514,7 +523,7 @@ namespace SUPLauncher
         void GetUsername()
         {
             ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12; // Secure security protocol for querying the steam API
-            HttpWebRequest request = WebRequest.CreateHttp("http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=27A2CB958256FB97DCFFEE9B634CD02E&steamids=" + steam.GetSteamId());
+            HttpWebRequest request = WebRequest.CreateHttp("http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=7875E26FC3C740C9901DDA4C6E74EB4E&steamids=" + steam.GetSteamId());
             request.UserAgent = new Random().NextDouble().ToString();
             WebResponse response = null;
             try
@@ -530,13 +539,13 @@ namespace SUPLauncher
                 lblUsername.Text = "SUP Launcher";
             }
         }
-        void GetDiscordCheckStatus()
-        {
-            if (File.Exists("1"))
-                chkDiscord.Checked = true;
-            else
-                chkDiscord.Checked = false;
-        }
+        //void GetDiscordCheckStatus()
+        //{
+        //    if (File.Exists("1"))
+        //        chkDiscord.Checked = true;
+        //    else
+        //        chkDiscord.Checked = false;
+        //}
         void AppStartCheck()
         {
             if (Process.GetProcessesByName("hl2").Length == 0 && Process.GetProcessesByName("gmod").Length == 0)
@@ -590,7 +599,7 @@ namespace SUPLauncher
             try
             {
                 ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12; // Secure security protocol for querying the steam API
-                HttpWebRequest request = WebRequest.CreateHttp("http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=27A2CB958256FB97DCFFEE9B634CD02E&steamids=" + steamID);
+                HttpWebRequest request = WebRequest.CreateHttp("http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=7875E26FC3C740C9901DDA4C6E74EB4E&steamids=" + steamID);
                 request.UserAgent = "Nick";
                 WebResponse response = null;
                 response = request.GetResponse(); // Get Response from webrequest
@@ -696,6 +705,22 @@ namespace SUPLauncher
                             playerServer = playerName + "(" + steamID + ") is on CWRP #2(208.103.169.17:27015)";
                         }
                         break;
+                    default:
+                        if (normalState)
+                        {
+                            panDanktown.BackColor = Color.RoyalBlue;
+                            panC18.BackColor = Color.RoyalBlue;
+                            panZombies.BackColor = Color.RoyalBlue;
+                            panMilRP.BackColor = Color.RoyalBlue;
+                            panCW1.BackColor = Color.RoyalBlue;
+                            panCW2.BackColor = Color.RoyalBlue;
+                            lblServer.Text = "";
+                        }
+                        else
+                        {
+                            playerServer = playerName + "(" + steamID + ") is on SUP at the moment.";
+                        }
+                        break;
                 }
             }
             catch (Exception)
@@ -719,7 +744,11 @@ namespace SUPLauncher
 
         private void TmrSteamQuery_Tick(object sender, EventArgs e)
         {
-            //GetCurrentServer(steam.GetSteamId().ToString(), true);
+            GetCurrentServer(steam.GetSteamId().ToString(), true);
+            if (lblServer.Text == "" && chkAFK.Checked)
+            {
+                BtnDanktown_Click(this, new EventArgs());
+            }
         }
 
         private void ChkDiscord_CheckedChanged(object sender, EventArgs e)
