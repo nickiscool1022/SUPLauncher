@@ -73,11 +73,11 @@ namespace SUPLauncher
             // it will be after rotation.
             PointF[] points =
             {
-        new PointF(0, 0),
-        new PointF(bm.Width, 0),
-        new PointF(bm.Width, bm.Height),
-        new PointF(0, bm.Height),
-    };
+                new PointF(0, 0),
+                new PointF(bm.Width, 0),
+                new PointF(bm.Width, bm.Height),
+                new PointF(0, bm.Height),
+            };
             rotate_at_origin.TransformPoints(points);
             float xmin, xmax, ymin, ymax;
             GetPointBounds(points, out xmin, out xmax,
@@ -456,15 +456,23 @@ namespace SUPLauncher
         }
         private void FrmLauncher_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (chkDiscord.Checked && File.Exists("1") == false)
+            try
             {
-                File.Create("1");
-                File.SetAttributes("1", FileAttributes.Hidden);
+                if (chkDiscord.Checked && File.Exists("1") == false)
+                {
+                    File.Create("1");
+                    File.SetAttributes("1", FileAttributes.Hidden);
+                }
+                else
+                    File.Delete("1");
+                Cef.Shutdown();
+                Interaction.Shell("taskkill /pid " + Process.GetCurrentProcess().Id.ToString() + " /f /t"); // Whoops
             }
-            else
-                File.Delete("1");
-            Cef.Shutdown();
-            Interaction.Shell("taskkill /pid " + Process.GetCurrentProcess().Id.ToString() + " /f /t"); // Whoops
+            catch (Exception)
+            {
+                Interaction.Shell("taskkill /pid " + Process.GetCurrentProcess().Id.ToString() + " /f /t");
+            }
+            
         }
         private void ChkAFK_CheckedChanged(object sender, EventArgs e)
         {
@@ -530,9 +538,11 @@ namespace SUPLauncher
             {
                 response = request.GetResponse();
                 StreamReader sr = new StreamReader(response.GetResponseStream()); // Create stream to access web data
-                string currentRecord = sr.ReadToEnd(); // Read data from response stream
-                string raw = currentRecord.Substring(currentRecord.IndexOf("personaname") + "personaname".Length + 3, (currentRecord.IndexOf("lastlogoff") - (currentRecord.IndexOf("personaname") + "personaname".Length + 6)));
-                lblUsername.Text = "SUP Launcher (" + raw.ToString() + ")";
+                string data = sr.ReadToEnd(); // Read data from response stream
+                var json = Newtonsoft.Json.JsonConvert.DeserializeObject<dynamic>(data);
+
+                // old: //string raw = currentRecord.Substring(currentRecord.IndexOf("personaname") + "personaname".Length + 3, (currentRecord.IndexOf("lastlogoff") - (currentRecord.IndexOf("personaname") + "personaname".Length + 6)));
+                /* new: */ lblUsername.Text = "SUP Launcher (" + json.response.players[0].personaname + ")";
             }
             catch (Exception)
             {
