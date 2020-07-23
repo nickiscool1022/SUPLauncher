@@ -69,25 +69,25 @@
             this.panC18 = new System.Windows.Forms.Panel();
             this.panSD = new System.Windows.Forms.Panel();
             this.panDanktown = new System.Windows.Forms.Panel();
+            this.picImage = new OvalPictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.topBar = new System.Windows.Forms.Panel();
             this.button1 = new System.Windows.Forms.Button();
             this.lblUsername = new System.Windows.Forms.Label();
+            this.ovalPictureBox1 = new OvalPictureBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.chkOverlay = new System.Windows.Forms.CheckBox();
             this.lblALTS = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
-            this.ovalPictureBox1 = new OvalPictureBox();
-            this.picImage = new OvalPictureBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.versionWarn)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.imgrefresh)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picImage)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.topBar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ovalPictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picImage)).BeginInit();
             this.SuspendLayout();
             // 
             // btnForums
@@ -96,7 +96,7 @@
             this.btnForums.FlatAppearance.BorderSize = 0;
             this.btnForums.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Gray;
             this.btnForums.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnForums.Font = new System.Drawing.Font("Prototype", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnForums.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnForums.ForeColor = System.Drawing.Color.White;
             this.btnForums.Location = new System.Drawing.Point(296, 228);
             this.btnForums.Name = "btnForums";
@@ -114,7 +114,7 @@
             this.btnTS.FlatAppearance.BorderSize = 0;
             this.btnTS.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Gray;
             this.btnTS.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnTS.Font = new System.Drawing.Font("Prototype", 10F);
+            this.btnTS.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.btnTS.ForeColor = System.Drawing.Color.White;
             this.btnTS.Location = new System.Drawing.Point(389, 228);
             this.btnTS.Name = "btnTS";
@@ -129,11 +129,11 @@
             // 
             this.label5.AutoSize = true;
             this.label5.BackColor = System.Drawing.Color.Transparent;
-            this.label5.Font = new System.Drawing.Font("Prototype", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.SystemColors.Control;
             this.label5.Location = new System.Drawing.Point(358, 204);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(51, 19);
+            this.label5.Size = new System.Drawing.Size(50, 18);
             this.label5.TabIndex = 13;
             this.label5.Text = "Other";
             // 
@@ -249,11 +249,11 @@
             this.lblVersion.AutoSize = true;
             this.lblVersion.BackColor = System.Drawing.Color.Transparent;
             this.lblVersion.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.lblVersion.Font = new System.Drawing.Font("Prototype", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblVersion.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblVersion.ForeColor = System.Drawing.SystemColors.Control;
             this.lblVersion.Location = new System.Drawing.Point(164, 425);
             this.lblVersion.Name = "lblVersion";
-            this.lblVersion.Size = new System.Drawing.Size(34, 20);
+            this.lblVersion.Size = new System.Drawing.Size(57, 20);
             this.lblVersion.TabIndex = 27;
             this.lblVersion.Text = "1.1.1.1";
             this.toolTip1.SetToolTip(this.lblVersion, "dd");
@@ -294,7 +294,7 @@
             this.btnDRPRules.FlatAppearance.BorderSize = 0;
             this.btnDRPRules.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Gray;
             this.btnDRPRules.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnDRPRules.Font = new System.Drawing.Font("Prototype", 10F);
+            this.btnDRPRules.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.btnDRPRules.ForeColor = System.Drawing.Color.White;
             this.btnDRPRules.Location = new System.Drawing.Point(279, 282);
             this.btnDRPRules.Margin = new System.Windows.Forms.Padding(0);
@@ -312,7 +312,7 @@
             this.btnMilRPRules.FlatAppearance.BorderSize = 0;
             this.btnMilRPRules.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Gray;
             this.btnMilRPRules.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnMilRPRules.Font = new System.Drawing.Font("Prototype", 10F);
+            this.btnMilRPRules.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.btnMilRPRules.ForeColor = System.Drawing.Color.White;
             this.btnMilRPRules.Location = new System.Drawing.Point(279, 323);
             this.btnMilRPRules.Margin = new System.Windows.Forms.Padding(0);
@@ -330,7 +330,7 @@
             this.btnCWRPRules.FlatAppearance.BorderSize = 0;
             this.btnCWRPRules.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Gray;
             this.btnCWRPRules.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCWRPRules.Font = new System.Drawing.Font("Prototype", 10F);
+            this.btnCWRPRules.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.btnCWRPRules.ForeColor = System.Drawing.Color.White;
             this.btnCWRPRules.Location = new System.Drawing.Point(279, 364);
             this.btnCWRPRules.Margin = new System.Windows.Forms.Padding(0);
@@ -347,11 +347,11 @@
             this.lblServer.AutoSize = true;
             this.lblServer.BackColor = System.Drawing.Color.Transparent;
             this.lblServer.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.lblServer.Font = new System.Drawing.Font("Prototype", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblServer.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblServer.ForeColor = System.Drawing.SystemColors.Control;
             this.lblServer.Location = new System.Drawing.Point(445, 431);
             this.lblServer.Name = "lblServer";
-            this.lblServer.Size = new System.Drawing.Size(34, 20);
+            this.lblServer.Size = new System.Drawing.Size(57, 20);
             this.lblServer.TabIndex = 36;
             this.lblServer.Text = "1.1.1.1";
             this.lblServer.Visible = false;
@@ -362,7 +362,7 @@
             this.btnCW2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.btnCW2.FlatAppearance.BorderSize = 0;
             this.btnCW2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCW2.Font = new System.Drawing.Font("Prototype", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCW2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCW2.ForeColor = System.Drawing.Color.White;
             this.btnCW2.Location = new System.Drawing.Point(0, 307);
             this.btnCW2.Name = "btnCW2";
@@ -378,7 +378,7 @@
             this.btnCW1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.btnCW1.FlatAppearance.BorderSize = 0;
             this.btnCW1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCW1.Font = new System.Drawing.Font("Prototype", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCW1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCW1.ForeColor = System.Drawing.Color.White;
             this.btnCW1.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnCW1.Location = new System.Drawing.Point(0, 268);
@@ -395,7 +395,7 @@
             this.btnMilRP.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.btnMilRP.FlatAppearance.BorderSize = 0;
             this.btnMilRP.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnMilRP.Font = new System.Drawing.Font("Prototype", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnMilRP.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnMilRP.ForeColor = System.Drawing.Color.White;
             this.btnMilRP.Location = new System.Drawing.Point(0, 229);
             this.btnMilRP.Name = "btnMilRP";
@@ -411,7 +411,7 @@
             this.btnZombies.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.btnZombies.FlatAppearance.BorderSize = 0;
             this.btnZombies.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnZombies.Font = new System.Drawing.Font("Prototype", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnZombies.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnZombies.ForeColor = System.Drawing.Color.White;
             this.btnZombies.Location = new System.Drawing.Point(0, 190);
             this.btnZombies.Name = "btnZombies";
@@ -427,7 +427,7 @@
             this.btnC18.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.btnC18.FlatAppearance.BorderSize = 0;
             this.btnC18.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnC18.Font = new System.Drawing.Font("Prototype", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnC18.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnC18.ForeColor = System.Drawing.Color.White;
             this.btnC18.Location = new System.Drawing.Point(0, 151);
             this.btnC18.Name = "btnC18";
@@ -444,7 +444,7 @@
             this.btnSundown.Enabled = false;
             this.btnSundown.FlatAppearance.BorderSize = 0;
             this.btnSundown.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSundown.Font = new System.Drawing.Font("Prototype", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSundown.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSundown.ForeColor = System.Drawing.Color.White;
             this.btnSundown.Location = new System.Drawing.Point(0, 112);
             this.btnSundown.Name = "btnSundown";
@@ -459,7 +459,7 @@
             this.btnDupes.FlatAppearance.BorderSize = 0;
             this.btnDupes.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Gray;
             this.btnDupes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnDupes.Font = new System.Drawing.Font("Prototype", 9F);
+            this.btnDupes.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.btnDupes.ForeColor = System.Drawing.Color.White;
             this.btnDupes.Location = new System.Drawing.Point(142, 368);
             this.btnDupes.Name = "btnDupes";
@@ -475,7 +475,7 @@
             this.btnDanktown.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.btnDanktown.FlatAppearance.BorderSize = 0;
             this.btnDanktown.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnDanktown.Font = new System.Drawing.Font("Prototype", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDanktown.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDanktown.ForeColor = System.Drawing.Color.White;
             this.btnDanktown.Location = new System.Drawing.Point(3, 73);
             this.btnDanktown.Name = "btnDanktown";
@@ -490,7 +490,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.BackColor = System.Drawing.Color.Transparent;
-            this.label2.Font = new System.Drawing.Font("Prototype", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.SystemColors.Control;
             this.label2.Location = new System.Drawing.Point(89, 39);
             this.label2.Name = "label2";
@@ -615,6 +615,23 @@
             this.panDanktown.Size = new System.Drawing.Size(10, 33);
             this.panDanktown.TabIndex = 41;
             // 
+            // picImage
+            // 
+            this.picImage.BackColor = System.Drawing.Color.Transparent;
+            this.picImage.BackgroundImage = global::SUPLauncher.Properties.Resources.suplogo;
+            this.picImage.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.picImage.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.picImage.ErrorImage = global::SUPLauncher.Properties.Resources.suplogo;
+            this.picImage.Location = new System.Drawing.Point(12, 352);
+            this.picImage.Name = "picImage";
+            this.picImage.Size = new System.Drawing.Size(100, 100);
+            this.picImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.picImage.TabIndex = 25;
+            this.picImage.TabStop = false;
+            this.toolTip1.SetToolTip(this.picImage, "This is your avatar that is stored\r\non your SUP profile. Clicking this\r\nopens you" +
+        "r SUP profile in a new\r\nbrowser window.");
+            this.picImage.Click += new System.EventHandler(this.PicImage_Click);
+            // 
             // pictureBox1
             // 
             this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
@@ -666,13 +683,28 @@
             this.lblUsername.AutoSize = true;
             this.lblUsername.BackColor = System.Drawing.Color.Transparent;
             this.lblUsername.Cursor = System.Windows.Forms.Cursors.Arrow;
-            this.lblUsername.Font = new System.Drawing.Font("Prototype", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblUsername.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblUsername.ForeColor = System.Drawing.SystemColors.Control;
             this.lblUsername.Location = new System.Drawing.Point(37, 4);
             this.lblUsername.Name = "lblUsername";
-            this.lblUsername.Size = new System.Drawing.Size(159, 20);
+            this.lblUsername.Size = new System.Drawing.Size(169, 20);
             this.lblUsername.TabIndex = 46;
             this.lblUsername.Text = "SUP Launcher (Name)";
+            // 
+            // ovalPictureBox1
+            // 
+            this.ovalPictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.ovalPictureBox1.BackColor = System.Drawing.Color.Transparent;
+            this.ovalPictureBox1.BackgroundImage = global::SUPLauncher.Properties.Resources.suplogo;
+            this.ovalPictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.ovalPictureBox1.Cursor = System.Windows.Forms.Cursors.Arrow;
+            this.ovalPictureBox1.ErrorImage = global::SUPLauncher.Properties.Resources.suplogo;
+            this.ovalPictureBox1.Location = new System.Drawing.Point(3, 1);
+            this.ovalPictureBox1.Name = "ovalPictureBox1";
+            this.ovalPictureBox1.Size = new System.Drawing.Size(28, 27);
+            this.ovalPictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.ovalPictureBox1.TabIndex = 49;
+            this.ovalPictureBox1.TabStop = false;
             // 
             // textBox1
             // 
@@ -704,6 +736,7 @@
             this.toolTip1.SetToolTip(this.chkOverlay, "If enabled, the SUP overlay will be be drawn\r\neverytime the ALT key and the S key" +
         " is pressed.");
             this.chkOverlay.UseVisualStyleBackColor = false;
+            this.chkOverlay.CheckedChanged += new System.EventHandler(this.chkOverlay_CheckedChanged);
             // 
             // lblALTS
             // 
@@ -740,38 +773,6 @@
             // 
             this.notifyIcon1.BalloonTipIcon = System.Windows.Forms.ToolTipIcon.Info;
             this.notifyIcon1.Icon = ((System.Drawing.Icon)(resources.GetObject("notifyIcon1.Icon")));
-            // 
-            // ovalPictureBox1
-            // 
-            this.ovalPictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.ovalPictureBox1.BackColor = System.Drawing.Color.Transparent;
-            this.ovalPictureBox1.BackgroundImage = global::SUPLauncher.Properties.Resources.suplogo;
-            this.ovalPictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ovalPictureBox1.Cursor = System.Windows.Forms.Cursors.Arrow;
-            this.ovalPictureBox1.ErrorImage = global::SUPLauncher.Properties.Resources.suplogo;
-            this.ovalPictureBox1.Location = new System.Drawing.Point(3, 1);
-            this.ovalPictureBox1.Name = "ovalPictureBox1";
-            this.ovalPictureBox1.Size = new System.Drawing.Size(28, 27);
-            this.ovalPictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.ovalPictureBox1.TabIndex = 49;
-            this.ovalPictureBox1.TabStop = false;
-            // 
-            // picImage
-            // 
-            this.picImage.BackColor = System.Drawing.Color.Transparent;
-            this.picImage.BackgroundImage = global::SUPLauncher.Properties.Resources.suplogo;
-            this.picImage.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.picImage.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.picImage.ErrorImage = global::SUPLauncher.Properties.Resources.suplogo;
-            this.picImage.Location = new System.Drawing.Point(12, 352);
-            this.picImage.Name = "picImage";
-            this.picImage.Size = new System.Drawing.Size(100, 100);
-            this.picImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.picImage.TabIndex = 25;
-            this.picImage.TabStop = false;
-            this.toolTip1.SetToolTip(this.picImage, "This is your avatar that is stored\r\non your SUP profile. Clicking this\r\nopens you" +
-        "r SUP profile in a new\r\nbrowser window.");
-            this.picImage.Click += new System.EventHandler(this.PicImage_Click);
             // 
             // frmLauncher
             // 
@@ -813,11 +814,11 @@
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.versionWarn)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.imgrefresh)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picImage)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.topBar.ResumeLayout(false);
             this.topBar.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ovalPictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picImage)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

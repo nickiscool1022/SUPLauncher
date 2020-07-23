@@ -20,6 +20,7 @@ namespace SUPLauncher
         {
             InitializeComponent();
         }
+        public static DupeManager dupemanager;
         private void Button1_Click(object sender, EventArgs e)
         {
             Process.Start("https://forum.superiorservers.co");
@@ -44,7 +45,7 @@ namespace SUPLauncher
             IntPtr handle = FindWindow(null, WINDOW_NAME);
             pictureBox1.Focus();
             GetWindowRect(handle, out rect);
-            this.Size = new Size(rect.right - rect.left, rect.bottom - rect.top);
+            this.Size = new Size(this.Width, rect.bottom - rect.top);
             this.Top = rect.top;
             this.Left = rect.right - this.Bounds.Width;
             this.Focus();
@@ -76,9 +77,17 @@ namespace SUPLauncher
         }
         private void Button17_Click(object sender, EventArgs e)
         {
-            DupeManager dm = new DupeManager();
-            dm.Show();
-            dm.TopMost = true;
+            if (dupemanager == null || dupemanager.IsDisposed)
+            {
+                dupemanager = new DupeManager();
+                dupemanager.Show();
+            }
+            else
+            {
+                dupemanager.Visible = true;
+            }
+            dupemanager.TopMost = true;
+
         }
         private void Overlay_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -171,6 +180,8 @@ namespace SUPLauncher
 
         private void Overlay_VisibleChanged(object sender, EventArgs e)
         {
+            if (dupemanager != null && dupemanager.IsDisposed == false) { dupemanager.Visible = this.Visible; }
+
             if (this.Visible)
                 Overlay_Load(this, new EventArgs());
             else

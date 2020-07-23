@@ -15,6 +15,7 @@ using System.IO;
 using CefSharp.WinForms;
 using CefSharp;
 using System.Reflection;
+using System.Threading;
 
 namespace SUPLauncher
 {
@@ -28,7 +29,7 @@ namespace SUPLauncher
         string steamid = "";
         ChromiumWebBrowser chrome = new ChromiumWebBrowser();
         bool opened = false;
-        
+
         //bool opened = false;
         /// <summary>
         /// Open up a profile of the specified steamid.
@@ -39,15 +40,43 @@ namespace SUPLauncher
             InitializeComponent();
             InitializeChromium(steamID);
             steamid = steamID;
-            Width = Screen.PrimaryScreen.WorkingArea.Width;
+            Width = Screen.PrimaryScreen.WorkingArea.Width / 2;
             Height = Screen.PrimaryScreen.WorkingArea.Height / 2 + 100;
+        }
+
+        private void hide()
+        {
+            if (InvokeRequired)
+            {
+                this.Invoke(new Action(hide), new object[] {  });
+
+            }
+
+            panel2.Visible = false;
+            panel2.Dispose();
+
         }
 
         private void InitializeChromium(string steamID)
         {
+            
+
+
             chrome.Load("https://superiorservers.co/profile/" + steamID);
             this.panel1.Controls.Add(chrome);
             chrome.Dock = DockStyle.Fill;
+            chrome.LoadingStateChanged += (sender, args) =>
+            {
+                //Wait for the Page to finish loading
+                if (args.IsLoading == false)
+                {
+                    
+                    chrome.ExecuteScriptAsync("document.getElementsByClassName(\"navbar\")[0].remove();"); // Use javascript magic to remove the navbar from the page.
+                    hide();
+
+                }
+            };
+            
         }
         private void TopBar_MouseUp(object sender, MouseEventArgs e)
         {

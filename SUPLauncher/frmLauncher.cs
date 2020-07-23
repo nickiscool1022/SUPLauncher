@@ -334,6 +334,9 @@ namespace SUPLauncher
                 MessageBox.Show(ex.ToString());
                 FrmLauncher_FormClosing(this, new FormClosingEventArgs(CloseReason.ApplicationExitCall, false));
             }
+
+            chkOverlay.Checked = Properties.Settings.Default.overlayEnabled;
+
         }
         // "Process.Start("steam:");" is for focusing steam
         private void BtnDanktown_Click(object sender, EventArgs e)
@@ -1093,6 +1096,12 @@ namespace SUPLauncher
                 toolTip1.ToolTipTitle = "Your avatar";
             else
                 toolTip1.ToolTipTitle = e.AssociatedControl.Text;
+        }
+
+        private void chkOverlay_CheckedChanged(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.overlayEnabled = chkOverlay.Checked;
+            Properties.Settings.Default.Save();
         }
     }
     public static class MemoryStreamExtensions
