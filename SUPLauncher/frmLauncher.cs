@@ -128,9 +128,15 @@ namespace SUPLauncher
         private PrivateFontCollection fonts = new PrivateFontCollection();
         public frmLauncher()
         {
+            if (Process.GetProcessesByName("steam").Length == 0) // Check if steam is running (Thanks Red Means Recording)
+            {
+                MessageBox.Show("An error occurred. Please restart the program when steam is running.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Interaction.Shell("taskkill /pid " + Process.GetCurrentProcess().Id.ToString() + " /f");
+            }
             Thread trd = new Thread(new ThreadStart(Run));
             trd.Start();
             InitializeComponent();
+
             GetCurrentServer(steam.GetSteamId().ToString(), true);
             Thread.Sleep(5000);
             trd.Abort();
@@ -231,9 +237,12 @@ namespace SUPLauncher
             if (hl2.Length > 0)
             {
                 return hl2[0];
-            } else
+            } else if (gmod.Length > 0)
             {
                 return gmod[0];
+            } else
+            {
+                return null;
             }
 
         }
@@ -308,6 +317,8 @@ namespace SUPLauncher
         private void FrmLauncher_Load(object sender, EventArgs e)
         {
 
+
+
             if (ClientUpdater.checkForUpdates())
             {
                 versionWarn.Visible = true;
@@ -323,12 +334,7 @@ namespace SUPLauncher
 
             imgrefresh.SizeMode = PictureBoxSizeMode.StretchImage;
             imgrefresh.Refresh();
-            if (Process.GetProcessesByName("steam").Length == 0) // Check if steam is running (Thanks Red Means Recording)
-            {
-                MessageBox.Show("An error occurred. Please restart the program when steam is running.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                Process.Start("steam:");
-                Interaction.Shell("taskkill /pid " + Process.GetCurrentProcess().Id.ToString() + " /f");
-            }
+
             discord.Initialize();
             GetUsername();
             //GetDiscordCheckStatus();
@@ -1136,17 +1142,20 @@ namespace SUPLauncher
 
         public void loadOverlay()
         {
-            if (chkOverlay.Checked)
-            {
+            if (getGmodProcess() != null) {
+                if (chkOverlay.Checked)
+                {
                     overlay.Show();
                     overlay.Visible = false;
-            } else
-            {
-                if (overlay != null)
+                }
+                else
                 {
-                    if (!overlay.IsDisposed)
+                    if (overlay != null)
                     {
-                        overlay.Close();
+                        if (!overlay.IsDisposed)
+                        {
+                            overlay.Close();
+                        }
                     }
                 }
             }
