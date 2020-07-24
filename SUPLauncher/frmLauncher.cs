@@ -25,7 +25,7 @@ namespace SUPLauncher
         bool appStarted = false;
         public static string dupePath = "";
         string playerServer;
-        private readonly SteamBridge steam = new SteamBridge();
+        public static readonly SteamBridge steam = new SteamBridge();
         public static string forumSteamIDLookup = "";
         bool isTopPanelDragged = false;
         bool isWindowMaximized = false;
@@ -37,6 +37,8 @@ namespace SUPLauncher
         public static bool overlayVisable = false;
         public static Overlay overlay = new Overlay();
         public static Bans banPage = null;
+
+
         private void rotateInThread(Bitmap bm, float angle)
         {
                 if (InvokeRequired)
@@ -46,6 +48,7 @@ namespace SUPLauncher
                 }
            refresh_img = RotateBitmap(bm, angle);
         }
+
 
         private void GetPointBounds(PointF[] points, out float xmin, out float xmax, out float ymin, out float ymax)
         {
@@ -164,7 +167,7 @@ namespace SUPLauncher
         static extern bool SetForegroundWindow(IntPtr hWnd);
         private void Keyboard(object sender, GlobalKeyboardHookEventArgs e)
         {
-            //MessageBox.Show(e.KeyboardState.ToString(), e.KeyboardData.VirtualCode.ToString());
+            
 
             if (chkOverlay.Checked)
             {
@@ -191,12 +194,12 @@ namespace SUPLauncher
                     {
                         if (overlayVisable)
                         {
-                            SetForegroundWindow(Process.GetProcessesByName("hl2")[0].MainWindowHandle);
+                            SetForegroundWindow(getGmodProcess().MainWindowHandle);
                             overlay.Visible = false;
                         }
                         else
                         {
-                            SetForegroundWindow(Process.GetProcessesByName("hl2")[0].MainWindowHandle);
+                            SetForegroundWindow(getGmodProcess().MainWindowHandle);
                             overlay.Visible = true;
                             
                             SetForegroundWindow(Process.GetCurrentProcess().MainWindowHandle);
@@ -214,6 +217,28 @@ namespace SUPLauncher
         {
             Application.Run(new Splashscreen1());
         }
+
+
+
+        /// <summary>
+        /// Gets the gmod process, this works even if gmod is on another branch.
+        /// </summary>
+        
+        public static Process getGmodProcess()
+        {
+            Process[] hl2 = Process.GetProcessesByName("hl2");
+            Process[] gmod = Process.GetProcessesByName("gmod");
+            if (hl2.Length > 0)
+            {
+                return hl2[0];
+            } else
+            {
+                return gmod[0];
+            }
+
+        }
+
+
 
         private void TopBar_MouseUp(object sender, MouseEventArgs e)
         {
@@ -336,6 +361,8 @@ namespace SUPLauncher
             }
 
             chkOverlay.Checked = Properties.Settings.Default.overlayEnabled;
+
+            loadOverlay();
 
         }
         // "Process.Start("steam:");" is for focusing steam
@@ -561,7 +588,7 @@ namespace SUPLauncher
         //}
         void AppStartCheck()
         {
-            if (Process.GetProcessesByName("hl2").Length == 0 && Process.GetProcessesByName("gmod").Length == 0)
+            if (getGmodProcess() == null)
                 appStarted = false;
             else
                 appStarted = true;
@@ -1097,13 +1124,38 @@ namespace SUPLauncher
             else
                 toolTip1.ToolTipTitle = e.AssociatedControl.Text;
         }
-
+        
         private void chkOverlay_CheckedChanged(object sender, EventArgs e)
         {
             Properties.Settings.Default.overlayEnabled = chkOverlay.Checked;
             Properties.Settings.Default.Save();
+
+            loadOverlay();
+
         }
+
+        public void loadOverlay()
+        {
+            if (chkOverlay.Checked)
+            {
+                    overlay.Show();
+                    overlay.Visible = false;
+            } else
+            {
+                if (overlay != null)
+                {
+                    if (!overlay.IsDisposed)
+                    {
+                        overlay.Close();
+                    }
+                }
+            }
+        }
+
     }
+
+
+
     public static class MemoryStreamExtensions
     {
         public static string ReadTerminatedString(this MemoryStream ms)

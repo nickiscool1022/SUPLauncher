@@ -1,11 +1,14 @@
 ﻿
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Diagnostics;
 using System.Drawing;
+using System.IO;
 using System.Linq;
+using System.Net;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading;
@@ -30,7 +33,7 @@ namespace SUPLauncher
             public int left, top, right, bottom;
         }
         RECT rect;
-        public const string WINDOW_NAME = "Garry's Mod";
+        
         [DllImport("user32.dll")]
         static extern int SetWindowLong(IntPtr hWnd, int nIndex, int dwNewLong);
         [DllImport("user32.dll")]
@@ -40,9 +43,13 @@ namespace SUPLauncher
         [DllImport("user32.dll")]
         [return: MarshalAs(UnmanagedType.Bool)]
         public static extern bool GetWindowRect(IntPtr hwnd, out RECT ipRect);
+
+        IntPtr ClipboardViewerNext;
+
         private void Overlay_Load(object sender, EventArgs e)
         {
-            IntPtr handle = FindWindow(null, WINDOW_NAME);
+                                    
+            IntPtr handle = FindWindow(null, frmLauncher.getGmodProcess().MainWindowTitle);
             pictureBox1.Focus();
             GetWindowRect(handle, out rect);
             this.Size = new Size(this.Width, rect.bottom - rect.top);
@@ -50,6 +57,45 @@ namespace SUPLauncher
             this.Left = rect.right - this.Bounds.Width;
             this.Focus();
             frmLauncher.overlayVisable = true;
+            
+            // Set Clipboard listener    
+            if (ClipboardViewerNext.ToInt32() == 0)
+            {
+                ClipboardViewerNext = SetClipboardViewer(this.Handle);
+                
+            }
+
+            HttpWebRequest request = WebRequest.CreateHttp("https://superiorservers.co/api/profile/" + frmLauncher.steam.GetSteamId());
+            request.UserAgent = "Browser";
+            WebResponse response = null;
+            response = request.GetResponse(); // Get Response from webrequest
+            StreamReader sr = new StreamReader(response.GetResponseStream()); // Create stream to access web data
+            var result = Newtonsoft.Json.JsonConvert.DeserializeObject<dynamic>(sr.ReadToEnd());
+            string[] staffRanks = { "Moderator", "Admin", "Double Admin", "Super Admin", "Council", "Root" };
+
+
+            foreach (string x in staffRanks)
+            {
+
+                if (result.Badmin.Ranks.GetValue("DarkRP & Zombies") == x)
+                {
+                    staffTools.Visible = true;
+                }
+
+                if (result.Badmin.Ranks.GetValue("CWRP") == x)
+                {
+                    staffTools.Visible = true;
+                }
+
+                if (result.Badmin.Ranks.GetValue("MilRP") == x)
+                {
+                    staffTools.Visible = true;
+                }
+            }
+            
+            
+            //if (staffRanks.Contains(result.Badmin.Ranks)
+
         }
         private void Button14_Click(object sender, EventArgs e)
         {
@@ -187,6 +233,69 @@ namespace SUPLauncher
             else
                 Overlay_FormClosing(this, new FormClosingEventArgs(CloseReason.None, false));
         }
+
+
+        public static event EventHandler ClipboardUpdate;
+
+        private static void OnClipboardUpdate(EventArgs e)
+        {
+            var handler = ClipboardUpdate;
+            if (handler != null)
+            {
+                handler(null, e);
+            }
+        }
+        profile profile;
+        protected override void WndProc(ref Message m)
+        {
+
+            // Listen for operating system Hot Key messages    
+
+            base.WndProc(ref m);
+            // Listen for operating system Clipboard changes    
+
+            if (m.Msg == 0x308)
+            {
+                if (checkBox1.Checked)
+                {
+                    bool steamid = false;
+                    long s = 0;
+                    if (Clipboard.GetText().StartsWith("STEAM_") && Clipboard.GetText().Length > 17)
+                    {
+                        steamid = true;
+                    }
+                    else if (long.TryParse(Clipboard.GetText(), out s) && Clipboard.GetText().Length == 17)
+                    {
+                        steamid = true;
+                    }
+
+                    if (steamid)
+                    {
+                        if (profile == null || profile.IsDisposed)
+                        {
+                            profile = new profile();
+                            profile.TopMost = true;
+
+                        }
+
+
+                        profile.Visible = true;
+                        profile.steam = Clipboard.GetText();
+                        profile.initProfile(profile.steam);
+
+                    }
+
+                }
+            }
+            
+                
+        }
+
+        [DllImport("User32.dll", CharSet = CharSet.Auto)]
+        public static extern IntPtr SetClipboardViewer(IntPtr hWndNewViewer);
+
+
+
     }
 }
 
