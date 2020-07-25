@@ -1145,8 +1145,13 @@ namespace SUPLauncher
             if (getGmodProcess() != null) {
                 if (chkOverlay.Checked)
                 {
+                    if (overlay.IsDisposed)
+                    {
+                        overlay = new Overlay();
+                    }
                     overlay.Show();
                     overlay.Visible = false;
+                        
                 }
                 else
                 {
