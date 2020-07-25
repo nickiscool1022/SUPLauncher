@@ -5,6 +5,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Security.Principal;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -31,6 +32,30 @@ namespace SUPLauncher
             {
                 if (Interaction.MsgBox("You do not have the lastest version(" + newestVersion + "). Would you like to go download the latest version?", MsgBoxStyle.YesNo, "Download latest version") == MsgBoxResult.Yes) // If they choose to update
                 {
+
+                    bool isElevated;
+                    using (WindowsIdentity identity = WindowsIdentity.GetCurrent())
+                    {
+                        WindowsPrincipal principal = new WindowsPrincipal(identity);
+                        isElevated = principal.IsInRole(WindowsBuiltInRole.Administrator);
+                    }
+
+                    if (!isElevated)
+                    {
+                        DialogResult d = MessageBox.Show("To update you must launch the SUPLauncher with administrative privileges. Would you like to restart with administrative privileges?", "ERROR", MessageBoxButtons.YesNo, MessageBoxIcon.Error);
+                        if (d == DialogResult.Yes)
+                        {
+                            ProcessStartInfo info = new ProcessStartInfo(Application.ExecutablePath);
+                            info.UseShellExecute = true;
+                            info.Verb = "runas";
+                            Process.Start(info);
+                            Application.Exit();
+                        } else
+                        {
+                            return;
+                        }
+                    }
+
                     //int counter = 0;
                     //while (webData[counter].Contains("browser_download_url") == false) // Search for browser download url
                     //{
