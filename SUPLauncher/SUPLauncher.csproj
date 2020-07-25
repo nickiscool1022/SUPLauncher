@@ -202,6 +202,12 @@
     <Compile Include="NewProgressBar.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Noffication.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Noffication.Designer.cs">
+      <DependentUpon>Noffication.cs</DependentUpon>
+    </Compile>
     <Compile Include="OvalPictureBox.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -246,6 +252,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="NewProgressBar.resx">
       <DependentUpon>NewProgressBar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Noffication.resx">
+      <DependentUpon>Noffication.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Overlay.resx">
       <DependentUpon>Overlay.cs</DependentUpon>

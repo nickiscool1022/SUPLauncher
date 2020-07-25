@@ -1151,7 +1151,11 @@ namespace SUPLauncher
                     }
                     overlay.Show();
                     overlay.Visible = false;
-                        
+
+
+                    Noffication noffication = new Noffication("SUPLauncher overlay is enabled.\n(ALT + S)", frmLauncher.getGmodProcess());
+                    noffication.Show();
+                    SetForegroundWindow(frmLauncher.getGmodProcess().MainWindowHandle);
                 }
                 else
                 {
@@ -1168,10 +1172,11 @@ namespace SUPLauncher
 
     }
 
-
+    
 
     public static class MemoryStreamExtensions
     {
+        
         public static string ReadTerminatedString(this MemoryStream ms)
         {
             List<byte> res = new List<byte>();

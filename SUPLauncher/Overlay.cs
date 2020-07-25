@@ -92,9 +92,11 @@ namespace SUPLauncher
                     staffTools.Visible = true;
                 }
             }
-            
-            
+
+
             //if (staffRanks.Contains(result.Badmin.Ranks)
+
+
 
         }
         private void Button14_Click(object sender, EventArgs e)
@@ -291,11 +293,30 @@ namespace SUPLauncher
                 
         }
 
+        [DllImport("user32.dll")]
+        static extern bool SetForegroundWindow(IntPtr hWnd);
+
         [DllImport("User32.dll", CharSet = CharSet.Auto)]
         public static extern IntPtr SetClipboardViewer(IntPtr hWndNewViewer);
 
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
 
 
+
+            this.Visible = false;
+            if (!checkBox1.Checked)
+            {
+                Noffication noffication = new Noffication("Profile overlays have now been disabled.", frmLauncher.getGmodProcess(), "STAFF TOOLS");
+                noffication.Show();
+            } else
+            {
+                Noffication noffication = new Noffication("Profile overlays have now been enabled.\n(Opens whenever you copy SteamID's)", frmLauncher.getGmodProcess(), "STAFF TOOLS");
+                noffication.Show();
+            }
+            
+
+        }
     }
 }
 

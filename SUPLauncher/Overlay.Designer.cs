@@ -299,6 +299,7 @@
             this.toolTip1.SetToolTip(this.checkBox1, "Automatically display sup profiles from clipboard or click button below to ask fo" +
         "r input.");
             this.checkBox1.UseVisualStyleBackColor = true;
+            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
             // 
             // label3
             // 
