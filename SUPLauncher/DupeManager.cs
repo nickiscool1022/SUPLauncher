@@ -377,6 +377,22 @@ namespace SUPLauncher
 
         private void pictureBox1_Click(object sender, EventArgs e)
         {
+
+            new Thread(() =>
+            {
+                int i = 0;
+                while (i != 10)
+                {
+                    i = i + 1;
+                    Thread.Sleep(70);
+                    rotateInThread(new Bitmap(refresh_img), 90);
+                    pictureBox1.Image = refresh_img;
+                }
+
+                pictureBox1.Image = original_refreshimg;
+                return;
+            }).Start();
+
             reloadFoldersAndFiles();
         }
 
