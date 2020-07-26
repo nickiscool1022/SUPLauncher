@@ -1041,7 +1041,7 @@ namespace SUPLauncher
             while (i != 10)
             {
                 i = i + 1;
-                    Thread.Sleep(30);
+                    Thread.Sleep(70);
                     rotateInThread(new Bitmap(refresh_img), 90);
                     imgrefresh.Image = refresh_img;
             }

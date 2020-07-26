@@ -139,14 +139,16 @@ namespace SUPLauncher
                 dtDateTime = dtDateTime.AddSeconds(long.Parse(result.Badmin.FirstJoin.ToString())).ToLocalTime();
 
                 first_join.Text = dtDateTime.ToString("dd/MM/yyyy hh:mm tt");
-
+                
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.StackTrace);
+                MessageBox.Show(ex.StackTrace, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
+        [DllImport("user32.dll")]
+        static extern bool SetForegroundWindow(IntPtr hWnd);
         private void button1_Click(object sender, EventArgs e)
         {
 
@@ -164,7 +166,7 @@ namespace SUPLauncher
 
         private void button2_Click(object sender, EventArgs e)
         {
-            this.Close();
+            this.Visible = false;
         }
 
         private void button3_Click(object sender, EventArgs e)

@@ -281,9 +281,11 @@ namespace SUPLauncher
                         }
 
 
-                        profile.Visible = true;
+                        
                         profile.steam = Clipboard.GetText();
                         profile.initProfile(profile.steam);
+                        profile.Visible = true;
+                        SetForegroundWindow(frmLauncher.getGmodProcess().MainWindowHandle);
 
                     }
 
