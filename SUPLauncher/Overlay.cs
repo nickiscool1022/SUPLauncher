@@ -314,7 +314,8 @@ namespace SUPLauncher
                 Noffication noffication = new Noffication("Profile overlays have now been enabled.\n(Opens whenever you copy SteamID's)", frmLauncher.getGmodProcess(), "STAFF TOOLS");
                 noffication.Show();
             }
-            
+            SetForegroundWindow(frmLauncher.getGmodProcess().MainWindowHandle);
+
 
         }
     }

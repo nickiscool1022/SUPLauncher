@@ -86,7 +86,7 @@
             // closeOn
             // 
             this.closeOn.Enabled = true;
-            this.closeOn.Interval = 5000;
+            this.closeOn.Interval = 8000;
             this.closeOn.Tick += new System.EventHandler(this.closeOn_Tick);
             // 
             // Noffication
@@ -98,6 +98,8 @@
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "Noffication";
+            this.ShowIcon = false;
+            this.ShowInTaskbar = false;
             this.Text = "Noffication";
             this.TopMost = true;
             this.TransparencyKey = System.Drawing.SystemColors.WindowText;

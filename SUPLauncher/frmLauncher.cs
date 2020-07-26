@@ -1149,7 +1149,7 @@ namespace SUPLauncher
                     {
                         overlay = new Overlay();
                     }
-                    overlay.Show();
+                    
                     overlay.Visible = false;
 
 
