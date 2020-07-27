@@ -48,8 +48,12 @@ namespace SUPLauncher
 
         private void Overlay_Load(object sender, EventArgs e)
         {
-                                    
-            IntPtr handle = FindWindow(null, frmLauncher.getGmodProcess().MainWindowTitle);
+            // test 64 bit shit u retard @Best of all
+            string WINDOW_NAME = "Garry's Mod";
+            Process proc = frmLauncher.getGmodProcess();
+            if (proc.ProcessName == "gmod")
+                WINDOW_NAME = "Garry's Mod (x64)";
+            IntPtr handle = FindWindow(null, WINDOW_NAME);
             pictureBox1.Focus();
             GetWindowRect(handle, out rect);
             this.Size = new Size(this.Width, rect.bottom - rect.top);
