@@ -58,6 +58,7 @@
             this.button10 = new System.Windows.Forms.Button();
             this.button9 = new System.Windows.Forms.Button();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.label5 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.overlayPanel.SuspendLayout();
             this.staffTools.SuspendLayout();
@@ -103,9 +104,9 @@
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.button2.ForeColor = System.Drawing.Color.White;
-            this.button2.Location = new System.Drawing.Point(9, 126);
+            this.button2.Location = new System.Drawing.Point(12, 126);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(200, 27);
+            this.button2.Size = new System.Drawing.Size(198, 27);
             this.button2.TabIndex = 2;
             this.button2.Text = "TeamSpeak";
             this.toolTip1.SetToolTip(this.button2, "Opens teamspeak and connects to the superiorservers teamspeak.");
@@ -121,9 +122,9 @@
             this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.button3.ForeColor = System.Drawing.Color.White;
-            this.button3.Location = new System.Drawing.Point(9, 159);
+            this.button3.Location = new System.Drawing.Point(12, 159);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(200, 27);
+            this.button3.Size = new System.Drawing.Size(197, 27);
             this.button3.TabIndex = 3;
             this.button3.Text = "Danktown";
             this.toolTip1.SetToolTip(this.button3, "Connects you to this server.");
@@ -139,9 +140,9 @@
             this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.button4.ForeColor = System.Drawing.Color.White;
-            this.button4.Location = new System.Drawing.Point(9, 192);
+            this.button4.Location = new System.Drawing.Point(12, 192);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(200, 27);
+            this.button4.Size = new System.Drawing.Size(197, 27);
             this.button4.TabIndex = 4;
             this.button4.Text = "C18";
             this.toolTip1.SetToolTip(this.button4, "Connects you to this server.");
@@ -157,9 +158,9 @@
             this.button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.button5.ForeColor = System.Drawing.Color.White;
-            this.button5.Location = new System.Drawing.Point(9, 225);
+            this.button5.Location = new System.Drawing.Point(12, 225);
             this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(200, 27);
+            this.button5.Size = new System.Drawing.Size(197, 27);
             this.button5.TabIndex = 5;
             this.button5.Text = "Zombies";
             this.toolTip1.SetToolTip(this.button5, "Connects you to this server.");
@@ -175,9 +176,9 @@
             this.button6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button6.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.button6.ForeColor = System.Drawing.Color.White;
-            this.button6.Location = new System.Drawing.Point(9, 258);
+            this.button6.Location = new System.Drawing.Point(12, 258);
             this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(200, 27);
+            this.button6.Size = new System.Drawing.Size(197, 27);
             this.button6.TabIndex = 6;
             this.button6.Text = "MilRP";
             this.toolTip1.SetToolTip(this.button6, "Connects you to this server.");
@@ -193,9 +194,9 @@
             this.button7.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button7.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.button7.ForeColor = System.Drawing.Color.White;
-            this.button7.Location = new System.Drawing.Point(9, 291);
+            this.button7.Location = new System.Drawing.Point(12, 291);
             this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(200, 27);
+            this.button7.Size = new System.Drawing.Size(197, 27);
             this.button7.TabIndex = 7;
             this.button7.Text = "CWRP";
             this.toolTip1.SetToolTip(this.button7, "Connects you to this server.");
@@ -211,9 +212,9 @@
             this.button8.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button8.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.button8.ForeColor = System.Drawing.Color.White;
-            this.button8.Location = new System.Drawing.Point(9, 324);
+            this.button8.Location = new System.Drawing.Point(12, 324);
             this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(200, 27);
+            this.button8.Size = new System.Drawing.Size(197, 27);
             this.button8.TabIndex = 8;
             this.button8.Text = "CWRP 2";
             this.toolTip1.SetToolTip(this.button8, "Connects you to this server.");
@@ -223,6 +224,7 @@
             // overlayPanel
             // 
             this.overlayPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(14)))), ((int)(((byte)(14)))), ((int)(((byte)(14)))));
+            this.overlayPanel.Controls.Add(this.label5);
             this.overlayPanel.Controls.Add(this.label1);
             this.overlayPanel.Controls.Add(this.staffTools);
             this.overlayPanel.Controls.Add(this.panel1);
@@ -363,9 +365,9 @@
             this.button17.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button17.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.button17.ForeColor = System.Drawing.Color.White;
-            this.button17.Location = new System.Drawing.Point(9, 357);
+            this.button17.Location = new System.Drawing.Point(12, 357);
             this.button17.Name = "button17";
-            this.button17.Size = new System.Drawing.Size(200, 54);
+            this.button17.Size = new System.Drawing.Size(198, 54);
             this.button17.TabIndex = 18;
             this.button17.Text = "Dupe\r\nManager\r\n";
             this.toolTip1.SetToolTip(this.button17, "Opens the dupe manager in the overlay.");
@@ -381,7 +383,7 @@
             this.button16.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button16.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.button16.ForeColor = System.Drawing.Color.White;
-            this.button16.Location = new System.Drawing.Point(162, 638);
+            this.button16.Location = new System.Drawing.Point(153, 638);
             this.button16.Name = "button16";
             this.button16.Size = new System.Drawing.Size(57, 27);
             this.button16.TabIndex = 17;
@@ -399,7 +401,7 @@
             this.button15.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button15.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.button15.ForeColor = System.Drawing.Color.White;
-            this.button15.Location = new System.Drawing.Point(162, 605);
+            this.button15.Location = new System.Drawing.Point(153, 605);
             this.button15.Name = "button15";
             this.button15.Size = new System.Drawing.Size(57, 27);
             this.button15.TabIndex = 16;
@@ -417,7 +419,7 @@
             this.button14.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button14.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.button14.ForeColor = System.Drawing.Color.White;
-            this.button14.Location = new System.Drawing.Point(162, 572);
+            this.button14.Location = new System.Drawing.Point(153, 572);
             this.button14.Name = "button14";
             this.button14.Size = new System.Drawing.Size(57, 27);
             this.button14.TabIndex = 15;
@@ -437,7 +439,7 @@
             this.button13.ForeColor = System.Drawing.Color.White;
             this.button13.Location = new System.Drawing.Point(10, 638);
             this.button13.Name = "button13";
-            this.button13.Size = new System.Drawing.Size(155, 27);
+            this.button13.Size = new System.Drawing.Size(146, 27);
             this.button13.TabIndex = 14;
             this.button13.Text = "CWRP Rules";
             this.toolTip1.SetToolTip(this.button13, "Opens link in your default browser");
@@ -455,7 +457,7 @@
             this.button12.ForeColor = System.Drawing.Color.White;
             this.button12.Location = new System.Drawing.Point(9, 605);
             this.button12.Name = "button12";
-            this.button12.Size = new System.Drawing.Size(156, 27);
+            this.button12.Size = new System.Drawing.Size(147, 27);
             this.button12.TabIndex = 13;
             this.button12.Text = "MilRP Rules";
             this.toolTip1.SetToolTip(this.button12, "Opens link in your default browser");
@@ -473,7 +475,7 @@
             this.button11.ForeColor = System.Drawing.Color.White;
             this.button11.Location = new System.Drawing.Point(9, 572);
             this.button11.Name = "button11";
-            this.button11.Size = new System.Drawing.Size(156, 27);
+            this.button11.Size = new System.Drawing.Size(147, 27);
             this.button11.TabIndex = 12;
             this.button11.Text = "DarkRP Rules";
             this.toolTip1.SetToolTip(this.button11, "Opens link in your default browser");
@@ -515,6 +517,19 @@
             this.toolTip1.SetToolTip(this.button9, "Opens link in your default browser");
             this.button9.UseVisualStyleBackColor = false;
             this.button9.Click += new System.EventHandler(this.Button9_Click);
+            // 
+            // label5
+            // 
+            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.label5.BackColor = System.Drawing.Color.Transparent;
+            this.label5.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.ForeColor = System.Drawing.Color.White;
+            this.label5.Location = new System.Drawing.Point(-1, 875);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(223, 40);
+            this.label5.TabIndex = 3;
+            this.label5.Text = "Use F3 To Interact";
+            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // Overlay
             // 
@@ -572,5 +587,6 @@
         private System.Windows.Forms.CheckBox checkBox1;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label5;
     }
 }
