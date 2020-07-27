@@ -120,6 +120,10 @@ namespace SUPLauncher
             // Return the result bitmap.
             return result;
         }
+
+        [DllImport("user32.dll")]
+        static extern IntPtr FindWindow(string ipClassName, string ipWindowName);
+
         private GlobalKeyboardHook _globalKeyboardHook;
         [System.Runtime.InteropServices.DllImport("gdi32.dll")]
         private static extern IntPtr AddFontMemResourceEx(IntPtr pbFont, uint cbFont,
@@ -200,15 +204,16 @@ namespace SUPLauncher
                     {
                         if (overlayVisable)
                         {
-                            SetForegroundWindow(getGmodProcess().MainWindowHandle);
+                            
                             overlay.Visible = false;
+                            SetForegroundWindow(getGmodHandle());
                         }
                         else
                         {
-                            SetForegroundWindow(getGmodProcess().MainWindowHandle);
+                            SetForegroundWindow(getGmodHandle());
                             overlay.Visible = true;
-                            
-                            SetForegroundWindow(Process.GetCurrentProcess().MainWindowHandle);
+
+                            SetForegroundWindow(getGmodHandle());
                         }
                     }
                     catch
@@ -224,12 +229,22 @@ namespace SUPLauncher
             Application.Run(new Splashscreen1());
         }
 
+    
 
+
+        /// <summary>
+        /// Gets the gmod window name
+        /// </summary>
+
+        public static IntPtr getGmodHandle()
+        {
+            if (getGmodProcess().ProcessName == "hl2") { return FindWindow(null, "Garry's Mod"); } else { return FindWindow(null, "Garry's Mod (x64)"); }
+        }
 
         /// <summary>
         /// Gets the gmod process, this works even if gmod is on another branch.
         /// </summary>
-        
+
         public static Process getGmodProcess()
         {
             Process[] hl2 = Process.GetProcessesByName("hl2");
@@ -244,7 +259,6 @@ namespace SUPLauncher
             {
                 return null;
             }
-
         }
 
 
@@ -1149,13 +1163,10 @@ namespace SUPLauncher
                     {
                         overlay = new Overlay();
                     }
-                    
                     overlay.Visible = false;
-
-
-                    Noffication noffication = new Noffication("SUPLauncher overlay is enabled.\n(ALT + S)", frmLauncher.getGmodProcess());
-                    noffication.Show();
-                    SetForegroundWindow(frmLauncher.getGmodProcess().MainWindowHandle);
+                    Notification notification = new Notification("SUPLauncher overlay is enabled.\n(ALT + S)");
+                    notification.Show();
+                    SetForegroundWindow(getGmodHandle());
                 }
                 else
                 {

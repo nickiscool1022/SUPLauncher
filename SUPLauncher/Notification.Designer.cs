@@ -1,6 +1,6 @@
 ﻿namespace SUPLauncher
 {
-    partial class Noffication
+    partial class Notification
     {
         /// <summary>
         /// Required designer variable.
@@ -58,7 +58,7 @@
             this.title.Name = "title";
             this.title.Size = new System.Drawing.Size(221, 23);
             this.title.TabIndex = 1;
-            this.title.Text = "NOFFICATION";
+            this.title.Text = "NOTIFICATION";
             // 
             // text
             // 
@@ -86,10 +86,10 @@
             // closeOn
             // 
             this.closeOn.Enabled = true;
-            this.closeOn.Interval = 8000;
+            this.closeOn.Interval = 3000;
             this.closeOn.Tick += new System.EventHandler(this.closeOn_Tick);
             // 
-            // Noffication
+            // Notification
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -97,12 +97,13 @@
             this.ClientSize = new System.Drawing.Size(387, 92);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "Noffication";
+            this.Name = "Notification";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.Text = "Noffication";
             this.TopMost = true;
             this.TransparencyKey = System.Drawing.SystemColors.WindowText;
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.main_FormClosing);
             this.Load += new System.EventHandler(this.Noffication_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel1.ResumeLayout(false);

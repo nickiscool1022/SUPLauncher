@@ -59,9 +59,6 @@ namespace SUPLauncher
 
         private void InitializeChromium(string steamID)
         {
-            
-
-
             chrome.Load("https://superiorservers.co/profile/" + steamID);
             this.panel1.Controls.Add(chrome);
             chrome.Dock = DockStyle.Fill;
@@ -73,10 +70,8 @@ namespace SUPLauncher
                     
                     chrome.ExecuteScriptAsync("document.getElementsByClassName(\"navbar\")[0].remove();"); // Use javascript magic to remove the navbar from the page.
                     hide();
-
                 }
             };
-            
         }
         private void TopBar_MouseUp(object sender, MouseEventArgs e)
         {

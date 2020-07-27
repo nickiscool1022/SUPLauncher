@@ -71,7 +71,7 @@
             this.pictureBox1.InitialImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.InitialImage")));
             this.pictureBox1.Location = new System.Drawing.Point(0, 12);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(270, 78);
+            this.pictureBox1.Size = new System.Drawing.Size(222, 78);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
@@ -85,9 +85,9 @@
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.button1.ForeColor = System.Drawing.Color.White;
-            this.button1.Location = new System.Drawing.Point(18, 527);
+            this.button1.Location = new System.Drawing.Point(17, 527);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(74, 27);
+            this.button1.Size = new System.Drawing.Size(60, 27);
             this.button1.TabIndex = 1;
             this.button1.Text = "Forums";
             this.toolTip1.SetToolTip(this.button1, "Opens link in your default browser");
@@ -105,7 +105,7 @@
             this.button2.ForeColor = System.Drawing.Color.White;
             this.button2.Location = new System.Drawing.Point(9, 126);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(248, 27);
+            this.button2.Size = new System.Drawing.Size(200, 27);
             this.button2.TabIndex = 2;
             this.button2.Text = "TeamSpeak";
             this.toolTip1.SetToolTip(this.button2, "Opens teamspeak and connects to the superiorservers teamspeak.");
@@ -123,7 +123,7 @@
             this.button3.ForeColor = System.Drawing.Color.White;
             this.button3.Location = new System.Drawing.Point(9, 159);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(248, 27);
+            this.button3.Size = new System.Drawing.Size(200, 27);
             this.button3.TabIndex = 3;
             this.button3.Text = "Danktown";
             this.toolTip1.SetToolTip(this.button3, "Connects you to this server.");
@@ -141,7 +141,7 @@
             this.button4.ForeColor = System.Drawing.Color.White;
             this.button4.Location = new System.Drawing.Point(9, 192);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(248, 27);
+            this.button4.Size = new System.Drawing.Size(200, 27);
             this.button4.TabIndex = 4;
             this.button4.Text = "C18";
             this.toolTip1.SetToolTip(this.button4, "Connects you to this server.");
@@ -159,7 +159,7 @@
             this.button5.ForeColor = System.Drawing.Color.White;
             this.button5.Location = new System.Drawing.Point(9, 225);
             this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(248, 27);
+            this.button5.Size = new System.Drawing.Size(200, 27);
             this.button5.TabIndex = 5;
             this.button5.Text = "Zombies";
             this.toolTip1.SetToolTip(this.button5, "Connects you to this server.");
@@ -177,7 +177,7 @@
             this.button6.ForeColor = System.Drawing.Color.White;
             this.button6.Location = new System.Drawing.Point(9, 258);
             this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(248, 27);
+            this.button6.Size = new System.Drawing.Size(200, 27);
             this.button6.TabIndex = 6;
             this.button6.Text = "MilRP";
             this.toolTip1.SetToolTip(this.button6, "Connects you to this server.");
@@ -195,7 +195,7 @@
             this.button7.ForeColor = System.Drawing.Color.White;
             this.button7.Location = new System.Drawing.Point(9, 291);
             this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(248, 27);
+            this.button7.Size = new System.Drawing.Size(200, 27);
             this.button7.TabIndex = 7;
             this.button7.Text = "CWRP";
             this.toolTip1.SetToolTip(this.button7, "Connects you to this server.");
@@ -213,7 +213,7 @@
             this.button8.ForeColor = System.Drawing.Color.White;
             this.button8.Location = new System.Drawing.Point(9, 324);
             this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(248, 27);
+            this.button8.Size = new System.Drawing.Size(200, 27);
             this.button8.TabIndex = 8;
             this.button8.Text = "CWRP 2";
             this.toolTip1.SetToolTip(this.button8, "Connects you to this server.");
@@ -249,7 +249,7 @@
             this.overlayPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.overlayPanel.Location = new System.Drawing.Point(0, 0);
             this.overlayPanel.Name = "overlayPanel";
-            this.overlayPanel.Size = new System.Drawing.Size(270, 924);
+            this.overlayPanel.Size = new System.Drawing.Size(222, 924);
             this.overlayPanel.TabIndex = 9;
             this.overlayPanel.Click += new System.EventHandler(this.OverlayPanel_Click);
             // 
@@ -261,7 +261,7 @@
             this.label1.ForeColor = System.Drawing.Color.White;
             this.label1.Location = new System.Drawing.Point(-4, 484);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(274, 32);
+            this.label1.Size = new System.Drawing.Size(226, 32);
             this.label1.TabIndex = 20;
             this.label1.Text = "LINKS";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -275,7 +275,7 @@
             this.staffTools.Controls.Add(this.label3);
             this.staffTools.Location = new System.Drawing.Point(0, 727);
             this.staffTools.Name = "staffTools";
-            this.staffTools.Size = new System.Drawing.Size(271, 141);
+            this.staffTools.Size = new System.Drawing.Size(223, 141);
             this.staffTools.TabIndex = 10;
             this.staffTools.Visible = false;
             // 
@@ -286,7 +286,7 @@
             this.label4.ForeColor = System.Drawing.Color.White;
             this.label4.Location = new System.Drawing.Point(0, 70);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(271, 40);
+            this.label4.Size = new System.Drawing.Size(223, 40);
             this.label4.TabIndex = 2;
             this.label4.Text = "Hover over for more info";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -295,9 +295,9 @@
             // 
             this.checkBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.checkBox1.ForeColor = System.Drawing.Color.White;
-            this.checkBox1.Location = new System.Drawing.Point(80, 43);
+            this.checkBox1.Location = new System.Drawing.Point(53, 43);
             this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(191, 24);
+            this.checkBox1.Size = new System.Drawing.Size(170, 24);
             this.checkBox1.TabIndex = 1;
             this.checkBox1.Text = "SUP Profile Overlay";
             this.toolTip1.SetToolTip(this.checkBox1, "Automatically display sup profiles from clipboard or click button below to ask fo" +
@@ -312,7 +312,7 @@
             this.label3.ForeColor = System.Drawing.Color.White;
             this.label3.Location = new System.Drawing.Point(0, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(271, 29);
+            this.label3.Size = new System.Drawing.Size(223, 29);
             this.label3.TabIndex = 0;
             this.label3.Text = "STAFF TOOLS";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -323,7 +323,7 @@
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.panel1.Location = new System.Drawing.Point(0, 107);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(270, 5);
+            this.panel1.Size = new System.Drawing.Size(222, 5);
             this.panel1.TabIndex = 47;
             // 
             // textBox1
@@ -334,7 +334,7 @@
             this.textBox1.ForeColor = System.Drawing.Color.White;
             this.textBox1.Location = new System.Drawing.Point(9, 458);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(248, 20);
+            this.textBox1.Size = new System.Drawing.Size(200, 20);
             this.textBox1.TabIndex = 46;
             this.textBox1.Text = "STEAM_0:X:XXXXXXXXX";
             this.textBox1.Enter += new System.EventHandler(this.TextBox1_Enter);
@@ -349,7 +349,7 @@
             this.label2.ForeColor = System.Drawing.Color.White;
             this.label2.Location = new System.Drawing.Point(-4, 414);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(274, 41);
+            this.label2.Size = new System.Drawing.Size(226, 41);
             this.label2.TabIndex = 19;
             this.label2.Text = "SUP LOOKUP";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -365,7 +365,7 @@
             this.button17.ForeColor = System.Drawing.Color.White;
             this.button17.Location = new System.Drawing.Point(9, 357);
             this.button17.Name = "button17";
-            this.button17.Size = new System.Drawing.Size(248, 54);
+            this.button17.Size = new System.Drawing.Size(200, 54);
             this.button17.TabIndex = 18;
             this.button17.Text = "Dupe\r\nManager\r\n";
             this.toolTip1.SetToolTip(this.button17, "Opens the dupe manager in the overlay.");
@@ -383,7 +383,7 @@
             this.button16.ForeColor = System.Drawing.Color.White;
             this.button16.Location = new System.Drawing.Point(162, 638);
             this.button16.Name = "button16";
-            this.button16.Size = new System.Drawing.Size(105, 27);
+            this.button16.Size = new System.Drawing.Size(57, 27);
             this.button16.TabIndex = 17;
             this.button16.Text = "Copy";
             this.toolTip1.SetToolTip(this.button16, "Copies link to your clipboard");
@@ -401,7 +401,7 @@
             this.button15.ForeColor = System.Drawing.Color.White;
             this.button15.Location = new System.Drawing.Point(162, 605);
             this.button15.Name = "button15";
-            this.button15.Size = new System.Drawing.Size(105, 27);
+            this.button15.Size = new System.Drawing.Size(57, 27);
             this.button15.TabIndex = 16;
             this.button15.Text = "Copy";
             this.toolTip1.SetToolTip(this.button15, "Copies link to your clipboard");
@@ -419,7 +419,7 @@
             this.button14.ForeColor = System.Drawing.Color.White;
             this.button14.Location = new System.Drawing.Point(162, 572);
             this.button14.Name = "button14";
-            this.button14.Size = new System.Drawing.Size(105, 27);
+            this.button14.Size = new System.Drawing.Size(57, 27);
             this.button14.TabIndex = 15;
             this.button14.Text = "Copy";
             this.toolTip1.SetToolTip(this.button14, "Copies link to your clipboard");
@@ -437,7 +437,7 @@
             this.button13.ForeColor = System.Drawing.Color.White;
             this.button13.Location = new System.Drawing.Point(10, 638);
             this.button13.Name = "button13";
-            this.button13.Size = new System.Drawing.Size(151, 27);
+            this.button13.Size = new System.Drawing.Size(155, 27);
             this.button13.TabIndex = 14;
             this.button13.Text = "CWRP Rules";
             this.toolTip1.SetToolTip(this.button13, "Opens link in your default browser");
@@ -455,7 +455,7 @@
             this.button12.ForeColor = System.Drawing.Color.White;
             this.button12.Location = new System.Drawing.Point(9, 605);
             this.button12.Name = "button12";
-            this.button12.Size = new System.Drawing.Size(151, 27);
+            this.button12.Size = new System.Drawing.Size(156, 27);
             this.button12.TabIndex = 13;
             this.button12.Text = "MilRP Rules";
             this.toolTip1.SetToolTip(this.button12, "Opens link in your default browser");
@@ -473,7 +473,7 @@
             this.button11.ForeColor = System.Drawing.Color.White;
             this.button11.Location = new System.Drawing.Point(9, 572);
             this.button11.Name = "button11";
-            this.button11.Size = new System.Drawing.Size(151, 27);
+            this.button11.Size = new System.Drawing.Size(156, 27);
             this.button11.TabIndex = 12;
             this.button11.Text = "DarkRP Rules";
             this.toolTip1.SetToolTip(this.button11, "Opens link in your default browser");
@@ -489,9 +489,9 @@
             this.button10.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button10.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.button10.ForeColor = System.Drawing.Color.White;
-            this.button10.Location = new System.Drawing.Point(180, 527);
+            this.button10.Location = new System.Drawing.Point(148, 527);
             this.button10.Name = "button10";
-            this.button10.Size = new System.Drawing.Size(74, 27);
+            this.button10.Size = new System.Drawing.Size(60, 27);
             this.button10.TabIndex = 11;
             this.button10.Text = "Staff";
             this.toolTip1.SetToolTip(this.button10, "Opens link in your default browser");
@@ -507,9 +507,9 @@
             this.button9.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button9.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.button9.ForeColor = System.Drawing.Color.White;
-            this.button9.Location = new System.Drawing.Point(99, 527);
+            this.button9.Location = new System.Drawing.Point(83, 527);
             this.button9.Name = "button9";
-            this.button9.Size = new System.Drawing.Size(74, 27);
+            this.button9.Size = new System.Drawing.Size(60, 27);
             this.button9.TabIndex = 10;
             this.button9.Text = "Bans";
             this.toolTip1.SetToolTip(this.button9, "Opens link in your default browser");
@@ -521,7 +521,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(249)))));
-            this.ClientSize = new System.Drawing.Size(270, 924);
+            this.ClientSize = new System.Drawing.Size(222, 924);
             this.Controls.Add(this.overlayPanel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));

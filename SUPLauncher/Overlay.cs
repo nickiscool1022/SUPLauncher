@@ -49,11 +49,9 @@ namespace SUPLauncher
         private void Overlay_Load(object sender, EventArgs e)
         {
             // test 64 bit shit u retard @Best of all
-            string WINDOW_NAME = "Garry's Mod";
-            Process proc = frmLauncher.getGmodProcess();
-            if (proc.ProcessName == "gmod")
-                WINDOW_NAME = "Garry's Mod (x64)";
-            IntPtr handle = FindWindow(null, WINDOW_NAME);
+            
+            
+            IntPtr handle = frmLauncher.getGmodHandle();
             pictureBox1.Focus();
             GetWindowRect(handle, out rect);
             this.Size = new Size(this.Width, rect.bottom - rect.top);
@@ -262,15 +260,17 @@ namespace SUPLauncher
 
             if (m.Msg == 0x308)
             {
-                if (checkBox1.Checked)
+                if (checkBox1.Checked) // Check if the user has profile overlays enabled first.
                 {
                     bool steamid = false;
                     long s = 0;
-                    if (Clipboard.GetText().StartsWith("STEAM_") && Clipboard.GetText().Length > 17)
+
+                    string text = Clipboard.GetText(); // Get text from clipboard
+
+                    if (text.StartsWith("STEAM_") && text.Length > 17)
                     {
                         steamid = true;
-                    }
-                    else if (long.TryParse(Clipboard.GetText(), out s) && Clipboard.GetText().Length == 17)
+                    } else if (long.TryParse(text, out s) && text.Length == 17)
                     {
                         steamid = true;
                     }
@@ -281,22 +281,15 @@ namespace SUPLauncher
                         {
                             profile = new profile();
                             profile.TopMost = true;
-
                         }
 
-
-                        
-                        profile.steam = Clipboard.GetText();
+                        profile.steam = text;
                         profile.initProfile(profile.steam);
                         profile.Visible = true;
-                        SetForegroundWindow(frmLauncher.getGmodProcess().MainWindowHandle);
-
+                        SetForegroundWindow(frmLauncher.getGmodHandle());
                     }
-
                 }
             }
-            
-                
         }
 
         [DllImport("user32.dll")]
@@ -313,11 +306,11 @@ namespace SUPLauncher
             this.Visible = false;
             if (!checkBox1.Checked)
             {
-                Noffication noffication = new Noffication("Profile overlays have now been disabled.", frmLauncher.getGmodProcess(), "STAFF TOOLS");
+                Notification noffication = new Notification("Profile overlays have now been disabled.", "STAFF TOOLS");
                 noffication.Show();
             } else
             {
-                Noffication noffication = new Noffication("Profile overlays have now been enabled.\n(Opens whenever you copy SteamID's)", frmLauncher.getGmodProcess(), "STAFF TOOLS");
+                Notification noffication = new Notification("Profile overlays have now been enabled.\n(Opens whenever you copy SteamID's)", "STAFF TOOLS");
                 noffication.Show();
             }
             SetForegroundWindow(frmLauncher.getGmodProcess().MainWindowHandle);

@@ -220,7 +220,7 @@
             this.Dupes.LargeImageList = this.iconList;
             this.Dupes.Location = new System.Drawing.Point(12, 66);
             this.Dupes.Name = "Dupes";
-            this.Dupes.Size = new System.Drawing.Size(533, 490);
+            this.Dupes.Size = new System.Drawing.Size(533, 500);
             this.Dupes.TabIndex = 50;
             this.Dupes.UseCompatibleStateImageBehavior = false;
             this.Dupes.SelectedIndexChanged += new System.EventHandler(this.Dupes_SelectedIndexChanged);
@@ -268,6 +268,7 @@
             // 
             this.button1.BackColor = System.Drawing.Color.Transparent;
             this.button1.FlatAppearance.BorderSize = 0;
+            this.button1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(14)))), ((int)(((byte)(14)))), ((int)(((byte)(14)))));
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.ForeColor = System.Drawing.Color.White;
             this.button1.Location = new System.Drawing.Point(13, 41);
@@ -290,6 +291,8 @@
             this.pictureBox1.TabIndex = 54;
             this.pictureBox1.TabStop = false;
             this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
+            this.pictureBox1.MouseEnter += new System.EventHandler(this.pictureBox1_MouseEnter);
+            this.pictureBox1.MouseLeave += new System.EventHandler(this.pictureBox1_MouseLeave);
             // 
             // DupeManager
             // 
