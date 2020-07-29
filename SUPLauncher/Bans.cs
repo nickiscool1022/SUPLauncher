@@ -29,7 +29,7 @@ namespace SUPLauncher
         string steamid = "";
         ChromiumWebBrowser chrome = new ChromiumWebBrowser();
         bool opened = false;
-
+        
         //bool opened = false;
         /// <summary>
         /// Open up a profile of the specified steamid.
@@ -42,8 +42,41 @@ namespace SUPLauncher
             steamid = steamID;
             Width = Screen.PrimaryScreen.WorkingArea.Width / 2;
             Height = Screen.PrimaryScreen.WorkingArea.Height / 2 + 100;
+
+            Opacity = 0;      //first the opacity is 0
+
+            t1.Interval = 10;  //we'll increase the opacity every 10ms
+            t1.Tick += new EventHandler(fadeIn);  //this calls the function that changes opacity 
+            t1.Start();
+        }
+        #region Fade
+        /*
+            Opacity = 0;      //first the opacity is 0
+
+            t1.Interval = 10;  //we'll increase the opacity every 10ms
+            t1.Tick += new EventHandler(fadeIn);  //this calls the function that changes opacity 
+            t1.Start(); 
+         */
+        System.Windows.Forms.Timer t1 = new System.Windows.Forms.Timer();
+        void fadeIn(object sender, EventArgs e)
+        {
+            if (Opacity >= 1)
+                t1.Stop();   //this stops the timer if the form is completely displayed
+            else
+                Opacity += 0.05;
         }
 
+        void fadeOut(object sender, EventArgs e)
+        {
+            if (Opacity <= 0)     //check if opacity is 0
+            {
+                t1.Stop();    //if it is, we stop the timer
+                Close();   //and we try to close the form
+            }
+            else
+                Opacity -= 0.05;
+        }
+        #endregion
         private void hide()
         {
             if (InvokeRequired)

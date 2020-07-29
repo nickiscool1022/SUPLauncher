@@ -22,8 +22,30 @@ namespace SUPLauncher
         public profile()
         {
             InitializeComponent();
+            
+        }
+        #region Fade
+        Timer t1 = new Timer();
+
+        void fadeIn(object sender, EventArgs e)
+        {
+            if (Opacity >= 1)
+                t1.Stop();   //this stops the timer if the form is completely displayed
+            else
+                Opacity += 0.05;
         }
 
+        void fadeOut(object sender, EventArgs e)
+        {
+            if (Opacity <= 0)     //check if opacity is 0
+            {
+                t1.Stop();    //if it is, we stop the timer
+                Close();   //and we try to close the form
+            }
+            else
+                Opacity -= 0.05;
+        }
+        #endregion
         public struct RECT
         {
             public int left, top, right, bottom;
@@ -43,6 +65,9 @@ namespace SUPLauncher
             GetWindowRect(handle, out rect);
             this.Top = rect.top + 30;
             this.Left = 0;
+            t1.Interval = 10;
+            t1.Tick += new EventHandler(fadeIn);
+            t1.Start();
         }
         ChromiumWebBrowser chrome = new ChromiumWebBrowser();
         private void InitializeChromium(string steamID)
@@ -134,6 +159,9 @@ namespace SUPLauncher
         private void button2_Click(object sender, EventArgs e)
         {
             this.Visible = false;
+            t1.Interval = 10;
+            t1.Tick += new EventHandler(fadeOut);
+            t1.Start();
         }
 
         private void button3_Click(object sender, EventArgs e)

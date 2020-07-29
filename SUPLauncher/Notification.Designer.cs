@@ -67,7 +67,7 @@
             this.text.ForeColor = System.Drawing.Color.White;
             this.text.Location = new System.Drawing.Point(99, 36);
             this.text.Name = "text";
-            this.text.Size = new System.Drawing.Size(262, 41);
+            this.text.Size = new System.Drawing.Size(276, 93);
             this.text.TabIndex = 2;
             this.text.Text = "TEXT";
             // 
@@ -80,13 +80,13 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(387, 92);
+            this.panel1.Size = new System.Drawing.Size(387, 130);
             this.panel1.TabIndex = 3;
             // 
             // closeOn
             // 
             this.closeOn.Enabled = true;
-            this.closeOn.Interval = 3000;
+            this.closeOn.Interval = 1500;
             this.closeOn.Tick += new System.EventHandler(this.closeOn_Tick);
             // 
             // Notification
@@ -94,7 +94,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.WindowText;
-            this.ClientSize = new System.Drawing.Size(387, 92);
+            this.ClientSize = new System.Drawing.Size(387, 130);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "Notification";

@@ -337,7 +337,9 @@
             this.Text = "SUP Profile Overlay";
             this.TopMost = true;
             this.TransparencyKey = System.Drawing.Color.Lavender;
+            this.Activated += new System.EventHandler(this.profile_Load);
             this.Load += new System.EventHandler(this.profile_Load);
+            this.Shown += new System.EventHandler(this.profile_Load);
             this.panel1.ResumeLayout(false);
             this.flowLayoutPanel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);

@@ -169,8 +169,36 @@ namespace SUPLauncher
             btnMilRP.Font = new Font(fonts.Families[0], btnMilRP.Font.Size);
             btnCW1.Font = new Font(fonts.Families[0], btnCW1.Font.Size);
             btnCW2.Font = new Font(fonts.Families[0], btnCW2.Font.Size);
+
+            Opacity = 0;      //first the opacity is 0
+
+            t1.Interval = 10;  //we'll increase the opacity every 10ms
+            t1.Tick += new EventHandler(fadeIn);  //this calls the function that changes opacity 
+            t1.Start();
         }
-      
+        System.Windows.Forms.Timer t1 = new System.Windows.Forms.Timer();
+        #region Fade
+
+        void fadeIn(object sender, EventArgs e)
+        {
+            if (Opacity >= 1)
+                t1.Stop();   //this stops the timer if the form is completely displayed
+            else
+                Opacity += 0.05;
+        }
+
+        void fadeOut(object sender, EventArgs e)
+        {
+            if (Opacity <= 0)     //check if opacity is 0
+            {
+                t1.Stop();    //if it is, we stop the timer
+                Close();   //and we try to close the form
+            }
+            else
+                Opacity -= 0.05;
+        }
+        #endregion
+
         bool altdown = false;
         bool sdown = false;
         [DllImport("user32.dll")]
@@ -238,7 +266,15 @@ namespace SUPLauncher
 
         public static IntPtr getGmodHandle()
         {
-            if (getGmodProcess().ProcessName == "hl2") { return FindWindow(null, "Garry's Mod"); } else { return FindWindow(null, "Garry's Mod (x64)"); }
+            try
+            {
+                if (getGmodProcess().ProcessName == "hl2") { return FindWindow(null, "Garry's Mod"); } else { return FindWindow(null, "Garry's Mod (x64)"); }
+            }
+            catch (Exception)
+            {
+                return IntPtr.Zero;
+            }
+            
         }
 
         /// <summary>
@@ -247,18 +283,21 @@ namespace SUPLauncher
 
         public static Process getGmodProcess()
         {
-            Process[] hl2 = Process.GetProcessesByName("hl2");
-            Process[] gmod = Process.GetProcessesByName("gmod");
-            if (hl2.Length > 0)
-            {
-                return hl2[0];
-            } else if (gmod.Length > 0)
-            {
-                return gmod[0];
-            } else
-            {
-                return null;
-            }
+                Process[] hl2 = Process.GetProcessesByName("hl2");
+                Process[] gmod = Process.GetProcessesByName("gmod");
+                if (hl2.Length > 0)
+                {
+                    return hl2[0];
+                }
+                else if (gmod.Length > 0)
+                {
+                    return gmod[0];
+                }
+                else
+                {
+                    return new Process();
+                }
+            
         }
 
 
@@ -529,12 +568,15 @@ namespace SUPLauncher
             notifyIcon1.Visible = true;
             if (chkAFK.Checked)
             {
-                notifyIcon1.ShowBalloonTip(5000, "AFK Mode", "You are now in AFK Mode. Press on a server from the list on the menu and confirm it in steam to begin AFKing on SUP!", ToolTipIcon.Info);
-                
+                //notifyIcon1.ShowBalloonTip(5000, "AFK Mode", "You are now in AFK Mode.\n Press on a server from the list on the menu\n and confirm it in steam to begin AFKing on SUP!", ToolTipIcon.Info);
+                Notification notif = new Notification("You are now in AFK Mode. \nPress on a server from the list on the menu \nand confirm it in steam to begin AFKing \non SUP!", "AFK MODE", false);
+                notif.Show();
             }
             else
             {
-                notifyIcon1.ShowBalloonTip(5000, "AFK Mode", "You are no longer in AFK Mode. Pressing on a server will launch the game normally.", ToolTipIcon.Info);
+                //notifyIcon1.ShowBalloonTip(5000, "AFK Mode", "You are no longer in AFK Mode.\n Pressing on a server will launch the game normally through steam with regular graphics (not in command", ToolTipIcon.Info);
+                Notification notif = new Notification("You are no longer in AFK Mode. \nPressing on a server will launch the game normally through steam with regular graphics.", "AFK MODE", false);
+                notif.Show();
             }
             try
             {
@@ -1113,6 +1155,9 @@ namespace SUPLauncher
 
         private void Button1_Click(object sender, EventArgs e)
         {
+            t1.Interval = 10;  //we'll increase the opacity every 10ms
+            t1.Tick += new EventHandler(fadeOut);  //this calls the function that changes opacity 
+            t1.Start();
             this.Close();
         }
 
@@ -1149,7 +1194,16 @@ namespace SUPLauncher
         {
             Properties.Settings.Default.overlayEnabled = chkOverlay.Checked;
             Properties.Settings.Default.Save();
-
+            Notification notif;
+            if (chkOverlay.Checked)
+            {
+                 notif = new Notification("SUPLauncher overlay is enabled.\n(ALT + S)", "NOTIFICATION", false);
+            }
+            else
+            {
+                 notif = new Notification("SUPLauncher overlay is disabled.\n(ALT + S)", "NOTIFICATION", false);
+            }
+            notif.Show();
             loadOverlay();
 
         }
@@ -1164,7 +1218,7 @@ namespace SUPLauncher
                         overlay = new Overlay();
                     }
                     overlay.Visible = false;
-                    Notification notification = new Notification("SUPLauncher overlay is enabled.\n(ALT + S)");
+                    Notification notification = new Notification("SUPLauncher overlay is enabled.\n(ALT + S)", "NOTIFICATION" , false);
                     notification.Show();
                     SetForegroundWindow(getGmodHandle());
                 }

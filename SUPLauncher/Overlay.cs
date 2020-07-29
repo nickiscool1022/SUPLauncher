@@ -24,6 +24,7 @@ namespace SUPLauncher
             InitializeComponent();
         }
         public static DupeManager dupemanager;
+        public static profile profile = new profile();
         private void Button1_Click(object sender, EventArgs e)
         {
             Process.Start("https://forum.superiorservers.co");
@@ -95,11 +96,7 @@ namespace SUPLauncher
                 }
             }
 
-
-            //if (staffRanks.Contains(result.Badmin.Ranks)
-
-
-
+            checkBox1.Checked = Properties.Settings.Default.profileOverlayEnabled;
         }
         private void Button14_Click(object sender, EventArgs e)
         {
@@ -249,7 +246,6 @@ namespace SUPLauncher
                 handler(null, e);
             }
         }
-        profile profile;
         protected override void WndProc(ref Message m)
         {
 
@@ -313,9 +309,9 @@ namespace SUPLauncher
                 Notification noffication = new Notification("Profile overlays have now been enabled.\n(Opens whenever you copy SteamID's)", "STAFF TOOLS");
                 noffication.Show();
             }
+            Properties.Settings.Default.profileOverlayEnabled = checkBox1.Checked;
+            Properties.Settings.Default.Save();
             SetForegroundWindow(frmLauncher.getGmodProcess().MainWindowHandle);
-
-
         }
     }
 }

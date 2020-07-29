@@ -1,10 +1,12 @@
-﻿using System;
+﻿using Microsoft.VisualBasic.Devices;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,6 +20,7 @@ namespace SUPLauncher
         {
             public int left, top, right, bottom;
         }
+        bool focusGmod;
         RECT rect;
         [DllImport("user32.dll")]
         [return: MarshalAs(UnmanagedType.Bool)]
@@ -28,12 +31,13 @@ namespace SUPLauncher
         /// <param name="Title">The title showed at the top.</param>
         /// <param name="Text">The text to display in the noffication</param>
         /// 
-        public Notification(string Text, string Title= "NOFFICATION")
+        public Notification(string Text, string Title = "NOTIFICATION", bool FocusGMOD = true)
         {
             InitializeComponent();
             title.Text = Title;
             this.TopMost = true;
             text.Text = Text;
+            focusGmod = FocusGMOD;
         }
 
         private void closeOn_Tick(object sender, EventArgs e)
@@ -43,11 +47,20 @@ namespace SUPLauncher
 
         private void Noffication_Load(object sender, EventArgs e)
         {
-            IntPtr handle = frmLauncher.getGmodHandle();
-            GetWindowRect(handle, out rect);
-            this.Size = new Size(this.Width, this.Height);
-            this.Top = rect.top;
-            this.Left = rect.right - this.Bounds.Width;
+            if (focusGmod)
+            {
+                IntPtr handle = frmLauncher.getGmodHandle();
+                GetWindowRect(handle, out rect);
+                this.Size = new Size(this.Width, this.Height);
+                this.Top = rect.top;
+                this.Left = rect.right - this.Bounds.Width;
+            }
+            else
+            {
+                this.Size = new Size(this.Width, this.Height);
+                this.Top = Screen.PrimaryScreen.Bounds.Top;
+                this.Left = Screen.PrimaryScreen.Bounds.Right - this.Bounds.Width;
+            }
             Opacity = 0;      //first the opacity is 0
 
             t1.Interval = 10;  //we'll increase the opacity every 10ms
