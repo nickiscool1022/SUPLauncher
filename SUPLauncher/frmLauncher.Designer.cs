@@ -80,7 +80,6 @@
             this.lblALTS = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.versionWarn)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.imgrefresh)).BeginInit();
@@ -769,11 +768,6 @@
             this.toolTip1.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Warning;
             this.toolTip1.Popup += new System.Windows.Forms.PopupEventHandler(this.ToolTip1_Popup);
             // 
-            // notifyIcon1
-            // 
-            this.notifyIcon1.BalloonTipIcon = System.Windows.Forms.ToolTipIcon.Info;
-            this.notifyIcon1.Icon = ((System.Drawing.Icon)(resources.GetObject("notifyIcon1.Icon")));
-            // 
             // frmLauncher
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -875,7 +869,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.PictureBox versionWarn;
         private System.Windows.Forms.ToolTip toolTip1;
-        private System.Windows.Forms.NotifyIcon notifyIcon1;
     }
 }
 

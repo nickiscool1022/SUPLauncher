@@ -565,7 +565,7 @@ namespace SUPLauncher
         }
         private void ChkAFK_CheckedChanged(object sender, EventArgs e)
         {
-            notifyIcon1.Visible = true;
+            //notifyIcon1.Visible = true;
             if (chkAFK.Checked)
             {
                 //notifyIcon1.ShowBalloonTip(5000, "AFK Mode", "You are now in AFK Mode.\n Press on a server from the list on the menu\n and confirm it in steam to begin AFKing on SUP!", ToolTipIcon.Info);
@@ -650,7 +650,9 @@ namespace SUPLauncher
         //}
         void AppStartCheck()
         {
-            if (getGmodProcess() == null)
+            Process proc = getGmodProcess();
+
+            if (proc.Container == null)
                 appStarted = false;
             else
                 appStarted = true;
