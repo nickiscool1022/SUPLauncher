@@ -113,7 +113,7 @@
             // 
             // TopBar
             // 
-            this.TopBar.BackColor = System.Drawing.Color.Black;
+            this.TopBar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
             this.TopBar.Controls.Add(this.pictureBox2);
             this.TopBar.Controls.Add(this.button3);
             this.TopBar.Controls.Add(this.button2);

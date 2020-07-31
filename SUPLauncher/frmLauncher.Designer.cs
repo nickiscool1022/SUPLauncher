@@ -646,7 +646,7 @@
             // topBar
             // 
             this.topBar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.topBar.BackColor = System.Drawing.Color.Black;
+            this.topBar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
             this.topBar.Controls.Add(this.button1);
             this.topBar.Controls.Add(this.lblUsername);
             this.topBar.Controls.Add(this.ovalPictureBox1);
@@ -733,7 +733,8 @@
             this.chkOverlay.TabIndex = 46;
             this.chkOverlay.Text = "Overlay";
             this.toolTip1.SetToolTip(this.chkOverlay, "If enabled, the SUP overlay will be be drawn\r\neverytime the ALT key and the S key" +
-        " is pressed.");
+        " is pressed.\r\n\r\nTo change the keybind press on the text\r\non the right side of th" +
+        "is checkbox!");
             this.chkOverlay.UseVisualStyleBackColor = false;
             this.chkOverlay.CheckedChanged += new System.EventHandler(this.chkOverlay_CheckedChanged);
             // 
@@ -745,11 +746,12 @@
             this.lblALTS.ForeColor = System.Drawing.SystemColors.ButtonShadow;
             this.lblALTS.Location = new System.Drawing.Point(398, 435);
             this.lblALTS.Name = "lblALTS";
-            this.lblALTS.Size = new System.Drawing.Size(57, 15);
+            this.lblALTS.Size = new System.Drawing.Size(67, 15);
             this.lblALTS.TabIndex = 47;
-            this.lblALTS.Text = "(ALT + S)";
+            this.lblALTS.Text = "(KEYBIND)";
             this.toolTip1.SetToolTip(this.lblALTS, "If enabled, the SUP overlay will be be drawn\r\neverytime the ALT key and the S key" +
-        " is pressed.\r\n");
+        " is pressed.\r\n\r\nClick to change keybind!");
+            this.lblALTS.Click += new System.EventHandler(this.lblALTS_Click);
             // 
             // label3
             // 
@@ -795,6 +797,7 @@
             this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.KeyPreview = true;
             this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(493, 464);
             this.MinimizeBox = false;
@@ -804,6 +807,7 @@
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmLauncher_FormClosing);
             this.Load += new System.EventHandler(this.FrmLauncher_Load);
             this.Click += new System.EventHandler(this.FrmLauncher_Click);
+            this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.frmLauncher_KeyPress);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.versionWarn)).EndInit();

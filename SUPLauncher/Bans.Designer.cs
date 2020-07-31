@@ -33,8 +33,8 @@
             this.btnClose = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel3 = new System.Windows.Forms.Panel();
             this.topBar.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -44,7 +44,7 @@
             // 
             // topBar
             // 
-            this.topBar.BackColor = System.Drawing.Color.Black;
+            this.topBar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
             this.topBar.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.topBar.Controls.Add(this.btnClose);
             this.topBar.Cursor = System.Windows.Forms.Cursors.SizeAll;
@@ -94,17 +94,6 @@
             this.panel2.Size = new System.Drawing.Size(1184, 615);
             this.panel2.TabIndex = 0;
             // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pictureBox1.Image = global::SUPLauncher.Properties.Resources.suplogo;
-            this.pictureBox1.Location = new System.Drawing.Point(0, 102);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(1184, 219);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
-            // 
             // label1
             // 
             this.label1.Dock = System.Windows.Forms.DockStyle.Top;
@@ -116,6 +105,17 @@
             this.label1.TabIndex = 1;
             this.label1.Text = "   LOADING...";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pictureBox1.Image = global::SUPLauncher.Properties.Resources.suplogo;
+            this.pictureBox1.Location = new System.Drawing.Point(0, 102);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(1184, 219);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 0;
+            this.pictureBox1.TabStop = false;
             // 
             // panel3
             // 

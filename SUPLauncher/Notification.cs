@@ -31,9 +31,10 @@ namespace SUPLauncher
         /// <param name="Title">The title showed at the top.</param>
         /// <param name="Text">The text to display in the noffication</param>
         /// 
-        public Notification(string Text, string Title = "NOTIFICATION", bool FocusGMOD = true)
+        public Notification(string Text, string Title = "NOTIFICATION", bool FocusGMOD = true, int height = 94)
         {
             InitializeComponent();
+            this.Size = new Size(387, height);
             title.Text = Title;
             this.TopMost = true;
             text.Text = Text;
@@ -50,6 +51,11 @@ namespace SUPLauncher
             if (focusGmod)
             {
                 IntPtr handle = frmLauncher.getGmodHandle();
+                if (handle == IntPtr.Zero)
+                {
+                    this.Close();
+                }
+
                 GetWindowRect(handle, out rect);
                 this.Size = new Size(this.Width, this.Height);
                 this.Top = rect.top;

@@ -14,6 +14,7 @@ using System.Runtime.InteropServices;
 using CefSharp;
 using System.Drawing.Text;
 
+
 namespace SUPLauncher
 {
 
@@ -28,12 +29,12 @@ namespace SUPLauncher
         public static readonly SteamBridge steam = new SteamBridge();
         public static string forumSteamIDLookup = "";
         bool isTopPanelDragged = false;
-        bool isWindowMaximized = false;
         Point offset;
         Size _normalWindowSize;
         Point _normalWindowLocation = Point.Empty;
         private Image refresh_img;
         Image original_refreshimg;
+        KeyboardHook hook = new KeyboardHook();
         public static bool overlayVisable = false;
         public static Overlay overlay = new Overlay();
         public static Bans banPage = null;
@@ -124,7 +125,7 @@ namespace SUPLauncher
         [DllImport("user32.dll")]
         static extern IntPtr FindWindow(string ipClassName, string ipWindowName);
 
-        private GlobalKeyboardHook _globalKeyboardHook;
+        
         [System.Runtime.InteropServices.DllImport("gdi32.dll")]
         private static extern IntPtr AddFontMemResourceEx(IntPtr pbFont, uint cbFont,
                IntPtr pdv, [System.Runtime.InteropServices.In] ref uint pcFonts);
@@ -146,8 +147,15 @@ namespace SUPLauncher
             trd.Abort();
             refresh_img = imgrefresh.Image;
             original_refreshimg = imgrefresh.Image;
-            _globalKeyboardHook = new GlobalKeyboardHook();
-            _globalKeyboardHook.KeyboardPressed += Keyboard;
+
+            hook.KeyPressed +=
+                new EventHandler<KeyPressedEventArgs>(Keyboard);
+            
+            
+
+            hook.RegisterKeybind(Properties.Settings.Default.overlayModiferKey,
+                Properties.Settings.Default.overlayKey);
+
             byte[] fontData = Properties.Resources.Prototype;
             IntPtr fontPtr = System.Runtime.InteropServices.Marshal.AllocCoTaskMem(fontData.Length);
             System.Runtime.InteropServices.Marshal.Copy(fontData, 0, fontPtr, fontData.Length);
@@ -203,53 +211,35 @@ namespace SUPLauncher
         bool sdown = false;
         [DllImport("user32.dll")]
         static extern bool SetForegroundWindow(IntPtr hWnd);
-        private void Keyboard(object sender, GlobalKeyboardHookEventArgs e)
+        private void Keyboard(object sender, KeyPressedEventArgs e)
         {
-            
+
 
             if (chkOverlay.Checked)
             {
-                if ((e.KeyboardState == GlobalKeyboardHook.KeyboardState.SysKeyDown || e.KeyboardState == GlobalKeyboardHook.KeyboardState.KeyDown) && e.KeyboardData.VirtualCode == 164)
-                {
-                    altdown = true;
-                }
-                else if ((e.KeyboardState == GlobalKeyboardHook.KeyboardState.SysKeyUp || e.KeyboardState == GlobalKeyboardHook.KeyboardState.KeyUp) && e.KeyboardData.VirtualCode == 164)
-                {
-                    altdown = false;
-                }
 
-                if ((e.KeyboardState == GlobalKeyboardHook.KeyboardState.SysKeyDown || e.KeyboardState == GlobalKeyboardHook.KeyboardState.KeyDown) && e.KeyboardData.VirtualCode == 83)
+                try
                 {
-                    sdown = true;
-                }
-                else if ((e.KeyboardState == GlobalKeyboardHook.KeyboardState.SysKeyUp || e.KeyboardState == GlobalKeyboardHook.KeyboardState.KeyUp) && e.KeyboardData.VirtualCode == 83)
-                {
-                    sdown = false;
-                }
-                if (altdown & sdown)
-                {
-                    try
+                    if (overlayVisable)
                     {
-                        if (overlayVisable)
-                        {
-                            
-                            overlay.Visible = false;
-                            SetForegroundWindow(getGmodHandle());
-                        }
-                        else
-                        {
-                            SetForegroundWindow(getGmodHandle());
-                            overlay.Visible = true;
 
-                            SetForegroundWindow(getGmodHandle());
-                        }
-                    }
-                    catch
-                    {
                         overlay.Visible = false;
+                        SetForegroundWindow(getGmodHandle());
                     }
+                    else
+                    {
+                        SetForegroundWindow(getGmodHandle());
+                        overlay.Visible = true;
+
+                        SetForegroundWindow(getGmodHandle());
+                    }
+                }
+                catch
+                {
+                    overlay.Visible = false;
                 }
             }
+
         }
 
         public void Run()
@@ -307,8 +297,7 @@ namespace SUPLauncher
             isTopPanelDragged = false;
             if (this.Location.Y <= 5)
             {
-                if (!isWindowMaximized)
-                {
+                
                     _normalWindowSize = this.Size;
                     _normalWindowLocation = this.Location;
 
@@ -316,8 +305,7 @@ namespace SUPLauncher
                     this.Location = new Point(0, 0);
                     this.Size = new System.Drawing.Size(rect.Width, rect.Height);
 
-                    isWindowMaximized = true;
-                }
+
             }
         }
 
@@ -335,8 +323,6 @@ namespace SUPLauncher
                     {
                         this.Location = _normalWindowLocation;
                         this.Size = _normalWindowSize;
-
-                        isWindowMaximized = false;
                     }
                 }
             }
@@ -422,6 +408,23 @@ namespace SUPLauncher
             chkOverlay.Checked = Properties.Settings.Default.overlayEnabled;
 
             loadOverlay();
+            if (Properties.Settings.Default.lastUpdate != Application.ProductVersion)
+            {
+                new whatsNew().Show();
+                Properties.Settings.Default.lastUpdate = Application.ProductVersion;
+                Properties.Settings.Default.Save();
+            }
+            
+            string keybind = "";
+            if (Properties.Settings.Default.overlayModiferKey != 0)
+            {
+                keybind = getModiferKey(Properties.Settings.Default.overlayModiferKey) + " + " + ((Keys)Properties.Settings.Default.overlayKey).ToString();
+            }
+            else
+            {
+                keybind = ((Keys)Properties.Settings.Default.overlayKey).ToString();
+            }
+            lblALTS.Text = "(" + keybind + ")";
 
         }
         // "Process.Start("steam:");" is for focusing steam
@@ -569,13 +572,13 @@ namespace SUPLauncher
             if (chkAFK.Checked)
             {
                 //notifyIcon1.ShowBalloonTip(5000, "AFK Mode", "You are now in AFK Mode.\n Press on a server from the list on the menu\n and confirm it in steam to begin AFKing on SUP!", ToolTipIcon.Info);
-                Notification notif = new Notification("You are now in AFK Mode. \nPress on a server from the list on the menu \nand confirm it in steam to begin AFKing \non SUP!", "AFK MODE", false);
+                Notification notif = new Notification("You are now in AFK Mode. \nPress on a server from the list on the menu \nand confirm it in steam to begin AFKing \non SUP!", "AFK MODE", false, 115);
                 notif.Show();
             }
             else
             {
                 //notifyIcon1.ShowBalloonTip(5000, "AFK Mode", "You are no longer in AFK Mode.\n Pressing on a server will launch the game normally through steam with regular graphics (not in command", ToolTipIcon.Info);
-                Notification notif = new Notification("You are no longer in AFK Mode. \nPressing on a server will launch the game normally through steam with regular graphics.", "AFK MODE", false);
+                Notification notif = new Notification("You are no longer in AFK Mode. \nPressing on a server will launch the game normally through steam with regular graphics.", "AFK MODE", false, 115);
                 notif.Show();
             }
             try
@@ -685,13 +688,6 @@ namespace SUPLauncher
             }
             else
                 dupePath = SteamInstallPathDir + @"\steamapps\common\GarrysMod\garrysmod\data\advdupe2";
-            string[] files = new string[Directory.GetFiles(dupePath).Length];
-            int z = 0;
-            foreach (var i in Directory.GetFiles(dupePath))
-            {
-                files[z] = Path.GetFileName(i);
-                z++;
-            }
         }
         /// <summary>
         /// Gets the server name and IP the provided steam user is on
@@ -1191,23 +1187,36 @@ namespace SUPLauncher
             else
                 toolTip1.ToolTipTitle = e.AssociatedControl.Text;
         }
-        
+        private string getModiferKey(uint key)
+        {
+            if (key == (uint)SUPLauncher.ModifierKeys.Control)
+            {
+                return "CTRL";
+            }
+            else if(key == (uint)SUPLauncher.ModifierKeys.Alt)
+            {
+                return "ALT";
+            } else if (key == (uint)SUPLauncher.ModifierKeys.Shift)
+            {
+                return "SHIFT";
+            }
+            return "";
+        }
+
         private void chkOverlay_CheckedChanged(object sender, EventArgs e)
         {
             Properties.Settings.Default.overlayEnabled = chkOverlay.Checked;
             Properties.Settings.Default.Save();
             Notification notif;
-            if (chkOverlay.Checked)
+            if (!chkOverlay.Checked)
             {
-                 notif = new Notification("SUPLauncher overlay is enabled.\n(ALT + S)", "NOTIFICATION", false);
+                notif = new Notification("SUPLauncher overlay is disabled.", "NOTIFICATION", true);
+                notif.Show();
             }
             else
             {
-                 notif = new Notification("SUPLauncher overlay is disabled.\n(ALT + S)", "NOTIFICATION", false);
+                loadOverlay();
             }
-            notif.Show();
-            loadOverlay();
-
         }
 
         public void loadOverlay()
@@ -1220,7 +1229,16 @@ namespace SUPLauncher
                         overlay = new Overlay();
                     }
                     overlay.Visible = false;
-                    Notification notification = new Notification("SUPLauncher overlay is enabled.\n(ALT + S)", "NOTIFICATION" , false);
+                    string keybind = "";
+                    if (Properties.Settings.Default.overlayModiferKey != 0)
+                    {
+                        keybind = getModiferKey(Properties.Settings.Default.overlayModiferKey) + " + " + ((Keys)Properties.Settings.Default.overlayKey).ToString();
+                    }
+                    else
+                    {
+                        keybind = ((Keys)Properties.Settings.Default.overlayKey).ToString();
+                    }
+                    Notification notification = new Notification("SUPLauncher overlay is enabled.\n(" + keybind + ")", "NOTIFICATION" , true);
                     notification.Show();
                     SetForegroundWindow(getGmodHandle());
                 }
@@ -1236,10 +1254,19 @@ namespace SUPLauncher
                 }
             }
         }
+       
+        private void lblALTS_Click(object sender, EventArgs e)
+        {
+            new keyBinder().Show();
+        }
 
+        private void frmLauncher_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            MessageBox.Show("test");
+        }
     }
 
-    
+
 
     public static class MemoryStreamExtensions
     {

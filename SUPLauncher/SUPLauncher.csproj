@@ -148,6 +148,9 @@
     <Reference Include="DiscordRPC, Version=1.0.121.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\DiscordRichPresence.1.0.121\lib\net35\DiscordRPC.dll</HintPath>
     </Reference>
+    <Reference Include="MarkdownSharp, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MarkdownSharp.2.0.5\lib\net40\MarkdownSharp.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Build.Framework" />
     <Reference Include="Microsoft.Build.Utilities.v4.0" />
     <Reference Include="Microsoft.VisualBasic" />
@@ -161,6 +164,7 @@
       <HintPath>..\packages\NuGet.Core.2.14.0\lib\net40-Client\NuGet.Core.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -171,6 +175,7 @@
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Bans.cs">
@@ -191,6 +196,12 @@
     </Compile>
     <Compile Include="frmLauncher.Designer.cs">
       <DependentUpon>frmLauncher.cs</DependentUpon>
+    </Compile>
+    <Compile Include="keyBinder.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="keyBinder.Designer.cs">
+      <DependentUpon>keyBinder.cs</DependentUpon>
     </Compile>
     <Compile Include="KeyboardHook.cs" />
     <Compile Include="LookupForm.cs">
@@ -237,6 +248,12 @@
       <DependentUpon>Splashscreen1.cs</DependentUpon>
     </Compile>
     <Compile Include="SteamBridge.cs" />
+    <Compile Include="whatsNew.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="whatsNew.Designer.cs">
+      <DependentUpon>whatsNew.cs</DependentUpon>
+    </Compile>
     <Compile Include="WindowFocus.cs" />
     <EmbeddedResource Include="Bans.resx">
       <DependentUpon>Bans.cs</DependentUpon>
@@ -246,6 +263,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmLauncher.resx">
       <DependentUpon>frmLauncher.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="keyBinder.resx">
+      <DependentUpon>keyBinder.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="LookupForm.resx">
       <DependentUpon>LookupForm.cs</DependentUpon>
@@ -278,6 +298,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Splashscreen1.resx">
       <DependentUpon>Splashscreen1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="whatsNew.resx">
+      <DependentUpon>whatsNew.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="cert.pfx" />
     <None Include="key.snk" />
