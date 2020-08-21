@@ -139,6 +139,7 @@ namespace SUPLauncher
         private void Overlay_FormClosing(object sender, FormClosingEventArgs e)
         {
             frmLauncher.overlayVisable = false;
+            //this.Close();
         }
         private void TextBox1_KeyDown(object sender, KeyEventArgs e)
         {

@@ -11,8 +11,8 @@
     <Setting Name="profileOverlayEnabled" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
-    <Setting Name="Setting" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
+    <Setting Name="discordStatus" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="overlayModiferKey" Type="System.UInt32" Scope="User">
       <Value Profile="(Default)">1</Value>

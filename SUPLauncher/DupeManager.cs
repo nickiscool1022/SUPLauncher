@@ -142,11 +142,16 @@ namespace SUPLauncher
 
         private void DupeManager_Load(object sender, EventArgs e) // Get nodes for the treeview
         {
-
-            refresh_img = imgrefresh.Image;
-            original_refreshimg = imgrefresh.Image;
-            reloadFoldersAndFiles();
-
+            try
+            {
+                refresh_img = imgrefresh.Image;
+                original_refreshimg = imgrefresh.Image;
+                reloadFoldersAndFiles();
+            }
+            catch (Exception)
+            {
+                this.Visible = true;
+            }
         }
 
     
@@ -531,7 +536,8 @@ namespace SUPLauncher
                     reloadFoldersAndFiles();
                 }
 
-            } else
+            }
+            else
             {
                 String filename = Interaction.InputBox("New folder name for '" + Dupes.SelectedItems[0].Text + "'", "Input Folder Name");
                 if (!Directory.Exists(frmLauncher.dupePath + path.Text + "/" + filename))
@@ -547,7 +553,9 @@ namespace SUPLauncher
 
         private void button3_Click(object sender, EventArgs e)
         {
+            DupeManager_FormClosing(this, new FormClosingEventArgs(CloseReason.None, true));
             this.Close();
+            this.Opacity = 0;
         }
 
         private void pictureBox1_MouseEnter(object sender, EventArgs e)
@@ -558,6 +566,17 @@ namespace SUPLauncher
         private void pictureBox1_MouseLeave(object sender, EventArgs e)
         {
             pictureBox1.BackColor = Color.Transparent;
+        }
+
+        private void DupeManager_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            e.Cancel = true;    //cancel the event so the form won't be closed
+
+            t1.Tick += new EventHandler(fadeOut);  //this calls the fade out function
+            t1.Start();
+
+            if (Opacity == 0)  //if the form is completly transparent
+                e.Cancel = false;   //resume the event - the program can be closed
         }
     }
 }

@@ -315,6 +315,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "DupeManager";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.DupeManager_FormClosing);
             this.Load += new System.EventHandler(this.DupeManager_Load);
             this.DragDrop += new System.Windows.Forms.DragEventHandler(this.DupeManager_DragDrop);
             this.DragLeave += new System.EventHandler(this.DupeManager_DragLeave);

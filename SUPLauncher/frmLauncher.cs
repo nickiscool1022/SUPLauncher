@@ -258,7 +258,7 @@ namespace SUPLauncher
         {
             try
             {
-                if (getGmodProcess().ProcessName == "hl2") { return FindWindow(null, "Garry's Mod"); } else { return FindWindow(null, "Garry's Mod (x64)"); }
+                if (getGmodProcess() == null) return IntPtr.Zero; else if(getGmodProcess().ProcessName == "hl2") { return FindWindow(null, "Garry's Mod"); } else { return FindWindow(null, "Garry's Mod (x64)"); }
             }
             catch (Exception)
             {
@@ -285,7 +285,7 @@ namespace SUPLauncher
                 }
                 else
                 {
-                    return new Process();
+                    return null;
                 }
             
         }
@@ -377,6 +377,7 @@ namespace SUPLauncher
             discord.Initialize();
             GetUsername();
             //GetDiscordCheckStatus();
+            chkDiscord.Checked = Properties.Settings.Default.discordStatus;
             GetCurrentServer(steam.GetSteamId().ToString(), true);
             GetDupes();
             try
@@ -655,7 +656,7 @@ namespace SUPLauncher
         {
             Process proc = getGmodProcess();
 
-            if (proc.Container == null)
+            if (proc == null || proc.Container == null)
                 appStarted = false;
             else
                 appStarted = true;
@@ -1156,6 +1157,8 @@ namespace SUPLauncher
             t1.Interval = 10;  //we'll increase the opacity every 10ms
             t1.Tick += new EventHandler(fadeOut);  //this calls the function that changes opacity 
             t1.Start();
+            Properties.Settings.Default.discordStatus = chkDiscord.Checked;
+            Properties.Settings.Default.Save();
             this.Close();
         }
 
@@ -1215,6 +1218,17 @@ namespace SUPLauncher
             }
             else
             {
+                string keybind = "";
+                if (Properties.Settings.Default.overlayModiferKey != 0)
+                {
+                    keybind = getModiferKey(Properties.Settings.Default.overlayModiferKey) + " + " + ((Keys)Properties.Settings.Default.overlayKey).ToString();
+                }
+                else
+                {
+                    keybind = ((Keys)Properties.Settings.Default.overlayKey).ToString();
+                }
+                notif = new Notification("SUPLauncher overlay is enabled.\n(" + keybind + ")", "NOTIFICATION", true);
+                notif.Show();
                 loadOverlay();
             }
         }
@@ -1229,17 +1243,17 @@ namespace SUPLauncher
                         overlay = new Overlay();
                     }
                     overlay.Visible = false;
-                    string keybind = "";
-                    if (Properties.Settings.Default.overlayModiferKey != 0)
-                    {
-                        keybind = getModiferKey(Properties.Settings.Default.overlayModiferKey) + " + " + ((Keys)Properties.Settings.Default.overlayKey).ToString();
-                    }
-                    else
-                    {
-                        keybind = ((Keys)Properties.Settings.Default.overlayKey).ToString();
-                    }
-                    Notification notification = new Notification("SUPLauncher overlay is enabled.\n(" + keybind + ")", "NOTIFICATION" , true);
-                    notification.Show();
+                    //string keybind = "";
+                    //if (Properties.Settings.Default.overlayModiferKey != 0)
+                    //{
+                    //    keybind = getModiferKey(Properties.Settings.Default.overlayModiferKey) + " + " + ((Keys)Properties.Settings.Default.overlayKey).ToString();
+                    //}
+                    //else
+                    //{
+                    //    keybind = ((Keys)Properties.Settings.Default.overlayKey).ToString();
+                    //}
+                    //Notification notification = new Notification("SUPLauncher overlay is enabled.\n(" + keybind + ")", "NOTIFICATION" , true);
+                    //notification.Show();
                     SetForegroundWindow(getGmodHandle());
                 }
                 else

@@ -53,7 +53,15 @@ namespace SUPLauncher
                 IntPtr handle = frmLauncher.getGmodHandle();
                 if (handle == IntPtr.Zero)
                 {
-                    this.Close();
+                    this.Size = new Size(this.Width, this.Height);
+                    this.Top = Screen.PrimaryScreen.Bounds.Top;
+                    this.Left = Screen.PrimaryScreen.Bounds.Right - this.Bounds.Width;
+                    Opacity = 0;      //first the opacity is 0
+
+                    t1.Interval = 10;  //we'll increase the opacity every 10ms
+                    t1.Tick += new EventHandler(fadeIn);  //this calls the function that changes opacity 
+                    t1.Start();
+                    return;
                 }
 
                 GetWindowRect(handle, out rect);
