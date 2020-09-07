@@ -59,7 +59,7 @@ namespace SUPLauncher
             this.Top = rect.top;
             this.Left = rect.right - this.Bounds.Width;
             this.Focus();
-            frmLauncher.overlayVisable = true;
+            frmLauncher.overlay.Visible = true;
             
             // Set Clipboard listener    
             if (ClipboardViewerNext.ToInt32() == 0)
@@ -97,7 +97,42 @@ namespace SUPLauncher
             }
 
             checkBox1.Checked = Properties.Settings.Default.profileOverlayEnabled;
+            t1 = new System.Windows.Forms.Timer();
+            t1.Interval = 10;  //we'll increase the opacity every 10ms
+            t1.Tick += new EventHandler(fadeIn);  //this calls the function that changes opacity 
+            t1.Start();
         }
+
+        #region Fade
+        /*
+            Opacity = 0;      //first the opacity is 0
+
+            t1.Interval = 10;  //we'll increase the opacity every 10ms
+            t1.Tick += new EventHandler(fadeIn);  //this calls the function that changes opacity 
+            t1.Start(); 
+         */
+        System.Windows.Forms.Timer t1 = new System.Windows.Forms.Timer();
+        void fadeIn(object sender, EventArgs e)
+        {
+            if (Opacity >= 1)
+                t1.Stop();   //this stops the timer if the form is completely displayed
+            else
+                Opacity += 0.05;
+        }
+
+        void fadeOut(object sender, EventArgs e)
+        {
+            if (Opacity <= 0)     //check if opacity is 0
+            {
+                t1.Stop();    //if it is, we stop the timer
+                Close();   //and we try to close the form
+            }
+            else
+                Opacity -= 0.05;
+        }
+        #endregion
+
+
         private void Button14_Click(object sender, EventArgs e)
         {
             Clipboard.SetText("https://superiorservers.co/darkrp/rules");
@@ -122,24 +157,16 @@ namespace SUPLauncher
         {
             Clipboard.SetText("https://superiorservers.co/ssrp/cwrp/rules");
         }
-        private void Button17_Click(object sender, EventArgs e)
-        {
-            if (dupemanager == null || dupemanager.IsDisposed)
-            {
-                dupemanager = new DupeManager();
-                dupemanager.Show();
-            }
-            else
-            {
-                dupemanager.Visible = true;
-            }
-            dupemanager.TopMost = true;
-
-        }
         private void Overlay_FormClosing(object sender, FormClosingEventArgs e)
         {
-            frmLauncher.overlayVisable = false;
-            //this.Close();
+            e.Cancel = true;
+            frmLauncher.overlay.Visible = false;
+            t1 = new System.Windows.Forms.Timer();
+            t1.Interval = 10;  //we'll increase the opacity every 10ms
+            t1.Tick += new EventHandler(fadeOut);  //this calls the function that changes opacity 
+            t1.Start();
+            //if (this.Opacity == 0)
+                //e.Cancel = false;
         }
         private void TextBox1_KeyDown(object sender, KeyEventArgs e)
         {
@@ -231,9 +258,15 @@ namespace SUPLauncher
             if (dupemanager != null && dupemanager.IsDisposed == false) { dupemanager.Visible = this.Visible; }
 
             if (this.Visible)
+            {
+                //throw new Exception("visible");
                 Overlay_Load(this, new EventArgs());
+            }
             else
-                Overlay_FormClosing(this, new FormClosingEventArgs(CloseReason.None, false));
+            {
+                throw new Exception("not visible");
+                Overlay_FormClosing(this, new FormClosingEventArgs(CloseReason.FormOwnerClosing, true));
+            }
         }
 
 

@@ -35,7 +35,6 @@ namespace SUPLauncher
         private Image refresh_img;
         Image original_refreshimg;
         KeyboardHook hook = new KeyboardHook();
-        public static bool overlayVisable = false;
         public static Overlay overlay = new Overlay();
         public static Bans banPage = null;
 
@@ -220,7 +219,7 @@ namespace SUPLauncher
 
                 try
                 {
-                    if (overlayVisable)
+                    if (overlay.Visible)
                     {
 
                         overlay.Visible = false;
@@ -426,7 +425,9 @@ namespace SUPLauncher
                 keybind = ((Keys)Properties.Settings.Default.overlayKey).ToString();
             }
             lblALTS.Text = "(" + keybind + ")";
-
+            Database db = new Database();
+            db.Connect();
+            db.Insert();
         }
         // "Process.Start("steam:");" is for focusing steam
         private void BtnDanktown_Click(object sender, EventArgs e)
@@ -537,7 +538,7 @@ namespace SUPLauncher
         }
         private void Panel1_MouseClick(object sender, MouseEventArgs e)
         {
-            MessageBox.Show("Keep in mind that this program is still being worked on and is not an official release of the SUP Launcher. In order to use this program, you must just simply click on a button and watch the magic happen. The credit for this idea goes to aStonedPenguin, and all new releases will available on the github (nicksuperiorservers/SUPLauncher). Thanks for using this nice little program I made, and have a fun time playing SuperiorServers." + Environment.NewLine + Environment.NewLine + "-Nick", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show("Keep in mind that this program is still being worked on and is not an official release of the SUP Launcher. In order to use this program, you must just simply click on a button and watch the magic happen. The credit for this idea goes to aStonedPenguin, and all new releases will available on the github (nickiscool1022/SUPLauncher). Thanks for using this nice little program I made, and have a fun time playing SuperiorServers." + Environment.NewLine + Environment.NewLine + "-Nick", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
         private void BtnForums_Click(object sender, EventArgs e)
         {
@@ -549,8 +550,15 @@ namespace SUPLauncher
         }
         private void FrmLauncher_FormClosing(object sender, FormClosingEventArgs e)
         {
+            e.Cancel = true;
             try
             {
+                t1 = new System.Windows.Forms.Timer();
+                t1.Interval = 10;  //we'll increase the opacity every 10ms
+                t1.Tick += new EventHandler(fadeOut);  //this calls the function that changes opacity 
+                t1.Start();
+
+                
                 if (chkDiscord.Checked && File.Exists("1") == false)
                 {
                     File.Create("1");
@@ -559,6 +567,8 @@ namespace SUPLauncher
                 else
                     File.Delete("1");
                 Cef.Shutdown();
+                if (this.Opacity == 0)
+                    e.Cancel = false;
                 Interaction.Shell("taskkill /pid " + Process.GetCurrentProcess().Id.ToString() + " /f /t"); // Whoops
             }
             catch (Exception)
@@ -1123,7 +1133,7 @@ namespace SUPLauncher
         {
             if (e.KeyCode == Keys.Enter)
             {
-                if ((textBox1.Text.Contains("STEAM_0:0:") || textBox1.Text.Contains("STEAM_0:1:")) || (textBox1.Text.StartsWith("7") && textBox1.Text.Length == 76561197960265728.ToString().Length))
+                if (textBox1.Text.Contains("STEAM_0:0:") || textBox1.Text.Contains("STEAM_0:1:") || (textBox1.Text.StartsWith("7") && textBox1.Text.Length == 76561197960265728.ToString().Length))
                 {
                     //Process.Start("https://superiorservers.co/profile/" + steamid);
                     forumSteamIDLookup = textBox1.Text;
@@ -1154,9 +1164,6 @@ namespace SUPLauncher
 
         private void Button1_Click(object sender, EventArgs e)
         {
-            t1.Interval = 10;  //we'll increase the opacity every 10ms
-            t1.Tick += new EventHandler(fadeOut);  //this calls the function that changes opacity 
-            t1.Start();
             Properties.Settings.Default.discordStatus = chkDiscord.Checked;
             Properties.Settings.Default.Save();
             this.Close();

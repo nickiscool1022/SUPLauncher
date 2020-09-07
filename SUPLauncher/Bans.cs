@@ -165,13 +165,21 @@ namespace SUPLauncher
 
         private void BtnClose_Click(object sender, EventArgs e)
         {
-            this.Hide();
+            this.Close();
         }
 
-        //private void Bans_FormClosing(object sender, FormClosingEventArgs e)
-        //{
-        //    Cef.Shutdown();
-        //}
+        private void Bans_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            e.Cancel = true;
+
+            t1 = new System.Windows.Forms.Timer();
+            t1.Interval = 10;  //we'll increase the opacity every 10ms
+            t1.Tick += new EventHandler(fadeOut);  //this calls the function that changes opacity 
+            
+            t1.Start();
+            if (this.Opacity == 0)
+                e.Cancel = false;
+        }
 
         private void Bans_Load(object sender, EventArgs e)
         {

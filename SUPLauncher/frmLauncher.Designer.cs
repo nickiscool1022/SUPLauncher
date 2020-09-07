@@ -807,7 +807,6 @@
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmLauncher_FormClosing);
             this.Load += new System.EventHandler(this.FrmLauncher_Load);
             this.Click += new System.EventHandler(this.FrmLauncher_Click);
-            this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.frmLauncher_KeyPress);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.versionWarn)).EndInit();

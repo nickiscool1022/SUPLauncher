@@ -385,7 +385,6 @@
             this.button17.Text = "Dupe\r\nManager\r\n";
             this.toolTip1.SetToolTip(this.button17, "Opens the dupe manager in the overlay.");
             this.button17.UseVisualStyleBackColor = false;
-            this.button17.Click += new System.EventHandler(this.Button17_Click);
             // 
             // button16
             // 

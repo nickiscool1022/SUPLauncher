@@ -30,7 +30,7 @@ namespace SUPLauncher
             p1.Size = new Size(0, 105);
             System.Net.WebClient wc = new System.Net.WebClient();
             wc.UseDefaultCredentials = true;
-            HttpWebRequest request = WebRequest.CreateHttp("https://api.github.com/repos/nicksuperiorservers/SUPLauncher/releases/tags/" + Application.ProductVersion);
+            HttpWebRequest request = WebRequest.CreateHttp("https://api.github.com/repos/nickiscool1022/SUPLauncher/releases/tags/" + Application.ProductVersion);
             request.UserAgent = "Browser";
             string markdown = "";
             try

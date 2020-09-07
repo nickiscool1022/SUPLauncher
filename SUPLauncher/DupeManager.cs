@@ -553,9 +553,7 @@ namespace SUPLauncher
 
         private void button3_Click(object sender, EventArgs e)
         {
-            DupeManager_FormClosing(this, new FormClosingEventArgs(CloseReason.None, true));
             this.Close();
-            this.Opacity = 0;
         }
 
         private void pictureBox1_MouseEnter(object sender, EventArgs e)
@@ -571,6 +569,9 @@ namespace SUPLauncher
         private void DupeManager_FormClosing(object sender, FormClosingEventArgs e)
         {
             e.Cancel = true;    //cancel the event so the form won't be closed
+            t1 = new System.Windows.Forms.Timer();
+            t1.Interval = 10;
+            
 
             t1.Tick += new EventHandler(fadeOut);  //this calls the fade out function
             t1.Start();
