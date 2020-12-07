@@ -387,8 +387,14 @@ namespace SUPLauncher
                 }
                 lblVersion.Text = Application.ProductVersion;
                 var client = new WebClient();
-                client.Headers.Add("user-agent", "SUP Launcher: v" + Application.ProductVersion); // Set a header for the SUP Avatar API web request so it doesn't get blocked :)
-                byte[] avatardata = client.DownloadData(new Uri("https://superiorservers.co/api/avatar/" + steam.GetSteamId().ToString()));
+                client.Headers.Add("user-agent", "SUP Launcher"); // penguin is a fucking bitch for blocking the sup api
+                HttpWebRequest request = (HttpWebRequest)HttpWebRequest.Create("http://api.steampowered.co/ISteamUser/GetPlayerSummaries/v0002/?key=7875E26FC3C740C9901DDA4C6E74EB4E&steamids=" + steam.GetSteamId().ToString());
+                HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+                StreamReader sr = new StreamReader(response.GetResponseStream());
+                string streamData = sr.ReadToEnd();
+                var json = Newtonsoft.Json.JsonConvert.DeserializeObject<dynamic>(streamData);
+                string avatarURL = json.response.players[0].avatarfull;
+                byte[] avatardata = client.DownloadData(new Uri(avatarURL));
                 using (var ms = new MemoryStream(avatardata))
                 {
                     picImage.Image = Image.FromStream(ms);
@@ -401,8 +407,8 @@ namespace SUPLauncher
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString());
-                FrmLauncher_FormClosing(this, new FormClosingEventArgs(CloseReason.ApplicationExitCall, false));
+                MessageBox.Show(null, ex.ToString(), "REPORT THIS TO NICK YOU DUMB FUCK", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                //FrmLauncher_FormClosing(this, new FormClosingEventArgs(CloseReason.ApplicationExitCall, false));
             }
 
             chkOverlay.Checked = Properties.Settings.Default.overlayEnabled;

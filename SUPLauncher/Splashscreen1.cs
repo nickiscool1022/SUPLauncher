@@ -71,6 +71,7 @@ namespace SUPLauncher
 
         private void Splashscreen1_Load(object sender, EventArgs e)
         {
+            t1 = new Timer();
             Opacity = 0;      //first the opacity is 0
 
             t1.Interval = 10;  //we'll increase the opacity every 10ms

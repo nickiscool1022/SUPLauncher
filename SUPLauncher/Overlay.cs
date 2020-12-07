@@ -264,7 +264,7 @@ namespace SUPLauncher
             }
             else
             {
-                throw new Exception("not visible");
+                //throw new Exception("not visible");
                 Overlay_FormClosing(this, new FormClosingEventArgs(CloseReason.FormOwnerClosing, true));
             }
         }
@@ -346,6 +346,11 @@ namespace SUPLauncher
             Properties.Settings.Default.profileOverlayEnabled = checkBox1.Checked;
             Properties.Settings.Default.Save();
             SetForegroundWindow(frmLauncher.getGmodProcess().MainWindowHandle);
+        }
+
+        private void button17_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
