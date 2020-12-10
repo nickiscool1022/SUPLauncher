@@ -17,7 +17,6 @@ namespace SUPLauncher
 
     public static void Update()
     {
-        string[] webData;
         ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12; // Secure security protocol for querying the github API
         HttpWebRequest request = WebRequest.CreateHttp("http://api.github.com/repos/nickiscool1022/SUPLauncher/releases/latest");
         request.UserAgent = "Nick";
@@ -25,8 +24,8 @@ namespace SUPLauncher
         response = request.GetResponse(); // Get Response from webrequest
         StreamReader sr = new StreamReader(response.GetResponseStream()); // Create stream to access web data
         string currentRecord = sr.ReadToEnd(); // Read data from response stream
-        webData = currentRecord.Split(Convert.ToChar(",")); // Split raw web data into different elements of array
-        string newestVersion = webData[7].Substring(webData[7].LastIndexOf(":") + 2, webData[7].Length - webData[7].LastIndexOf(":") - 3); // Get newest version
+        var webData = Newtonsoft.Json.JsonConvert.DeserializeObject<dynamic>(currentRecord); // Deserialize JSON
+        string newestVersion = webData.tag_name;
         string currentVersion = Application.ProductVersion; // Get current version of assembly
             if (newestVersion.Contains(currentVersion) == false) // If current program is not newest version -
             {
@@ -115,7 +114,6 @@ namespace SUPLauncher
 
         public static bool checkForUpdates()
         {
-            string[] webData;
             ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12; // Secure security protocol for querying the github API
             HttpWebRequest request = WebRequest.CreateHttp("http://api.github.com/repos/nickiscool1022/SUPLauncher/releases/latest");
             request.UserAgent = "Nick";
@@ -123,8 +121,8 @@ namespace SUPLauncher
             response = request.GetResponse(); // Get Response from webrequest
             StreamReader sr = new StreamReader(response.GetResponseStream()); // Create stream to access web data
             string currentRecord = sr.ReadToEnd(); // Read data from response stream
-            webData = currentRecord.Split(Convert.ToChar(",")); // Split raw web data into different elements of array
-            string newestVersion = webData[7].Substring(webData[7].LastIndexOf(":") + 2, webData[7].Length - webData[7].LastIndexOf(":") - 3); // Get newest version
+            var webData = Newtonsoft.Json.JsonConvert.DeserializeObject<dynamic>(currentRecord); // Deserialize JSON
+            string newestVersion = webData.tag_name; // Get newest version
             string currentVersion = Application.ProductVersion; // Get current version of assembly
             if (newestVersion.Contains(currentVersion) == false) // If current program is not newest version -
             {

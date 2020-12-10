@@ -255,7 +255,6 @@
             this.lblVersion.Size = new System.Drawing.Size(57, 20);
             this.lblVersion.TabIndex = 27;
             this.lblVersion.Text = "1.1.1.1";
-            this.toolTip1.SetToolTip(this.lblVersion, "dd");
             this.lblVersion.Click += new System.EventHandler(this.LblVersion_Click);
             // 
             // toolStripMenuItem1

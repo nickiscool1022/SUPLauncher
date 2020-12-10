@@ -388,7 +388,7 @@ namespace SUPLauncher
                 lblVersion.Text = Application.ProductVersion;
                 var client = new WebClient();
                 client.Headers.Add("user-agent", "SUP Launcher"); // penguin is a fucking bitch for blocking the sup api
-                HttpWebRequest request = (HttpWebRequest)HttpWebRequest.Create("http://api.steampowered.co/ISteamUser/GetPlayerSummaries/v0002/?key=7875E26FC3C740C9901DDA4C6E74EB4E&steamids=" + steam.GetSteamId().ToString());
+                HttpWebRequest request = (HttpWebRequest)HttpWebRequest.Create("http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=7875E26FC3C740C9901DDA4C6E74EB4E&steamids=" + steam.GetSteamId().ToString());
                 HttpWebResponse response = (HttpWebResponse)request.GetResponse();
                 StreamReader sr = new StreamReader(response.GetResponseStream());
                 string streamData = sr.ReadToEnd();

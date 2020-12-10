@@ -22,14 +22,23 @@ namespace SUPLauncher
             string connectionString = "SERVER=" + server + ";" + "DATABASE=" +
                 database + ";" + "UID=" + uid + ";" + "PASSWORD=" + password + ";";
             connection = new MySqlConnection(connectionString);
-            connection.Open();
+            try
+            {
+                connection.Open();
+            }
+            catch (Exception){};
+            
         }
         public void Insert()
         {
-            string query = "REPLACE INTO stats(SteamID, DateUsed) VALUES('" + steam.GetSteamId() + "', '" + DateTime.Now.ToShortDateString() + " " + DateTime.Now.ToShortTimeString() + "')";
-            MySqlCommand cmd = new MySqlCommand(query, connection);
-            cmd.ExecuteNonQuery();
-            connection.Close();
+            try
+            {
+                string query = "REPLACE INTO stats(SteamID, DateUsed) VALUES('" + steam.GetSteamId() + "', '" + DateTime.Now.ToShortDateString() + " " + DateTime.Now.ToShortTimeString() + "')";
+                MySqlCommand cmd = new MySqlCommand(query, connection);
+                cmd.ExecuteNonQuery();
+                connection.Close();
+            }
+            catch (Exception){};
         }
     }
 }
